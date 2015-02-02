@@ -1,0 +1,15 @@
+{% import 'scaffolding/macros.html' as s with context %}
+
+{% if scaffolding %}
+<header class="clearfix">
+    {% block links %}
+        {% if not 'add' in scaffolding.navigation %}
+            {{s.nav_link('add', 'New ' + inflector.titleize(scaffolding.singular))}}
+        {% endif %}
+        {% for action, title in scaffolding.navigation.iteritems() %}
+            {{s.nav_link(action, title)}}
+        {% endfor %}
+    {% endblock %}
+</header>
+<hr>
+{% endif %}

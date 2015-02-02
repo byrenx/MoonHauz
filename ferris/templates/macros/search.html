@@ -1,0 +1,55 @@
+{% macro filter(uri, examples=[], _pass_all=False) -%}
+<div>
+    <form id='search-form' class="form-search form-inline" action="{{uri}}">
+        <div class="form-group">
+            <input type="text" name='query' class="input-xlarge form-control search-query" value="{{search_query|default('')}}">
+        </div>
+        <button type="submit" class="btn btn-primary"><i class='icon icon-search icon-white'></i> Search</button>
+        {% if examples %}
+        <span class='help-inline'>
+            Examples:
+                {% for example in examples %}
+                <span class='label label-info'>{{example}}</span>
+                {% if not loop.last %}, {% endif %}
+                {% endfor %}
+        </span>
+        <script type='text/javascript'>
+        $(function(){
+            $('#search-form .label').click(function(){
+                $('#search-form input.search-query').val($(this).text());
+            });
+        });
+        </script>
+        {% endif %}
+    </form>
+</div>
+{%- endmacro %}
+
+
+{% macro info() -%}
+    {% if search_error %}
+        <div class="alert alert-block alert-error">
+          <a class="close" data-dismiss="alert">×</a>
+          <h4 class="alert-heading">Whoa, now!</h4>
+          It appears that you somehow gave me an invalid search query or something went horribly wrong, please try again with a different query. <br/>
+          If you'd like to know what kind of queries are valid,
+          <a href='https://developers.google.com/appengine/docs/python/search/overview#Query_Language_Overview'>
+            read here</a>.
+          <p>
+            <code>
+              {{search_error}}
+            </code>
+          </p>
+        </div>
+    {% endif %}
+
+    {% if search_query and not search_results %}
+        <div class="alert alert-info">
+            <a class="close" data-dismiss="alert">×</a>
+            <h4 class="alert-heading">No results found</h4>
+            Sorry, I couldn't find anything with your query. Please try again. If you would like to learn more about querying,
+            <a href='https://developers.google.com/appengine/docs/python/search/overview#Query_Language_Overview'>
+            read here</a>.
+        </div>
+    {% endif %}
+{%- endmacro %}

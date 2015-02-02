@@ -1,0 +1,25 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends s.layout() %}
+
+{% block layout_content %}
+
+{{s.override_include('nav.html')}}
+
+<h3>Current Configuration</h3>
+
+<ul>
+{% for name, values in settings|dictsort recursive %}
+    <li>
+        {% if values is mapping %}
+            {{name}}
+            <ul>
+                {{loop(values|dictsort)}}
+            </ul>
+        {% else %}
+            {{name}} : {{values}}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

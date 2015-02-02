@@ -1,0 +1,14 @@
+{% extends "layouts/admin.html" %}
+
+{% block layout_head %}
+    {{super()}}
+    {% include "elements/ferris/landing_style.html" %}
+{% endblock %}
+
+{% block layout_content %}
+
+<div class="center landing">
+  <h1><img src='/ferris/img/ferris.png' style='width: 20%; height: 20%;'></h1>
+  <small style='text-align: center'>Ferris {{ferris.version}}</small>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends "layouts/admin.html" %}
+
+{% block layout_content %}
+
+{{s.override_include('nav.html')}}
+
+{% set list = credentials %}
+
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Scopes</th>
+            <th>Expired</th>
+            <th>Expires On</th>
+            <th>Refresh Token</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in list %}
+            <tr>
+                <td>
+                    {{s.print_value(item.user)}}
+                    {% if item.admin %}
+                        <span class='badge badge-info'>Admin</span>
+                    {% endif %}
+                </td>
+                <td>{{s.print_value(item.scopes)}}</td>
+                <td>{% if item.credentials.expired %}Yes{% else %}No{% endif %}</td>
+                <td>{{item.credentials.token_expiry}} UTC</td>
+                <td>
+                    {% if item.credentials.refresh_token %}Yes{% else %}<span class='badge badge-important'>No</span>{% endif %}
+                </td>
+                <td class='span2'>
+                    {{s.action_buttons(item)}}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type='text/javascript'>
+$(function(){
+    $('.btn[title=Delete]').click(function(e){
+        alert('You must also revoke access from the application using accounts.google.com')
+    });
+});
+</script>
+
+{{s.next_page_link()}}
+
+{% endblock %}

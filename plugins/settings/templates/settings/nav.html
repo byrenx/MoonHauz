@@ -1,0 +1,11 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends "scaffolding/nav.html" %}
+
+{% block links %}
+    {% for setting_class in setting_classes.itervalues()|sort(attribute='_name') %}
+        {% set active = on_uri(action='edit', key=setting_class.__name__) %}
+
+        <a href="{{s.action_uri(action='edit', key=setting_class.__name__)}}" class="btn btn-default {% if active %}active{% endif %}">      {{setting_class._name}}
+        </a>
+    {% endfor %}
+{% endblock %}

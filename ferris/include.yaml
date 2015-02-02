@@ -1,0 +1,66 @@
+handlers:
+
+# Static resources
+- url: /static
+  static_dir: app/static
+
+- url: /css
+  static_dir: app/static/css
+
+- url: /js
+  static_dir: app/static/js
+
+- url: /img
+  static_dir: app/static/img
+
+# Ferris static resources
+- url: /ferris/static
+  static_dir: ferris/static
+  expiration: 7d
+
+- url: /ferris/css
+  static_dir: ferris/static/css
+  expiration: 7d
+
+- url: /ferris/js
+  static_dir: ferris/static/js
+  expiration: 7d
+
+- url: /ferris/img
+  static_dir: ferris/static/img
+  expiration: 7d
+
+- url: /ferris/fonts
+  static_dir: ferris/static/fonts
+  expiration: 7d
+
+# Top-level static files
+- url: /favicon\.ico
+  static_files: app/static/favicon.ico
+  upload: app/static/favicon\.ico
+  expiration: 7d
+
+- url: /robots\.txt
+  static_files: app/static/robots.txt
+  upload: app/static/robots\.txt
+  expiration: 7d
+
+- url: /humans\.txt
+  static_files: app/static/humans.txt
+  upload: app/static/humans\.txt
+  expiration: 7d
+
+# Maps plugins/{plugin}/static to /plugins/{plugin} 
+- url: /plugins/(.*?)/(.*)
+  static_files: plugins/\1/static/\2
+  upload: plugins/(.*?)/static/(.*)
+
+# Cron prefix is admin-only.
+- url: /cron/.*
+  script: main.main_app
+  login: admin
+
+# Used to fix imports before running deffered tasks.
+- url: /_ah/queue/deferred
+  script: main.deferred_app
+  login: admin

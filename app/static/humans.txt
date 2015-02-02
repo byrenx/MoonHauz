@@ -1,0 +1,66 @@
+#                                                                                 
+#                                       ............                              
+#                                   .....=DDDNND8I..                              
+#                               ...7ONNDNNNNNNNDNNN88..                           
+#                          . ..?ZDNNNNNDNNNNNNDNDNNNDDD..                         
+#                         ...DNNNNNNNNNNNNDDNNMNNN88NNNN:.                        
+#                       ...ZDDNNNNNNNDNNNNNNNNNNMNNNNNNNN.                        
+#                        .8DNMNNNNNMNDDDNDNNNNNNNNNNNDNDOD.                       
+#                      ..D8NNNNNNNNNNNDMNNNNMMNMMMNNNNNDD$...                     
+#                     ..DDDNNNNMNNNNDDNNNNNNNMMMNMMNNNNND8O...                    
+#                     .8DDNNNNNNMNNNMMNMMNNNNNMNMMMMNNNNN8D..                     
+#                    .=D8NNNNNNNNDNNNNNMNMMMMMMMMMNNNNNNNNDI..                    
+#                   ..ND8DNNNNNMMNMNNNNNMMNNNNNMNMMNNNNNNNND..                    
+#                  ..DDODDDNNNNNMNNNNNNMNMNNNNMNMMMMNNNNNNN8=.                    
+#                  ..IDDDDND8DDNNNNNNNNMNNMNNNMMMMMMNNNNNNND+..      .....:.......
+#   ..    ..       ..NNNNNN8$ODDNNNNNDNMNMMNNMNNNNNNNNNNNNNN8=...  ......=DNNNNNNN
+#  ......=7.        .ONNNNN$77ZODDDDNNNNNNNNNNNNDDDDODNNNNNNO888OZZZZZ$$$$NNNNNNNN
+# NMNNMNNND=.,=I?=+$ZZDNNNN$III$ZO8D888DNDNNNNDOZZZ$Z8DNNNNNDDD8OOZZ$$$77INNNNNNNN
+# NMMNMMNND8ZZ$$777$$$DNNNN$7II??IZOZOO8OZOOZ$7$$$$$ZODNNNNNO7D8OOZ$$77II?NNNNNNNN
+# NMMMMMMMN8Z$77??II$$8NNNN$77II??++++??III7II777$$$ZZ8NNNN888D8OZZ$$77IIONNNNNNNN
+# MMMMMMMMMDO7II???II7$8NNN$777II??+????I?IIIII77$ZZZZZZDNNDOD88OZZ$$7I??NNNNNNNNN
+# MMMMMMMMMN87I????III7Z8NN7777I???++???????II777$$ZZZZZ8NN88ZDOZZZ$$7IIINNNNNNNNN
+# MMMMMMMMMND7??+?+???I$$$NI7IIII??++??????III$ZO8888ZZZ8N8D8ODOZZZZZ$$7$NNNNNNNNN
+# MMMMMMMMNNNZII??I????I7?8I7O88DDO7I????IIZ8DDOZZOOOOZZZDDDZO8OZZZOOZ$7ONNNNNNNNN
+# NMMMNNNNNNN8ZZ$777I?+=+?ZIIZ$II77$$$7I77$O$O8NNNN8OZZZZ$8OZOOZZ.................
+# NNM8NN8+$ON........+?++I=?II8ZZ~NI7$7?77ZOI?:7N7OOZ$ZZ$$OZZ8OO..        .       
+# ..        .        ..777?+I?I$Z7$$II$I?7ZZZI777$ZZ$ZZZ$ZOD8O~..       .         
+#  .                    ...???I?III7I77I?7ZZZ$77$$77$ZZZZ8D8...     ..............
+#  .      ......  ..      ..:?I??II?II$$?IZZZ$7III7$$ZZZZD8...   ....NNNNNNDDDD8?,
+#  .   ....,:,........     ..II??+++?I$$?IZOZ$7IIII7$ZZZZ.. .  ...O8NNNNNNNNNNNN:,
+# ....=ZNN88NMNNNNZ7=.      .7??+?+?I7$$??$ZOO8O$7$$ZZZZZ.      .:?=DNNNNNDD8DMOM?
+# $DZ$78ZD8Z8NNNN=O7?7..    ..7III7$I7$$?I$$OZOZZZ$$ZOZZ$.       ~N7O?NNNNDNDNDNN8
+# $M8OMMDN8$DNNN~IZI88O.    ..+7$7Z77I7$II7OOOZZZZ77ZZZON.....  .~D?78?DZINNMNNMMN
+# MMZMMMMMMNNMN~$$MDMNO........$I77I7777I77$$$$Z87Z7ZZOONM+I~.....,D?O87DI~MMNMMMM
+# MM$MMMMMMMD$8IZINNMMN.?NNN8?=N$7?IIZ$77I7OODD8$$$ZZOONNNNMNNNN8NNN=$N7OO?~DMMMMM
+# NDMMMMMMMO$7~$8D8IMODMNMMNI78NN$$IIIZOZZZ$ZOOZZZ$OOO8NNNNONMNM?O8D+7N$$$I++MNMMM
+# MDMMMMMM$7Z7?$$?8DOINM8ZZ8NNO8NNZ$777$ZZZ$ZZZZZZOOO88NNNMNMNNNZ$?7=?8Z$7I?7?MNMM
+# MDMMMMM77D7+?7ZZZZO88O87MNNNNN$NNN$77777$$$ZZZZZO888NNNMMMNMNNOZ$7I~ZD?,=I???NMM
+# NMMMMM$ZD?I?Z$$$OZ$ODDMMMMDNNN8ND8O$I7777$$$ZZZZOOODNNMMMMNMN$Z7?==~$NO+:II?+=NN
+# DMMMMZOD7?=7$$Z$MMMMMMMMM8NDDDMNO=:,77777I$$$$ZZZ8,NNNMMMMMMNM$??+=:?NNO?7$I+=?N
+# MMMM88DZ7?=++7MMMMMMMMMMNMMMNNMDI~:,:?77$777$$,,.,~NNMMMMMMMMMMN++=,+DN8$7$$+~+~
+# MMMMDN8$7=~~7MMMMMMMMMMMMMM$NNNOO:,,,,,,,,,,,,,,,,NMNMMMMMMMMMMNMNI~~ONDZ$I$7+:~
+# MMMDNMDOI=,:MNMMMMMMMMMMMMMMMMN$=:I:,,:::,,,,,,,,:,NNMMMMMMMMMMMMMNI~$NDO$$I?+=:
+# MMMDMMDO7?~~MMMMMMMMMMMMMNMMMMM?,,,,,::,,,,,,,,,:,,?NMMMMMMMMMMMMMMND$ND8Z7$?I+~
+# MM8DMMN8???8MMMMMMMMMMMMMMMMMMN~,,,,,,,,,,,,,,,,,,.,MNMMMMMMMMMMMMMMM7NN8$I7+?~+
+# MM8DDMM87??MMMMMMMMMMMMMZMMMMMN,:,,,,,,,,,,,,,,.,,,.,NMMMMMMMMMMMMMMMMNN8I7II?~M
+# MI8DNMM8OI?MMMMMMMMMMMMMMMMMMMN,:,,,,,,,,,,,,,.,,,...?NMMMMMMMMMMMMMMMOM8I?77+ND
+# M$88DMN8ZZ=NMMMMMMMMMMMMMMMMMMN.,.,,,,,,,,,,...,,....,OMMMMMMMMMMMMMMM8MO7II7~N~
+# 7Z88DMMDO$?$MMMMMMMMMM8MMMMMMMN.,.,,,..,,.....,........NMMMMMMMMMMMMMMNM8I7I??$N
+# =O88DNND87I?MMMMMMMMMMNMMMMNNNN........................=NNNNNNNNNNNNNNMNDZIIINIM
+
+# TEAM
+
+    cloudsherpas.com -- App Dev -- Atlanta, GA
+
+    Jonathan Wayne Parrott -- Development -- jonathan.parrott@cloudsherpas.com
+    Lewis Rodgers -- Design -- lewis.rodgers@cloudsherpas.com
+
+# THANKS
+
+    To the Python and App Engine communities.
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, Twitter Bootstrap, JQuery
+    Ferris, Python, Google App Engine

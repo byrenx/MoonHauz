@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>Application Error</title>
+
+    <link rel="stylesheet" type="text/css" href="/ferris/css/bootstrap.min.css">
+    {% include "elements/ferris/landing_style.html" %}
+</head>
+<body>
+<div class="container">
+    <div class="center landing">
+        {% block layout_content %}
+          <h1>{% block title %}Oops{% endblock %}</h1>
+          <h3 class='blue'>{% block subtitle %}{% endblock %}</h3>
+          <p>
+            {% block body %}{% endblock %}
+          </p>
+          {% if exception %}
+          <p>
+            <strong>Technical Info</strong>
+            <pre class='prettyprint'>{{exception}}</pre>
+          </p>
+          {% endif %}
+        {% endblock %}
+        <small class='beige'>Ferris {{ferris.version}}</small>
+    </div>
+</div>
+</body>
+</html>

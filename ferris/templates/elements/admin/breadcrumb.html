@@ -1,0 +1,17 @@
+<ul class="breadcrumb">
+    {% if this.route.prefix: %}
+        <li><a href="/{{this.route.prefix}}">{{inflector.titleize(this.route.prefix)}}</a> <span class="divider">/</span></li>
+    {% else %}
+        <li><a href="/">Root</a> <span class="divider">/</span><li>
+    {% endif %}
+
+    <li>
+        {% if this.uri_exists(action='list') %}
+            <a href="{{this.uri(action='list')}}">{{inflector.titleize(this.route.controller)}}</a>
+        {% else %}
+            <a href="#">{{inflector.titleize(this.route.controller)}}</a>
+        {% endif %}
+        <span class="divider">/</span>
+    </li>
+    <li class="active">{{inflector.titleize(this.route.action)}}</li>
+</ul>

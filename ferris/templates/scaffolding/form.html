@@ -1,0 +1,47 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% import 'macros/form.html' as f with context %}
+{% extends s.layout() %}
+
+{% block layout_content %}
+
+{% block form_tag %}
+<form method="POST" action="{{scaffolding.form_action|default(this.uri(_pass_all=True), True)}}" class="form" enctype="{{scaffolding.form_encoding|default('application/x-www-form-urlencoded', True)}}" role="form">
+{% endblock %}
+
+    {{this.events.before_form_fields()}}
+
+    {{self.form_actions()}}
+
+    <hr>
+
+    {% block form_fields %}
+        {% for field in form %}
+            {% if not field.name in scaffolding.excluded_form_fields %}
+                {{ f.form_field(form, field) }}
+            {% endif %}
+        {% endfor %}
+    {% endblock %}
+
+    <hr>
+
+    {% block form_actions %}
+    <div class="controls form-actions">
+        {% block cancel_button %}
+            {% if uri_exists(action='list') %}
+            <a class="btn btn-default" href="{{uri(action='list')}}">
+                {% block cancel_text %}Cancel{% endblock %}
+            </a>
+            {% endif %}
+        {% endblock %}
+        {% block submit_button %}
+            <button class="btn btn-primary" type="submit">
+                {% block submit_text %}Submit{% endblock %}
+            </button>
+        {% endblock %}
+    </div>
+    {% endblock %}
+
+    {{this.events.after_form_fields()}}
+
+</form>
+{% endblock %}

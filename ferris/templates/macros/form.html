@@ -1,0 +1,49 @@
+{% macro form_field(form, field, container_element='div') -%}
+    {% if field.short_name in form.disabled_fields %}
+        {% set _ = kwargs.setdefault('readonly', true) %}
+    {% endif %}
+    {% set _ = kwargs.setdefault('tabindex', 0) %}
+
+    {% if field.type == 'HiddenField' or field.widget.input_type == 'hidden' %}
+        {{ field(**kwargs) }}
+    {% else %}
+
+        {% set css_classes = [kwargs.pop('class','')] %}
+
+        {% if field.widget.__class__.__name__ in ('TextInput', 'Select', 'Text', 'PasswordInput', 'FileInput', 'TextArea'): %}
+        {% set _ = css_classes.append('form-control') %}
+        {% endif %}
+        {% set _ = css_classes.append('field-type-' + inflector.dasherize(inflector.underscore(field.__class__.__name__))) %}
+
+        {% for flag_name, flag_value in field.flags.__dict__.items() %}
+            {% if flag_value %}
+                {% set _ = css_classes.append(' flag_' + flag_name + '_true') %}
+            {% else %}
+                {% set _ = css_classes.append(' flag_' + flag_name + '_false') %}
+            {% endif %}
+        {% endfor %}
+
+        {% set css_class = ' '.join(css_classes) %}
+
+        <{{container_element}} class='form-group {% if field.errors %}has-error{% endif %}'>
+            {{ field.label() }}
+            
+            <{{container_element}} class='controls'>
+                 {{ field(class=css_class, **kwargs) }}
+            </{{container_element}}>
+            
+            {% if field.errors %}
+                <p class="help-block">
+                    {% for error in field.errors %}
+                        {{ error|e }}<br/>
+                    {% endfor %}
+                </p>
+            {% endif %}
+            {% if field.description %}
+                <p class='help-block'>
+                    {{field.description}}
+                </p>
+            {% endif %}
+        </{{container_element}}>
+    {% endif %}
+{%- endmacro %}

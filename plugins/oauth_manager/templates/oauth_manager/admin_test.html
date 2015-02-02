@@ -1,0 +1,19 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends "scaffolding/add.html" %}
+
+{% block layout_content %}
+
+{% set list = credentials %}
+
+<div class='well'>
+    <dl>
+    {% for key, value in user_info.items() %}
+        <dt>{{inflector.humanize(key)}}</dt>
+        <dd>{{value}}</dd>
+    {% endfor %}
+    </dl>
+</div>
+
+{{s.next_page_link()}}
+
+{% endblock %}

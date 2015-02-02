@@ -1,0 +1,9 @@
+{% extends "scaffolding/edit.html" %}
+
+{% block layout_content %}
+{{s.override_include('nav.html')}}
+
+    <h3>{{settings_class._name}}</h3>
+    <p>{{settings_class._description}}</p>
+    {{super()}}
+{% endblock %}

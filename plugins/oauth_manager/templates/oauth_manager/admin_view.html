@@ -1,0 +1,42 @@
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends 'scaffolding/view.html' %}
+
+
+{% block layout_content %}
+
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Id</td>
+            <td><span class='badge' title='{{scaffolding.key_urlsafe_for(credentials)}}'>{{scaffolding.key_id_for(credentials)}}</span></td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>{{s.print_value(credentials.user)}}</td>
+        </tr>
+        <tr>
+            <td>Scopes</td>
+            <td>{{s.print_value(credentials.scopes)}}</td>
+        </tr>
+        <tr>
+            <td>Admin</td>
+            <td>{{s.print_value(credentials.admin)}}</td>
+        </tr>
+        <tr>
+            <td>Expires</td>
+            <td>{{s.print_value(credentials.credentials.token_expiry)}}</td>
+        </tr>
+        <tr>
+            <td>Refresh</td>
+            <td>{% if credentials.credentials.refresh_token %}Yes{% else %}No{% endif %}</td>
+        </tr>
+    </tbody>
+</table>
+<pre class="prettyprint">{{credentials.credentials.to_json()}}</pre>
+{% endblock %}

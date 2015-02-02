@@ -1,0 +1,15 @@
+
+
+{% macro sidebar_item(_uri, _controller, _text): -%}
+    <a href="{{_uri}}" class="list-group-item {% if this.route.controller in _controller %}active{% endif %}">
+        {{_text}}
+    </a>
+{%- endmacro %}
+
+<nav class="list-group">
+    {% if autoadmin %}
+    {% for v in autoadmin.links|dictsort %}
+        {{sidebar_item(v.1, inflector.underscore(v.0), inflector.titleize(v.0))}}
+    {% endfor %}
+    {% endif %}
+</nav>

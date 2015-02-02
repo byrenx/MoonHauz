@@ -1,0 +1,85 @@
+{% import 'macros/pagination.html' as pagination with context %}
+
+
+{#
+    Chooses the appropriate layout for the current prefix.
+#}
+{% macro layout() -%}
+    {{ scaffolding.layouts.get(this.route.prefix, scaffolding.layouts[None]) }}
+{%- endmacro %}
+
+
+{#
+    Pretty print values. This is useful for printing model
+    data. Sequences are printed as unordered lists, dates
+    are localized.
+#}
+{% macro print_value(value) -%}
+    {{ferris.format_value(value)}}
+{%- endmacro %}
+
+{% set print = print_value %}
+
+
+{#
+    Includes {{this.name}}/{{template}} and falls back to
+    scaffolding/{{template}}
+#}
+{% macro override_include(template) -%}
+{% include [this.name+'/'+template,'scaffolding/'+template] %}
+{%- endmacro %}
+
+
+{#
+    Creates a uri for the current controller with a given action.
+#}
+{% macro action_uri(action) -%}
+    {{ this.uri(action=action,*varargs,**kwargs) }}
+{%- endmacro %}
+
+
+{#
+    Inserts pagination logic
+#}
+{% macro next_page_link() -%}
+    {{pagination.next_page_link(*args,**kwargs)}}
+{%- endmacro %}
+
+
+{#
+    Generates a single action button for an item
+#}
+{% macro action_button(item, action, icon, btn, class=None, confirm=False): -%}
+    {% if this.uri_exists(action=action) %}
+        <a
+            href='{{ action_uri(action,key=this.encode_key(item)) }}'
+            class='btn btn-sm {{btn}} {{class}}'
+            rel="tooltip"
+            title='{{inflector.titleize(action)}}'
+            {% if confirm: %}
+            onclick='javascript: return confirm("Are you sure you want to delete this item?");'
+            {% endif %}>
+            <i class="glyphicon {{icon}} icon-white"></i>
+        </a>
+    {% endif %}
+{%- endmacro %}
+
+
+{#
+    Generates the standard suite of action buttons for an item (view, edit, delete)
+#}
+{% macro action_buttons(item, class=None) -%}
+    {% set class = class or ''%}
+    {{action_button(item, 'view', 'glyphicon-search', 'btn-success', class)}}
+    {{action_button(item, 'edit', 'glyphicon-pencil', 'btn-primary', class)}}
+    {{action_button(item, 'delete', 'glyphicon-trash', 'btn-danger', class, True)}}
+{%- endmacro %}
+
+{#
+    Link for navigation
+#}
+{% macro nav_link(action, text) -%}
+    {% if uri_exists(action=action) %}
+        <a href="{{uri(action=action)}}" class="btn btn-default {% if on_uri(action=action): %}active{% endif %}">{{text}}</a>
+    {% endif %}
+{%- endmacro %}

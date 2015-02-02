@@ -1,0 +1,49 @@
+application: cs-ferris    #.appspot.com
+version: baseline
+
+runtime: python27
+api_version: 1
+threadsafe: yes 
+
+default_expiration: 1h
+
+builtins:
+# Deferred is built in to Ferris. Do not enable it, it may lead to import errors.
+#- appstats: on  # Also turn on appstats in settings.py
+
+includes:
+- ferris/include.yaml
+# If plugins require includes, put them here.
+
+libraries:
+- name: jinja2
+  version: latest
+- name: lxml
+  version: latest
+- name: webapp2
+  version: latest
+- name: webob
+  version: latest
+- name: ssl
+  version: latest
+- name: pycrypto
+  version: latest
+
+skip_files:
+- ^(.*/)?app\.ya?ml
+- ^(.*/)?index\.ya?ml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.scss
+- ^(.*/)?.*\.less
+- ^/docs*
+
+handlers:
+
+# Main script
+- url: .*
+  script: main.main_app
+  login: required

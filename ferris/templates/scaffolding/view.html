@@ -1,0 +1,34 @@
+
+{% import 'scaffolding/macros.html' as s with context %}
+{% extends s.layout() %}
+
+
+{% block layout_content %}
+
+{% set item = context[scaffolding.singular] %}
+
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Id</td>
+            <td><span class='badge' title='{{item.key.urlsafe()}}'>{{item.key.id()}}</span></td>
+        </tr>
+        {% for property in scaffolding.display_properties %}
+        <tr>
+            <td>
+                {{inflector.humanize(property)}}
+            </td>
+            <td>
+                {{s.print_value(item[property])}}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

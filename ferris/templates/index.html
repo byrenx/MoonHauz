@@ -1,0 +1,28 @@
+{% extends "layouts/default.html" %}
+
+{% block layout_content %}
+
+{% include "elements/ferris/landing_style.html" %}
+
+<div class="center landing">
+  <h1><img src='/ferris/img/ferris.png'></h1>
+  <h3 class='blue'>You are up and running</h3>
+  <br>
+  <p>
+    To route root to a different location modify <code>app/routes.py</code> and replace
+
+    <pre class='prettyprint'>
+  # Default root route
+  routing.default_root()</pre>
+
+    <br/>
+    With <br><br>
+
+    <pre class='prettyprint'>
+  # Default root route
+  routing.redirect('/', to='/pages')</pre>
+
+  </p>
+  <small class='beige'>Ferris {{ferris.version}}</small>
+</div>
+{% endblock %}
