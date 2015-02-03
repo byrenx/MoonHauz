@@ -47,4 +47,4 @@ handlers:
 # Main script
 - url: .*
   script: main.main_app
-  login: required
+  login: optional

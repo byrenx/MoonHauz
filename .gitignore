@@ -1,5 +1,6 @@
-*.pyc
-ds
-*.coverage
-*~
 .appengine_data
+*.pyc
+*.py~
+*.js~
+*.py#
+*.js#

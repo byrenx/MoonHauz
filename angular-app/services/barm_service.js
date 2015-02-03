@@ -1,4 +1,4 @@
-AppServices.service('BarmService', function($http){
+appServices.service('BarmService', function($http){
     return {
 	addPerson: function(params){
 	    return $http.post('/api/persons/add', params);
@@ -9,4 +9,4 @@ AppServices.service('BarmService', function($http){
 	}
 	
     };
-}
+});

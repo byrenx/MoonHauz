@@ -1,4 +1,4 @@
-AppCore.config(['$routeProvider',
+appRoutes.config(['$routeProvider',
 		function($routeProvider){
 		    $routeProvider.
 			when('/compose', {
