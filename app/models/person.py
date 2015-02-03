@@ -1,7 +1,6 @@
 from ferris import BasicModel, ndb
 
 class Person(BasicModel):
-    id = ndb.StringProperty()
     firstname = ndb.StringProperty()
     lastname = ndb.StringProperty()
     
@@ -11,7 +10,7 @@ class Person(BasicModel):
     
     @classmethod
     def find_by_person_id(cls, person_id):
-        return cls.query().filter(cls.person_id == person_id)
+        return cls.query().filter(cls.key == person_id)
 
     @classmethod
     def create(cls, params):

@@ -6,7 +6,7 @@ class TestPersonModel(FerrisAppTest):
     
     def setUp(self):
         super(self.__class__, self).setUp()
-        person_params = {'id' : str(uuid.uuid4()), 'firstname' : 'John', 'lastname' : 'Parrot'}
+        person_params = {'firstname' : 'John', 'lastname' : 'Parrot'}
         self.person = Person.create(person_params)
         
     """ Test Add Person """
@@ -17,8 +17,8 @@ class TestPersonModel(FerrisAppTest):
 
     """ test retrieve a person """
     def testRetrieve(self):
-        p = Person.find_by_id(self.person.id)
-        assert p.id == self.person.id
+        p = Person.find_by_firstname('John')
+        assert p.key == self.person.key
         assert p.firstname == self.person.firstname
         assert p.lastname == self.person.lastname
         
