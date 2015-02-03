@@ -15,35 +15,44 @@
 	<link href="ng/public/vendor/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="ng/public/vendor/fonts/flaticon/flaticon.css" rel="stylesheet">
 
-        <!-- Bootstrap -->
-        <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
 
  </head>
 
- <body ng-app="barmApp" mousetrap style="min-width: 1100px;">
- <content>
-   <div ng-controller="barm_controller">
-     <script type="text/ng-template" id="myModalContent.html">
-       <div class="modal-header">
-         <h3 class="modal-title">Im a modal!</h3>
-       </div>
-       <div class="modal-body">
-         <ul>
+ <body ng-app="mailApp" mousetrap style="min-width: 1100px;">
+  <content>
+     <div ng-controller="ModalDemoCtrl">
+       <script type="text/ng-template" id="myModalContent.html">
+         <div class="modal-header">
+           <h3 class="modal-title">Add a developer</h3>
+       </directivesiv>
+       <div class=" modal-body">
+         <!--<ul>
            <li ng-repeat="item in items">
-             <a ng-click="selected.item = item">{%raw%} item {%endraw%}</a>
+             <a ng-click="selected.item = item"><span ng-bind="item"></span></a>
            </li>
          </ul>
-            Selected: <b>{%raw%} selected.item {%endraw%}</b>
+            Selected: <b><span ng-bind="selected.item"></span></b>
+           -->
+           <form>
+            <input ng-model="person.firstname" type="text" class="form-control" placeholder="type firstname here...">
+            <input ng-model="person.lastname" type="text" class="form-control" placeholder="type lastname here...">
        </div>
        <div class="modal-footer">
-         <button class="btn btn-primary" ng-click="ok()">OK</button>
+         <button class="btn btn-primary" ng-click="ok()">Save</button>
+         </form>
          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-       </div>
-     </script>
+        </div>
+      </script>
 
-     <button class="btn btn-default" ng-click="open()">Open me!</button>
-     <div ng-show="selected">Selection from a modal: {%raw%} selected {%endraw%}</div>
-   </div>
+      <button class="btn btn-default" ng-click="open('sm')">Add Developer</button>
+
+      <span id="form_message"></span>
+      <div ng-show="selected">Added: <span ng-bind="selected"></span></div>
+      <button class="btn btn-default" ng-click="openproj('sm')">Add Developer</button>
+      
+    </div>
   </content>
 
 
@@ -54,8 +63,7 @@
 <script src="ng/public/vendor/js/jquery.min.js"></script>
 
 <!-- Angular App -->
-<script src="ng/angular/angular/angular.js"></script>
-<script src="ng/angular/angular/angular-cookies.js"></script>
+<script src="ng/angular/angular/angular.min.js"></script>
 <script src="ng/angular/angular/angular-route.js"></script>
 <script src="ng/angular/cs-angular-utilities/pubsub.js"></script>
 <script src="ng/angular/cs-angular-utilities/modal.js"></script>
@@ -70,11 +78,10 @@
 <!-- <script src="ng/directives.js"></script> -->
 
 <!-- services here -->
+<script src="ng/services/mail_service.js"></script>
 <script src="ng/services/barm_service.js"></script>
-
 <!-- controllers here-->
- <script src="ng/controllers/barm_controller.js"></script>
- <script src="ng/controllers/mail_controller.js"></script>
-
+  <script src="ng/controllers/mail_controller.js"></script>
+  <script src="ng/controllers/modal_controller.js"></script>
 </body>
 </html>

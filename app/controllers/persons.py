@@ -16,7 +16,7 @@ class Persons(Controller):
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Person.list_all())
     
-    @route_with('/api/persons', methods=['POST'])
+    @route_with('/api/persons/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
         self.context['data'] = Person.create(params)
