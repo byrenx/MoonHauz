@@ -21,6 +21,7 @@
  </head>
 
  <body ng-app="barmApp" mousetrap style="min-width: 1100px;">
+ <content>
    <div ng-controller="barm_controller">
      <script type="text/ng-template" id="myModalContent.html">
        <div class="modal-header">
@@ -43,7 +44,7 @@
      <button class="btn btn-default" ng-click="open()">Open me!</button>
      <div ng-show="selected">Selection from a modal: {%raw%} selected {%endraw%}</div>
    </div>
-
+  </content>
 
 
 
