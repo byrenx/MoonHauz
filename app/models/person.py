@@ -1,9 +1,9 @@
 from ferris import BasicModel, ndb
 
 class Person(BasicModel):
-    person_id = ndb.KeyProperty()
+    id = ndb.StringProperty()
     firstname = ndb.StringProperty()
-    lastname = ndb.IntegerProperty()
+    lastname = ndb.StringProperty()
     
     @classmethod
     def list_all(cls):

@@ -1,5 +1,5 @@
 from ferris import BasicModel, ndb
-import datetime
+from datetime import datetime, timedelta
 
 
 class Allocate(BasicModel):
