@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 class Allocation(BasicModel):
     project_id = ndb.KeyProperty()
     person_id = ndb.KeyProperty()
-    start_date = ndb.DateTimeProperty()
     alloc_hours = ndb.IntegerProperty()
     end_date = ndb.DateTimeProperty()
 
@@ -15,13 +14,7 @@ class Allocation(BasicModel):
     
     @classmethod
     def create(cls, params):
-        item = cls(project_id = params['project_id'],
-                   person_id = params['person_id'],
-                   start_date = params['start_date'],
-                   alloc_hours = params['hours'],
-                   end_date = params['start_date'] + timedelta(hours=params['hours'])
-               )
+        item = cls()
+        item.populate(**params)
         item.put()
         return item
-    
-    

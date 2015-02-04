@@ -1,12 +1,15 @@
-appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-
-  $scope.items = ['item1', 'item2', 'item3'];
+appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmService) {
 
 
-  $scope.open = function (size) {
+  $scope.items = {};
+
+
+
+
+    $scope.open = function (size) {
 
     var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
+      templateUrl: 'ng/templates/modal/addDevModal.html',
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
@@ -16,11 +19,8 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
       }
     });
 
-      $scope.openproj = function (size){
-	  
-      }
 
-      
+    
 
     modalInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
@@ -29,8 +29,50 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
     });
   };
 
+  $scope.openproj = function (size){
+
+      var modalInstance = $modal.open({
+	  templateUrl: 'ng/templates/modal/addProjModal.html',
+	  controller: 'projectCtrl',
+	  size: size,
+	  resolve:{
+	      items: function (){
+		  return $scope.items;
+	      }
+	  }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+	  $scope.selected = selectedItem;
+
+      }, function () {
+	  $log.info('Modal dismissed at: ' + new Date());
+      });
+  };
+
+    $scope.allocate = function (size){
+	var modalInstance = $modal.open({
+	    templateUrl: 'ng/templates/modal/allocateModal.html',
+	    controller: 'allocateCtrl',
+	    size: size,
+	    resolve:{
+	      items: function (){
+		  return $scope.items;
+	      }
+	    }
+	});
+	
+	modalInstance.result.then(function (selectedItem) {
+	    $scope.selected = selectedItem;
+
+	}, function () {
+	  $log.info('Modal dismissed at: ' + new Date());
+	});
+    };
+
 
 });
+
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
@@ -47,16 +89,16 @@ appControllers.controller('ModalInstanceCtrl', function ($scope, $modalInstance,
     BarmService.addPerson($scope.person)
         .success(function(data, status){
 	    $scope.data = data.lastname+", "+data.firstname;
-            $("#form_message").removeClass().addClass("alert alert-success").html("Message succesfully sent!");
+            $("#form_message").removeClass().addClass("alert alert-success").html("Add developer success!");
 	    $scope.selected['item'] = data.lastname+", "+data.firstname;
 	    $modalInstance.close($scope.selected.item);
             console.log($scope.data)
         })
         .error(function(data, status){
-            $("#form_message").removeClass().addClass("alert alert-danger").html("Message sending failed!");
+            $("#form_message").removeClass().addClass("alert alert-danger").html("Add Developer Failed!");
         });
     }
-  
+2  
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

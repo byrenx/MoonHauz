@@ -12,13 +12,14 @@ class Projects(Controller):
         pagination_limit = 25
         prefixes = ('api',)
         
-    @route_with('/api/projects', methods=['GET'])
+    @route_with('/api/projects/list', methods=['GET'])
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Project.list_all())
     
-    @route_with('/api/projects', methods=['POST'])
+    @route_with('/api/projects/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
+        print params;
         self.context['data'] = Project.create(params)
 
     @route_with('/api/projects/:<key>', methods=['GET'])

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Sugar Ray Tenorio, ray@hotmail.ph, Joeper Serrano, Eric de Felix">
+        <meta name="author" content="Sugar Ray Tenorio, ray@hotmail.ph, Joeper Serrano, Eric de Felix, Jona Eroy">
 	<meta name="copyright" content="Cloudsherpas 2014, Google GDC Internal">
 
 	<title>Billing and Resource Management App</title>
@@ -17,48 +17,105 @@
 
   <!-- Bootstrap -->
   <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
+  <link href="ng/public/vendor/css/barm.css" rel="stylesheet">
 
  </head>
-
+ 
  <body ng-app="mailApp" mousetrap style="min-width: 1100px;">
-  <content>
-     <div ng-controller="ModalDemoCtrl">
-       <script type="text/ng-template" id="myModalContent.html">
-         <div class="modal-header">
-           <h3 class="modal-title">Add a developer</h3>
-       </directivesiv>
-       <div class=" modal-body">
-         <!--<ul>
-           <li ng-repeat="item in items">
-             <a ng-click="selected.item = item"><span ng-bind="item"></span></a>
-           </li>
-         </ul>
-            Selected: <b><span ng-bind="selected.item"></span></b>
-           -->
-           <form>
-            <input ng-model="person.firstname" type="text" class="form-control" placeholder="type firstname here...">
-            <input ng-model="person.lastname" type="text" class="form-control" placeholder="type lastname here...">
+   <div class="container">
+     <div class="header">
+       <div class="row">
+         <div class="col-md-8">
+           <div ng-controller="ProgressDemoCtrl">
+             
+             <h4>BILLABLE BANK <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h4>
+             <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;" ng-bind="dynamic/max"> {%raw%}dynamic{%endraw%} / {%raw%}max{%endraw%}</span></progressbar>
+             <h4>ALLOCATED RESOURCES <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h4>
+             <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;" ng-bind="dynamic/max">{%raw%}dynamic{%endraw%} / {%raw%}max{%endraw%}</span></progressbar>
+	     
+           </div><!--- end progressCtrl--->
+           
+         </div>
+         <div class="col-md-4" ng-controller="ModalDemoCtrl">
+           <br/ >
+             <br/ >
+               <ul>
+                 <p><button class="btn btn-sm btn-primary" ng-click="open('sm')" type="button">
+                     <i class="fa fa-plus-square"></i>ADD PERSON</button></p>
+                 <br />
+                 <br />
+                 <p><button class="btn btn-sm btn-primary" ng-click="openproj('sm')" type="button"><i class="fa fa-plus-square"></i>   ADD PROJECT</button></p>
+                 <br />
+                 <p><button class="btn btn-sm btn-primary" ng-click="allocate('sm')" type="button"><i class="fa fa-plus-square"></i>   ALLOCATED RESOURCES</button></p>
+              </ul>
+         </div>
        </div>
-       <div class="modal-footer">
-         <button class="btn btn-primary" ng-click="ok()">Save</button>
-         </form>
-         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-      </script>
+     </div>
+     
+     
+     
+     <div class="main-body">
+       <div class="left-body">
+         <div class="row">
+           <div class="col-md-12">             <form role = "form">
+	       
+               <div class="checkbox">
+                 <label><input type="checkbox" value="">1</label>
+               </div>
+               <div class="checkbox">
+                 <label><input type="checkbox" value="">2</label>
+               </div>
+               <div class="checkbox">
+                 <label><input type="checkbox" value="">3</label>
+               </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">4</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">5</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">6</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">7</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">8</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">9</label>
+              </div>
+              <div class="checkbox">
+		<label><input type="checkbox" value="">10</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">11</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value="">12</label>
+              </div>
+              
+            </form>
+           </div>
+         </div>
+       </div>
+       <div class="right-body">
+         <div class="row">
+           <div class="col-md-12">  dsdsds
+             
+             
+	     
+             
+           </div>
+         </div>
+       </div>
+       
+     </div>  
 
-      <button class="btn btn-default" ng-click="open('sm')">Add Developer</button>
-
-      <span id="form_message"></span>
-      <div ng-show="selected">Added: <span ng-bind="selected"></span></div>
-      <button class="btn btn-default" ng-click="openproj('sm')">Add Developer</button>
-      
-    </div>
-  </content>
-
-
-
-
-
+     
+          
+     
 <!-- jQuery -->
 <script src="ng/public/vendor/js/jquery.min.js"></script>
 
@@ -83,5 +140,8 @@
 <!-- controllers here-->
   <script src="ng/controllers/mail_controller.js"></script>
   <script src="ng/controllers/modal_controller.js"></script>
+  <script src="ng/controllers/proj_controller.js"></script>
+  <script src="ng/controllers/alloc_controller.js"></script>
+  <script src="ng/controllers/prog_controller.js"></script>
 </body>
 </html>

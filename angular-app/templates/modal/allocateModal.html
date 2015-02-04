@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h3 class="modal-title">Allocate Resources</h3>
+  
+</directivesiv>
+<div class=" modal-body">
+  <form>
+    <label>Project Name</label>
+    <select ng-model="selected" ng-options="item.name for item in items track by item.key.urlsafe" class="form-control">
+    </select>
+    <label>Total Billable Hours: </label>
+    <span ng-bind="selected.total_hours">
+      
+    <label>Start Date: </label>
+    
+
+
+    <span id="error_msg"></span>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Save</button>
+</form>
+<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

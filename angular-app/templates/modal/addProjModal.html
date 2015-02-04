@@ -1,0 +1,28 @@
+         <div class="modal-header">
+           <h3 class="modal-title">Add a project</h3>
+	   
+       </directivesiv>
+       <div class=" modal-body">
+           <form>
+	     <label>Project Name</label>
+            <input ng-model="project.name" type="text" class="form-control" placeholder="type project name here..." required="true">
+	     <label>Total Billable Hours</label>
+            <input ng-model="project.billable_hours" type="number" class="form-control" placeholder="total hours..." required="true">
+	    <label> Start Date </label>
+            <div class="row">
+              <div class="col-md-8">
+		<p class="input-group">
+		  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required ng-click="open($event)" />
+		  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+		  </span>
+		</p>
+              </div>
+	    </div>
+	    <span id="error_msg"></span>
+       </div>
+       <div class="modal-footer">
+         <button class="btn btn-primary" ng-click="ok()">Save</button>
+         </form>
+         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
