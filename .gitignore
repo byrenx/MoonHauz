@@ -1,6 +1,7 @@
 .appengine_data
 *.pyc
 *.py~
+*.html~
 *.js~
 *.py#
 *.js#
