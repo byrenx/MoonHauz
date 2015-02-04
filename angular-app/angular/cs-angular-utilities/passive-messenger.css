@@ -1,0 +1,43 @@
+.passive-messenger {
+    position: fixed;
+    width: 700px;
+    left: 50%;
+    top: 30px;
+    margin-left: -350px;
+    padding: 5px;
+    border-radius: 0 0 5px 5px;
+    webkit-border-radius: 0 0 5px 5px;
+    moz-border-radius: 0 0 5px 5px;
+    z-index: 200;
+    box-shadow: 0 2px 10px;
+    webkit-box-shadow: 0 2px 10px;
+    moz-box-shadow: 0 2px 10px;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    max-height: 0px;
+    visibility: hidden;
+    z-index: 5000;
+}
+
+.passive-messenger.show{
+    max-height: 30px;
+    visibility: visible;
+}
+
+.passive-messenger .close{
+    position: relative;
+    float: left;
+    top: 0;
+    right: 5px;
+}
+
+.passive-messenger a {
+    float: right;
+    margin-right: -22px;
+    border-left: 1px solid rgba(127, 127, 127, 0.3);
+    padding-left: 10px;
+}

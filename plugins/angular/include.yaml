@@ -1,0 +1,3 @@
+handlers:
+- url: /ng
+  static_dir: angular-app

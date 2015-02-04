@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Sugar Ray Tenorio, ray@hotmail.ph, Joeper Serrano, Eric de Felix">
+	<meta name="copyright" content="Cloudsherpas 2014, Google internal Development Team">
+
+	<title>Billing and Resource Management App</title>
+	
+	<base href="/"></base>
+	
+	<!-- Context -->
+	<link href="ng/public/vendor/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="ng/public/vendor/fonts/flaticon/flaticon.css" rel="stylesheet">
+	
+        <!-- Bootstrap -->
+        <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
+
+ </head>
+
+ <body ng-app="barmApp" mousetrap style="min-width: 1100px;">
+  
+   <div ng-controller="mail_controller">
+     <script type="text/ng-template" id="myModalContent.html">
+       <div class="modal-header">
+         <h3 class="modal-title">I'm a modal!</h3>
+       </div>
+       <div class="modal-body">
+         <ul>
+           <li ng-repeat="item in items">
+             <a ng-click="selected.item = item">{%raw%} item {%endraw%}</a>
+           </li>
+         </ul>
+            Selected: <b>{%raw%} selected.item {%endraw%}</b>
+       </div>
+       <div class="modal-footer">
+         <button class="btn btn-primary" ng-click="ok()">OK</button>
+         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+       </div>
+     </script>
+     
+     <button class="btn btn-default" ng-click="open()">Open me!</button>
+     <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+     <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+     <div ng-show="selected">Selection from a modal: {%raw%} selected {%endraw%}</div>
+   </div>
+
+
+
+
+
+<!-- jQuery -->
+<script src="ng/public/vendor/js/jquery.min.js"></script>
+
+<!-- Angular App -->
+<script src="ng/angular/angular/angular.js"></script>
+<script src="ng/angular/angular/angular-cookies.js"></script>
+<script src="ng/angular/angular/angular-route.js"></script>
+<script src="ng/angular/cs-angular-utilities/pubsub.js"></script>
+<script src="ng/angular/cs-angular-utilities/modal.js"></script>
+
+
+<!-- Angular UI / Angular Bootstrap -->
+<script src="ng/public/angular-bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>	
+
+<!-- App -->
+<script src="ng/app.js"></script>
+<script src="ng/routes.js"></script>
+<!-- <script src="ng/directives.js"></script> -->
+
+<!-- services here -->
+<script src="ng/services/barm_service.js"></script>
+
+<!-- controllers here-->
+ <script src="ng/controllers/barm_controller.js"></script>
+ <script src="ng/controllers/mail_controller.js"></script>
+
+</body>
+</html>
