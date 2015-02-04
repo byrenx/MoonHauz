@@ -40,13 +40,9 @@
            <br/ >
              <br/ >
                <ul>
-                 <p><button class="btn btn-sm btn-primary" ng-click="open('sm')" type="button">
-                     <i class="fa fa-plus-square"></i>ADD PERSON</button></p>
-                 <br />
-                 <br />
                  <p><button class="btn btn-sm btn-primary" ng-click="openproj('sm')" type="button"><i class="fa fa-plus-square"></i>   ADD PROJECT</button></p>
                  <br />
-                 <p><button class="btn btn-sm btn-primary" ng-click="allocate('sm')" type="button"><i class="fa fa-plus-square"></i>   ALLOCATED RESOURCES</button></p>
+                 <p><button class="btn btn-sm btn-primary" ng-click="allocate()" type="button"><i class="fa fa-plus-square"></i>   ALLOCATED RESOURCES</button></p>
               </ul>
          </div>
        </div>
@@ -119,12 +115,25 @@
 <!-- jQuery -->
 <script src="ng/public/vendor/js/jquery.min.js"></script>
 
+
+
 <!-- Angular App -->
-<script src="ng/angular/angular/angular.min.js"></script>
+<script src="ng/angular/angular/angular.js"></script>
+<!-- bootstrap.js -->
+<scropt src="ng/public/vendor/css/bootstrap.min.css"></script>
+<script src="ng/angular/angular/angular-resource.js"></script>
+<script src="ng/angular/angular/angular-cookies.js"></script>
+<script src="ng/angular/angular/angular-sanitize.js"></script>
+<script src="ng/angular/angular/angular-animate.js"></script>
+<script src="ng/angular/angular/angular-touch.js"></script>
 <script src="ng/angular/angular/angular-route.js"></script>
 <script src="ng/angular/cs-angular-utilities/pubsub.js"></script>
 <script src="ng/angular/cs-angular-utilities/modal.js"></script>
 
+
+
+<!-- date js  -->
+<script src="ng/public/vendor/js/date.js"></script>
 
 <!-- Angular UI / Angular Bootstrap -->
 <script src="ng/public/angular-bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
@@ -143,5 +152,6 @@
   <script src="ng/controllers/proj_controller.js"></script>
   <script src="ng/controllers/alloc_controller.js"></script>
   <script src="ng/controllers/prog_controller.js"></script>
+
 </body>
 </html>

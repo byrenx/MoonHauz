@@ -5,17 +5,70 @@
 <div class=" modal-body">
   <form>
     <label>Project Name</label>
-    <select ng-model="selected" ng-options="item.name for item in items track by item.key.urlsafe" class="form-control">
+    <select ng-model="selected" ng-options="item.name for item in projects track by item.key.urlsafe" class="form-control">
     </select>
     <label>Total Billable Hours: </label>
-    <span ng-bind="selected.total_hours">
+    <span class="text-danger" ng-bind="selected.billable_hours"></span></br>
       
     <label>Start Date: </label>
     
+    <span class="text-danger" ng-bind="selected.start_date | date:'medium'"></span><hr/>
 
+    
+    <div class="row" >
+      <div class="col-md-10"  ng-repeat="todo in todos">
+	<label>Resource Name</label>
+	<input type="text" class="form-control" ng-model="todo">
+      </div>
+      <div class="col-md-2" ng-repeat="hour in hours">
+	<label>Hours</label>
+	<input type="text" ng-model="hour" class="form-control">
+      </div>
 
-    <span id="error_msg"></span>
+    </div></br>
+    <div class="row">
+      <div class="col-md-6">
+	<label></label>
+	<button class="btn btn-warning">Add Resource</button>
+      </div>
+    </div>
+    
 </div>
+<span id="error_msg"></span>
+
+<div class="row">
+<h2>My todos</h2>
+
+  <!-- Todos input -->
+  <form role="form">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" ng-model="todo" placeholder="Ressource name" class="form-control">
+        <input type="text" ng-model="hour" placeholder="Hours herr.." class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add"  ng-click="addTodo()">
+        </span>
+      </div>
+      </div>
+    <!-- Todos list -->
+    <div class="col-md-6">
+    <p class="input-group" ng-repeat="todo in todos">
+      <input type="text" ng-model="todo" class="form-control" style="padding:5px 10px; cursor: move;">
+
+      <span class="input-group-btn">
+	<button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+      </span>
+    </p>
+    <p class="input-group" ng-repeat="hour in hours">
+    <input type="text" ng-model="hour" class="form-control" style="padding:5px 10px; cursor: move;">
+    </div>
+    </p>
+  </form>
+
+</div>
+
+
+
 <div class="modal-footer">
   <button class="btn btn-primary" ng-click="ok()">Save</button>
 </form>

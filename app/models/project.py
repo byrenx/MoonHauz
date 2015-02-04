@@ -1,11 +1,12 @@
 from ferris import BasicModel, ndb
-from datetime import datetime, timedelta
+from datetime import timedelta
+import datetime
+
 
 class Project(BasicModel):
     name = ndb.StringProperty()
     billable_hours = ndb.IntegerProperty()
     start_date = ndb.DateTimeProperty()
-
     @classmethod
     def list_all(cls):
         return cls.query().order(cls.name)
@@ -20,11 +21,11 @@ class Project(BasicModel):
         self.put()
 
     @classmethod
-    def create(cls, params):
-        item = cls(name = params['project_id'],
+    def create(cls, params):      
+        print params['start_date']
+        item = cls(name = params['name'],
                    billable_hours = params['billable_hours'],
-                   start_date = params['start_date'],
-                   end_date = params['start_date'] + timedelta(hours=params['billable_hours'])
+                   start_date = datetime.datetime.utcfromtimestamp(float(params['start_date']))
                )
         item.put()
         return item

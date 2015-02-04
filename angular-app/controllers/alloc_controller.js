@@ -1,20 +1,17 @@
 appControllers.controller('allocateCtrl', function ($scope, $modalInstance, items, BarmService){
     $scope.allocate = {}; //model for project
     $scope.data = {} //return data fron service to be returned
+    $scope.projects = {}
     $scope.getProjects = function(){
 	BarmService.getProjects()
 	    .success(function(data, status){
-		    $scope.items = data.items;
-		    console.log($scope.items);
+		$scope.projects = data.items;
+		$scope.selected = $scope.projects[0];
 	    })
 	    .error(function(data, status){
 		
 	    });	
     };
-    $scope.getProjects();
-
-    $scope.selected = $scope.items;
-  
 
     $scope.ok = function(){
 	
@@ -32,6 +29,27 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     }
     $scope.cancel = function () {
 	$modalInstance.dismiss('cancel');
+    };
+    
+    $scope.getProjects();
+
+
+    //my todo app for testing
+
+    $scope.todos = [];
+    $scope.hours = [];
+    $scope.addTodo = function () {
+      $scope.todos.push($scope.todo);
+      $scope.hours.push($scope.hour);
+	$scope.todo = '';
+	$scope.hour = '';
+
+    };
+    
+    $scope.removeTodo = function (index) {
+      $scope.todos.splice(index, 1);
+      $scope.hours.splice(index, 1);
+	
     };
     
     
