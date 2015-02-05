@@ -1,6 +1,6 @@
-appControllers.controller('ProgressDemoCtrl', function ($scope) {
-  $scope.max = 200;
- 
+appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
+  $scope.max = 0;
+  $scope.length = 0;
   $scope.random = function() {
     var value = Math.floor((Math.random() * 100) + 1);
     var type;
@@ -20,7 +20,33 @@ appControllers.controller('ProgressDemoCtrl', function ($scope) {
     $scope.dynamic = value;
     $scope.type = type;
   };
-  $scope.random();
+
+    filterInt = function (value) {
+	if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+	    return Number(value);
+	return NaN;
+    }
+
+
+    $scope.getBank = function(){
+	BarmService.getProjects()
+	    .success(function(data,status){
+		var p = data.items;
+		for (i = 0; i < p.length; i++){
+		    $scope.max += p[i].billable_hours;
+		   // console.log(p[i].billable_hours);
+		   // $scope.dynamic += i+1;
+		   // alert(i);
+		}
+	    })
+	    .error(function(data,status){
+		
+	    });
+	$scope.dynamic = 300;
+	$scope.type = 'success';
+    }
+  
+  $scope.getBank();
  
   $scope.randomStacked = function() {
     $scope.stacked = [];

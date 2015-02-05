@@ -26,12 +26,16 @@ class Allocations(Controller):
     @route_with('/api/allocations/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
-       # print params;
-        for resource in params['resource_name']:
-            print resource
-        
-        for hours in params['alloc_hours']:
-            print hours
+        key = self.util.decode_key(params['project_id']['urlsafe'])
+        print key
+        for i in range (len(params['resource_name'])):
+            print params['alloc_hours'][i]
+            print params['resource_name'][i]
+            info = { 'project_id' : key,
+                     'resource_name' : params['resource_name'][i],
+                     'alloc_hours' : params['alloc_hours'][i]
+                    }
+            Allocation.create(info)
 
         return 200
        # self.context['data'] = Allocation.create(params)

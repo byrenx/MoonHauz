@@ -7,7 +7,7 @@
 	     <label>Project Name</label>
             <input ng-model="project.name" type="text" class="form-control" placeholder="type project name here..." ng-required="true">
 	     <label>Total Billable Hours</label>
-            <input ng-model="project.billable_hours" type="number" class="form-control" placeholder="total hours..." ng-required="true">
+            <input ng-model="project.billable_hours" numbers-limit number-only type="number" class="form-control" placeholder="total hours..." ng-required="true">
 	    <label> Start Date </label>
             <div class="row">
               <div class="col-md-8">

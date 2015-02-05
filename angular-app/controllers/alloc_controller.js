@@ -17,12 +17,14 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     //my todo app for testing
     $scope.resources = [];
     $scope.hours = [];
+    $scope.dates = [];
     $scope.addTodo = function () {
       $scope.resources.push($scope.resource);
+	
       $scope.hours.push($scope.hour);
+      $scope.dates.push($scope.date);
 	$scope.resource = '';
 	$scope.hour = '';
-
     };
     
     $scope.removeTodo = function (index) {
@@ -35,8 +37,8 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
    
     
     $scope.ok = function(){
-	console.log($scope.selected['project_id'].key.urlsafe);    
-	$scope.allocation['project_id'] = $scope.selected['project_id'].key.urlsafe;
+	console.log($scope.selected['project_id'].key);    
+	$scope.allocation['project_id'] = $scope.selected['project_id'].key;
 	BarmService.addAllocation($scope.allocation)
 	    .success(function(data, status){
 		$scope.data = data.name+", "+data.total_hours;
