@@ -5,6 +5,7 @@ from datetime import timedelta
 
 import json
 import datetime
+import logging
 
 class Allocations(Controller):
     
@@ -22,10 +23,17 @@ class Allocations(Controller):
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Allocation.list_all())
     
-    @route_with('/api/allocationss', methods=['POST'])
+    @route_with('/api/allocations/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
-        params['hours']
-        self.context['data'] = Allocation.create(params)
+       # print params;
+        for resource in params['resource_name']:
+            print resource
+        
+        for hours in params['alloc_hours']:
+            print hours
+
+        return 200
+       # self.context['data'] = Allocation.create(params)
         
         

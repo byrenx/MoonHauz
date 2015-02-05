@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 
 class Allocation(BasicModel):
     project_id = ndb.KeyProperty()
-    person_id = ndb.KeyProperty()
+    resource_name = ndb.StringProperty()
     alloc_hours = ndb.IntegerProperty()
-    end_date = ndb.DateTimeProperty()
+    
 
     @classmethod
     def list_all(cls):
