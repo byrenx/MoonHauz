@@ -1,11 +1,12 @@
 var appRoutes = angular.module('app.routes', ['ngRoute']);
 var appControllers = angular.module('app.controllers', []);
 var appServices = angular.module('app.services', []);
-
+var appDirectives = angular.module('app.directives', []);
 
 var mailApp = angular.module("mailApp", ['app.routes', 
 					 'app.controllers', 
 					 'app.services', 
+					 'app.directives', 
 					 'ui.bootstrap',
 					 'ngAnimate',
 					 'ngCookies',
