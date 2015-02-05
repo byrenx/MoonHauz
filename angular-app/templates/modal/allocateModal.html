@@ -15,42 +15,73 @@
     <span class="text-danger" ng-bind-html="selected.project_id.start_date | date:'medium'"></span><hr/><br>
 
     <div class="row">
-      <div class="col-md-8">
-	<input type="text" mandatory  min="0" max="10" ng-model="resource" class="form-control">
-      </div>
-      <div class="col-md-3">
-      <input type="number" number-only numbers-limit mandatory ng-model="hour" class="form-control">
-      </div>
-      <div class="col-md-1">
-	<button class="btn-link" ng-click="addTodo()"><span class="fa fa-plus-circle fa-3x"></span></button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-      	<label>Resource Name</label></br>
+      <div class="col-md-5">
+	<input type="text" mandatory  min="0" max="10" ng-model="resource" class="form-control" placeholder="Name" >
       </div>
       <div class="col-md-2">
-	  <label>Hours</label>
+      <input type="number" number-only numbers-limit mandatory ng-model="hour" class="form-control">
+      </div>
+       <div class="col-md-3">
+    	<input type="text" mandatory  min="0" max="10" class="form-control" placeholder="Date" >
+      </div>
+      <div class="col-md-2">
+	<button class="btn-link" ng-click="addTodo()"><span class="fa fa-plus-circle fa-2x"></span></button>
       </div>
     </div>
-  <div class="row" >
-    <div class="col-md-8">
-      <div ng-repeat="resource in resources track by $index">
-	<span ng-bind-html="resource"></span>
-	<span>       </span>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div ng-repeat="hour in hours track by $index">
-	<span ng-bind-html="hour"></span><button class="btn btn-link" ng-click="removeTodo($index)" aria-label="Remove"><span class="fa fa-times"></span></button>
-      </div>
-    </div>
-  </div>
+    <hr />
+      
+    <table class= "table ">
+     
+      <thead>
+	<tr>
+	  <th width="50%">RESOURCE NAME</th>
+	  <th width="5%">HOURS</th>
+	  <th width="5%">DATE </th>
+	  <th width="1%"></th>
+	</tr>
+      </thead>
+      
+      <tbody>
+	<tr>
+	 
+	  <td >
+	    <p ng-repeat="resource in resources track by $index">
+	      <span ng-bind-html="resource"></span>
+	    </p> 
+	  </td>
+	  
+	  <td>
+	    <p ng-repeat="hour in hours track by $index">
+	      <span ng-bind-html="hour"></span>
+	    </p>
+	  </td>
+
+	  <td>
+	    <p ng-repeat="hour in hours track by $index">
+	      <span ng-bind-html="hour"></span>
+	    </p>
+	  </td>
+
+	  <td width="1%">
+	    <p ng-repeat="hour in hours track by $index">  
+	      <a class="btn-link" ng-click="removeTodo($index)" aria-label="Remove"><span class="fa fa-times fa-1g text-danger"></span></a>
+	    </p>
+	  </td>
+
+	</tr>
+      </tbody>
+
+
+    </table>
+    
+    
+  
 </div>
-<span id="error_msg"></span>
+
 <div class="modal-footer">
+  
+  
   <button class="btn btn-primary" ng-click="ok()">Save</button>
 </form>
-<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+<button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>
