@@ -4,14 +4,9 @@ body {
     color: #000000;
     width: 100%;
 }
-
-
-
-
 .container{
     height: 100%;
-    width: 100%;
- 
+    width: 100%; 
     
 }
 
@@ -20,27 +15,13 @@ body {
     padding-left:20px;
     padding-right:20px;
     height: 200px;
-    background-color: pink;
+    background-color: #428bca;
 
 }
+
 .main-body{
     height: 800px;
-}
-
-.left-body{
-    height: 100%;
-    width: 320px;
-    float:left;
-    padding-top:20px;
-    background-color: yellow;
- 
-}
-
-.right-body{
-    height: 100%;
-    width: 1225px;
-    background-color: green;
-    float: right;
-
+    background-color: red;
+    
 }
 

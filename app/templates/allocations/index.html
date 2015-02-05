@@ -23,7 +23,7 @@
  
  <body ng-app="mailApp" mousetrap style="min-width: 1100px;">
    <div class="container">
-     <div class="header">
+     <div class="header" style="padding-top: 20px">
        <div class="row">
          <div class="col-md-8">
            <div ng-controller="ProgressDemoCtrl">
@@ -41,6 +41,7 @@
              <br/ >
                <ul>
                  <p><button class="btn btn-sm btn-primary" ng-click="openproj('sm')" type="button"><i class="fa fa-plus-square"></i>   ADD PROJECT</button></p>
+		 <br />
                  <br />
                  <p><button class="btn btn-sm btn-primary" ng-click="allocate()" type="button"><i class="fa fa-plus-square"></i>   ALLOCATED RESOURCES</button></p>
               </ul>
@@ -51,17 +52,20 @@
      
      
      <div class="main-body">
-       <div class="left-body">
-         <div class="row">
-           <div class="col-md-12">             <form role = "form">
-	       
-               <div class="checkbox">
+       <hr >
+         <div class="row"  style= "padding-left:10px">
+           <div class="col-md-2"> 
+            <ul>
+              
+	       <div class="checkbox">
                  <label><input type="checkbox" value="">1</label>
                </div>
+	       
                <div class="checkbox">
                  <label><input type="checkbox" value="">2</label>
-               </div>
-               <div class="checkbox">
+	       </div>
+	       
+		<div class="checkbox">
                  <label><input type="checkbox" value="">3</label>
                </div>
               <div class="checkbox">
@@ -91,27 +95,22 @@
               <div class="checkbox">
                 <label><input type="checkbox" value="">12</label>
               </div>
-              
-            </form>
-           </div>
+	      
+            </ul>
+	  
          </div>
-       </div>
-       <div class="right-body">
-         <div class="row">
-           <div class="col-md-12">  dsdsds
-             
-             
-	     
-             
-           </div>
-         </div>
-       </div>
-       
-     </div>  
+	 <div class="col-md-10">right</div>	
+     </div>
+     
+     
+     </div>
+   
+   
+</div>  
 
-     
+
           
-     
+
 <!-- jQuery -->
 <script src="ng/public/vendor/js/jquery.min.js"></script>
 
