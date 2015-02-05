@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h3 class="modal-title">Allocate Resources</h3>
+  
+</directivesiv>
+<div class=" modal-body">
+  <form>
+    <label>Project Name</label>
+    <select ng-model="selected" ng-options="item.name for item in projects track by item.key.urlsafe" class="form-control">
+    </select>
+    <label>Total Billable Hours: </label>
+    <span class="text-danger" ng-bind="selected.billable_hours"></span></br>
+      
+    <label>Start Date: </label>
+    
+    <span class="text-danger" ng-bind="selected.start_date | date:'medium'"></span><hr/></br>
+
+    <div class="row">
+      <div class="col-md-8">
+	<input type="text" ng-model="todo" class="form-control">
+      </div>
+      <div class="col-md-4">
+	<form class="form-inline">
+	  <div class="">
+	  <input type="text" ng-model="hour" class="form-control">
+	  <button class="btn-link" ng-click="addTodo()"><li class="fa fa-plus-square fa-3x"></li></button>
+	</form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+      	<label>Resource Name</label>
+        </br>
+      </div>
+      <div class="col-md-2">
+	  <label>Hours</label>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    
+    <div class="row" >
+      <div class="col-md-8">
+	<div ng-repeat="todo in todos">
+	<span ng-bind="todo"></span>
+	</div>
+      </div>
+      <div class="col-md-2">
+	<div ng-repeat="hour in hours">
+	  <span ng-bind="hour"></span>
+	  <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove"><span class="fa fa-plus-circle"></span></button>
+	</div>
+      </div>
+
+    </div></br>
+
+    
+</div>
+<span id="error_msg"></span>
+
+
+
+
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Save</button>
+</form>
+<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
