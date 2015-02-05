@@ -6,24 +6,29 @@
   <form name="form" validate>
     <label>Project Name</label>
     <select ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="form-control">
-    </select>
+    </select></br>
     <label>Total Billable Hours: </label>
     <span class="text-danger" ng-bind-html="selected.project_id.billable_hours"></span></br>
       
     <label>Start Date: </label>
     
-    <span class="text-danger" ng-bind-html="selected.project_id.start_date | date:'medium'"></span><hr/><br>
-
+    <span class="text-danger" ng-required="true" ng-bind-html="selected.project_id.start_date | date:'medium'"></span><hr/><br>
+    
     <div class="row">
       <div class="col-md-5">
-	<input type="text" mandatory  min="0" max="10" ng-model="resource" class="form-control" placeholder="Name" >
+	<input id="resource_err" type="text" mandatory ng-model="resource" class="form-control" placeholder="Name">
       </div>
       <div class="col-md-2">
-      <input type="number" number-only numbers-limit mandatory ng-model="hour" class="form-control">
+	<input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="allocated hours" class="form-control">
       </div>
        <div class="col-md-3">
-    	<input type="text" mandatory  min="0" max="10" class="form-control" placeholder="Date" >
-      </div>
+	 <p class="input-group">
+    	   <input id="dateString" ng-model="disp_date" datepicker-popup="{{format}}" type="text"  class="form-control" placeholder="Date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-click="open($event)">
+	   <span class="input-group-btn">
+	     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+	   </span>
+	 </p>
+       </div>
       <div class="col-md-2">
 	<button class="btn-link" ng-click="addTodo()"><span class="fa fa-plus-circle fa-2x"></span></button>
       </div>
@@ -36,7 +41,7 @@
 	<tr>
 	  <th width="50%">RESOURCE NAME</th>
 	  <th width="5%">HOURS</th>
-	  <th width="5%">DATE </th>
+	  <th width="40%" style="text-align: center">DATE</th>
 	  <th width="1%"></th>
 	</tr>
       </thead>
@@ -57,8 +62,8 @@
 	  </td>
 
 	  <td>
-	    <p ng-repeat="hour in hours track by $index">
-	      <span ng-bind-html="hour"></span>
+	    <p ng-repeat="disp in disp_dates track by $index">
+	      <span ng-bind-html="disp"></span>
 	    </p>
 	  </td>
 

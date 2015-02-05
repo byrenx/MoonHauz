@@ -5,14 +5,14 @@
        <div class=" modal-body">
            <form>
 	     <label>Project Name</label>
-            <input ng-model="project.name" type="text" class="form-control" placeholder="type project name here..." ng-required="true">
+            <input ng-model="project.name" mandatory type="text" class="form-control" placeholder="type project name here..." ng-required="true"></br>
 	     <label>Total Billable Hours</label>
-            <input ng-model="project.billable_hours" numbers-limit number-only type="number" class="form-control" placeholder="total hours..." ng-required="true">
+            <input ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="form-control" placeholder="total hours..." ng-required="true"></br>
 	    <label> Start Date </label>
             <div class="row">
               <div class="col-md-8">
 		<p class="input-group">
-		  <input id="dateString" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required readonly mandatory ng-click="open($event)" />
+		  <input id="dateString" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required readonly ng-click="open($event)" />
 		  <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
 		  </span>
