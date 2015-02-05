@@ -28,7 +28,7 @@
          <div class="col-md-8">
            <div ng-controller="ProgressDemoCtrl">
              
-             <h4>BILLABLE BANK <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h4>
+             <h4 style="font-color:red">BILLABLE BANK <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h4>
              <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;" ng-bind="dynamic/max"> {%raw%}dynamic{%endraw%} / {%raw%}max{%endraw%}</span></progressbar>
              <h4>ALLOCATED RESOURCES <button class="btn btn-sm btn-primary" type="button" ng-click="random()">Randomize</button></h4>
              <progressbar max="max" value="dynamic"><span style="color:black; white-space:nowrap;" ng-bind="dynamic/max">{%raw%}dynamic{%endraw%} / {%raw%}max{%endraw%}</span></progressbar>
@@ -55,7 +55,7 @@
        <hr >
          <div class="row"  style= "padding-left:10px">
            <div class="col-md-2"> 
-            <ul>
+<!--            <ul>
               
 	       <div class="checkbox">
                  <label><input type="checkbox" value="">1</label>
@@ -96,7 +96,49 @@
                 <label><input type="checkbox" value="">12</label>
               </div>
 	      
-            </ul>
+            </ul> -->
+
+<form class= "form-horizontal">
+  <fieldset>
+    
+    <legend>Resource</legend>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+ </div>
+ <div class="checkbox">
+      <label>
+	<input type="checkbox"> Checkbox
+      </label>
+ </div>
+    
+  </fieldset>
+</form>    
+
+
+
+
 	  
          </div>
 	 <div class="col-md-10">right</div>	
