@@ -16,18 +16,21 @@ body {
     padding-right:20px;
     height: 200px;
     background-color: #5bc0de;
-
+   
 }
 
 .main-body{
     height: 800px;
     background-color:#eeeeee;
+ 
     
 }
 .header-left
 {
-    height: 100px:
-    backgoround-color: 
+    height: 30px;
+    width: auto;
+    background-color:#5bc0de;
+   
 
 }
 
