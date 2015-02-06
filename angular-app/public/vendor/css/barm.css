@@ -15,21 +15,25 @@ body {
     padding-left:20px;
     padding-right:20px;
     height: 200px;
-    background-color: #5bc0de;
+    background-color: #ffff;
    
 }
+.header-logo{
+    background-image:cloud.png;
+
+}
+
 
 .main-body{
     height: 800px;
     background-color:#eeeeee;
- 
     
 }
 .header-left
 {
     height: 30px;
     width: auto;
-    background-color:#5bc0de;
+    background-color:  #286294;
    
 
 }
