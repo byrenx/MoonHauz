@@ -53,6 +53,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    $scope.hour = null;
 	    $scope.date = '';
 	    $scope.disp_date = null;
+
 	}
     };
     
@@ -79,7 +80,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 		//console.log($scope.data)
 	    })
 	    .error(function(data, status){
-		$("#error_msg").removeClass().addClass("text text-danger").html("Add Project Failed!");
+		$("#error_msg").removeClass().addClass("alert alert-danger").html("Add Project Failed!");
 	    });
     }
     $scope.cancel = function () {

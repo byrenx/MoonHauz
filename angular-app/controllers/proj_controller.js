@@ -16,10 +16,15 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
     $scope.format = $scope.formats[1];
 
     $scope.ok = function(){
-	/*$scope.before = $scope.project['start_date'];
-	alert($scope.before);
-	$scope.project['start_date'] = Date.parse($scope.before);
-	alert($scope.project['start_date']);*/
+	if($scope.project['name'] == null || $scope.project['name'] == ''){
+	    $("#namer_err").focus();
+	    //setTimeout( $("#hour_err").hide(), 3000);
+	}else if($scope.project['billable_hours'] == null || $scope.project['billalbe_hours' ]== ''){
+	    $("#hour_err").focus();
+	    //setTimeout( $("#resource_err").hide(), 3000);
+	}else if($scope.project['start_date'] == null || $scope.project['start_date'] == ''){
+	    $("#dateString").focus();
+	}else{
 	var dateString = $('#dateString').val();
 	var timestamp = Date.parse(dateString).getTime()/1000;
 	$scope.project['start_date'] = timestamp;
@@ -28,12 +33,13 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
 		$scope.data = data.name+", "+data.total_hours;
 		$("#form_message").removeClass().addClass("alert alert-success").html("Add project success!");
 		$scope.selected = data.name+", "+data.total_hours;
-		$modalInstance.close($scope.selected);
 		$modalInstance.dismiss('cancel');
+		ProgressDemoCtrl.getBank();
 	    })
 	    .error(function(data, status){
 		$("#error_msg").removeClass().addClass("text text-danger").html("Add Project Failed!");
 	    });
+	}
     }
     $scope.cancel = function () {
 	$modalInstance.dismiss('cancel');
