@@ -67,7 +67,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.allocation['resource_name'] = $scope.resources;
     $scope.allocation['alloc_date'] = $scope.dates;
     
-    
     $scope.ok = function(){
 	console.log($scope.selected['project_id'].key);    
 	$scope.allocation['project_id'] = $scope.selected['project_id'].key;

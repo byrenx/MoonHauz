@@ -6,7 +6,7 @@ class Allocation(BasicModel):
     project_id = ndb.KeyProperty()
     resource_name = ndb.StringProperty()
     alloc_hours = ndb.IntegerProperty()
-    
+    alloc_date = ndb.DateProperty()
 
     @classmethod
     def list_all(cls):

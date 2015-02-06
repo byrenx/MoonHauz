@@ -66,10 +66,12 @@
 	  <div class = "header-left">
 	    <legend>Resource</legend>
 	  </div>
-	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> Checkbox
-	    </label>
+	  <div class="checkbox" ng-controller="resourceCtrl">
+	    <ul ng-repeat="resource in resources">
+	    <li>
+	      <input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
+	    </li>
+	    </ul>
 	  </div>
 	</fieldset>
       </form>    
@@ -149,6 +151,7 @@
   <script src="ng/controllers/proj_controller.js"></script>
   <script src="ng/controllers/alloc_controller.js"></script>
   <script src="ng/controllers/prog_controller.js"></script>
+  <script src="ng/controllers/resource_controller.js"></script>
 <!-- services here -->
 <script src="ng/directives/inputvalidator.js"></script>
 

@@ -10,7 +10,10 @@ appServices.service('BarmService', function($http){
 	return $http.get('/api/projects/list', {});
     },
     addAllocation: function(params){
-	return $http.post('/api/allocations/create', params)
+	return $http.post('/api/allocations/create', params);
+    },
+    getAllocation: function(){
+	return $http.get('/api/allocations/list');
     }
 
     };

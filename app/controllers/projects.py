@@ -19,7 +19,8 @@ class Projects(Controller):
     @route_with('/api/projects/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
-        print params
+        hours = int(params['billable_hours']);
+        params['billable_hours'] = hours
         self.context['data'] = Project.create(params)
 
     @route_with('/api/projects/:<key>', methods=['GET'])

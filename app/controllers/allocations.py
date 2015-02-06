@@ -19,7 +19,7 @@ class Allocations(Controller):
     def index(self):
         pass
 
-    @route_with('/api/allocations', methods=['GET'])
+    @route_with('/api/allocations/list', methods=['GET'])
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Allocation.list_all())
     
@@ -31,9 +31,11 @@ class Allocations(Controller):
         for i in range (len(params['resource_name'])):
             print params['alloc_hours'][i]
             print params['resource_name'][i]
+            print params['alloc_date']
             info = { 'project_id' : key,
                      'resource_name' : params['resource_name'][i],
-                     'alloc_hours' : params['alloc_hours'][i]
+                     'alloc_hours' : int(params['alloc_hours'][i]),
+                     'alloc_date' : datetime.datetime.utcfromtimestamp(float(params['alloc_date'][i]))
                     }
             Allocation.create(info)
 
