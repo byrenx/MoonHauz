@@ -29,12 +29,11 @@
            <div ng-controller="ProgressDemoCtrl">
              
              <h4 style="font-color:red">BILLABLE BANK </h4>
-             <progressbar max="max" type="danger" value="max"><span style="color:black; white-space:nowrap;" ><li ng-bind="max"> Percent</li></span></progressbar>
+             <progressbar animate="false" value="max" type="danger"><b ng-bind="max"></b></progressbar>
              
-	     <h4> Allocated Resources <button class="btn btn-sm btn-primary" type="button" ng-click="randomStacked()">Randomize</button></h3>
-<progress>
-  <bar ng-repeat="bar in stacked track by $index" value="bar.value" ng-type="bar.type"><span ng-hide="bar.value < 5"><li ng-bind="bar.value"></li>%</span></bar>
-</progress>
+	     <h4>ALLOCATED RESOURCES</h3>
+	     <progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
+
 
 
 
