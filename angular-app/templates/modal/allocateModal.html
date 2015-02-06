@@ -13,7 +13,7 @@
     <label>Start Date: </label>
     
     <span class="text-danger" ng-required="true" ng-bind-html="selected.project_id.start_date | date:'medium'"></span><hr/><br>
-    
+	<label>ADD RESOURCE INFORMATION</label>    
     <div class="row">
       <div class="col-md-5">
 	<input id="resource_err" type="text" mandatory ng-model="resource" class="form-control" placeholder="Name">
@@ -86,7 +86,7 @@
 <div class="modal-footer">
   
   
-  <button class="btn btn-primary" ng-click="ok()">Save</button>
+  <button class="btn btn-primary" ng-click="ok()">Save Changes</button>
 </form>
 <button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>

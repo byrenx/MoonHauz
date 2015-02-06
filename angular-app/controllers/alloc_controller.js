@@ -32,6 +32,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.hours = [];
     $scope.dates = [];
     $scope.disp_dates = [];
+    $scope.hour_counter = 0;
     $scope.addTodo = function () {
 	if($scope.hour == null || $scope.hour == ''){
 	    $("#hour_err").focus();
@@ -41,6 +42,8 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    //setTimeout( $("#resource_err").hide(), 3000);
 	}else if($scope.disp_date == null || $scope.disp_date == ''){
 	    $("#dateString").focus();
+	}else if($scope.hour_counter > $scope.seleted.project_id.billable_hours){
+	    
 	}else{
 	    $scope.resources.push($scope.resource);
 	    var dateString = $('#dateString').val();
@@ -53,7 +56,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    $scope.hour = null;
 	    $scope.date = '';
 	    $scope.disp_date = null;
-
 	}
     };
     
