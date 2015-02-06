@@ -7,7 +7,7 @@ appControllers.controller('resourceCtrl', function($scope, $http, BarmService){
 		console.log($scope.resources);
 	    })
 	    .error(function(data, status){
-	    alert("Error! Fetching emails");
+
 	    });
     }
     $scope.getResources();
