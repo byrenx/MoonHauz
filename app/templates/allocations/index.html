@@ -25,47 +25,19 @@
    <div class="container">
      <div class="header" style="padding-top: 20px">
        <div class="row">
-	  <div class="col-md-2">
-	   <img src="ng/public/vendor/img/cloud.png">
+	 
+	 <div class="col-md-2">
+	   <img class="img-responsive" src="ng/public/vendor/img/cloud.png" alt="">
 	 </div>
-         <div class="col-md-8">
-           <div ng-controller="ProgressDemoCtrl">
-             
-             <h4 style="font-color:red">BILLABLE BANK </h4>
-             <progressbar animate="false" value="max" type="danger"><b ng-bind="max"></b></progressbar>
-             
-	     <h4>ALLOCATED RESOURCES</h3>
-	     <progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
-
-
-
-
-</div><!--- end progressCtrl--->
-
-</div>
-<div class="col-md-2" ng-controller="ModalDemoCtrl">
-  <br/ >
-    <br/ >
-      <ul>
-        <p><button class="btn btn-sm btn-primary" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i>   ADD PROJECT</button></p>
-	<br />
-        
-        <p><button class="btn btn-sm btn-primary" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATED RESOURCES</button></p>
-      </ul>
-</div>
-</div>
-</div>
-
-
+	 <div class="col-md-10">
+	   <h1 style="font-size:80px">Billing and Resource Management </h1>
+	 </div>
+       </div>
+     </div>
      
 <div class="main-body">
-  <hr >
- 
-  <div class="row"  style= "padding-left:10px">
-    <div class="col-md-12">
-      QEWREQW
-    
-    </div>
+  <hr />
+  <div class="row" >
     <div class="col-md-2"> 
       <form class= "form-horizontal">
 	<fieldset>
@@ -74,15 +46,38 @@
 	  </div>
 	  <div class="checkbox" ng-controller="resourceCtrl">
 	    <ul ng-repeat="resource in resources">
-	    <li>
-	      <input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
-	    </li>
+	      <li>
+		<input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
+	      </li>
 	    </ul>
 	  </div>
 	</fieldset>
       </form>    
     </div>
-    <div class ="col-md-10">
+
+
+    <div class="col-md-8">
+    
+      <div ng-controller="ProgressDemoCtrl">
+        <h4>BILLABLE BANK </h4>
+        <progressbar animate="false" value="max" type="danger"><b ng-bind="max"></b></progressbar>
+        
+	<h4>ALLOCATED RESOURCES</h3><progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
+</div>
+</div>
+<div class="col-md-2" ng-controller="ModalDemoCtrl">
+  <br/ >
+    <br/ >
+      <ul>
+        <p><button class="btn btn-sm btn-primary" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i>   ADD PROJECT</button></p>
+	<br />
+        <p><button class="btn btn-sm btn-primary" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATED RESOURCES</button></p>
+      </ul>
+</div>
+</div>
+
+<div class ="col-md-10 col-md-push-2">
+  <br/ > 
       <table class="table table-bordered">
 	<thead>
 	  <tr>
@@ -111,6 +106,12 @@
       </table>
     </div>
   </div>
+  
+</div>  
+
+</div><!--- end progressCtrl--->
+
+
   
 </div>  
 
