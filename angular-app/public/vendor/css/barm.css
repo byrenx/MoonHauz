@@ -17,8 +17,13 @@ body {
 
 
 h1{
-
-    text-shadow: 5px 5px #778899;
+    padding-left: 20px;
+    text-shadow: 5px 10px #778899;
+    font-family:"Helvetica";
+    font-style: normal;
+    font-size: 200px;
+    line-height: 73px;
+    margin-bottom: 25px;
 
 }
 
@@ -39,7 +44,7 @@ h1{
 
 
 .main-body{
-    height: 800px;
+    height: 100%;
     background-color:#eeeeee;
     
 }
