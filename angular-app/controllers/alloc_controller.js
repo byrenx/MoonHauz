@@ -8,6 +8,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    .success(function(data, status){
 		$scope.projects = data.items;
 		$scope.selected['project_id'] = $scope.projects[0];
+		console.log($scope.selected['project_id']);
 	    })
 	    .error(function(data, status){
 		
@@ -27,14 +28,18 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 
 
 
-    //my todo app for testing
+    //initalizing models
     $scope.resources = [];
     $scope.hours = [];
     $scope.dates = [];
     $scope.disp_dates = [];
-    $scope.hour_counter = 0;
+    $scope.hour_counter = parseInt(0);
     $scope.addTodo = function () {
-	if($scope.hour == null || $scope.hour == ''){
+	var counter = 0;
+	console.log($scope.selected['project_id'].billable_hours);
+	var time = parseInt($scope.selected['project_id'].billable_hours);
+	counter  = parseInt($scope.hour) + parseInt($scope.hour_counter);
+	if($scope.hour == null || $scope.hour == '' || $scope.hour == 0 || $scope.hour > time){
 	    $("#hour_err").focus();
 	    //setTimeout( $("#hour_err").hide(), 3000);
 	}else if($scope.resource == null || $scope.resource == ''){
@@ -42,20 +47,26 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    //setTimeout( $("#resource_err").hide(), 3000);
 	}else if($scope.disp_date == null || $scope.disp_date == ''){
 	    $("#dateString").focus();
-	}else if($scope.hour_counter > $scope.seleted.project_id.billable_hours){
-	    
+	}else if(counter > time){
+	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
+	    $("#hour_err").focus();
 	}else{
 	    $scope.resources.push($scope.resource);
 	    var dateString = $('#dateString').val();
 	    var timestamp = Date.parse(dateString).getTime()/1000;
+	    $scope.disp_date = dateString;
 	    $scope.date = timestamp;
 	    $scope.hours.push($scope.hour);
 	    $scope.dates.push($scope.date);
 	    $scope.disp_dates.push($scope.disp_date);
 	    $scope.resource = null;
+	    $scope.hour_counter += parseInt($scope.hour);
 	    $scope.hour = null;
 	    $scope.date = '';
+	    console.log(parseInt($scope.selected['project_id'].billable_hours));
 	    $scope.disp_date = null;
+	    $("#error_msg").hide();
+	    console.log($scope.hour_counter);
 	}
     };
     

@@ -34,7 +34,6 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
 		$("#form_message").removeClass().addClass("alert alert-success").html("Add project success!");
 		$scope.selected = data.name+", "+data.total_hours;
 		$modalInstance.dismiss('cancel');
-		ProgressDemoCtrl.getBank();
 	    })
 	    .error(function(data, status){
 		$("#error_msg").removeClass().addClass("text text-danger").html("Add Project Failed!");
