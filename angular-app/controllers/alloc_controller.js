@@ -84,6 +84,8 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.ok = function(){
 	console.log($scope.selected['project_id'].key);    
 	$scope.allocation['project_id'] = $scope.selected['project_id'].key;
+	$scope.allocation['color'] = $scope.selected['project_id'].color;
+	$scope.allocation['name'] = $scope.selected['project_id'].name;
 	BarmService.addAllocation($scope.allocation)
 	    .success(function(data, status){
 		$scope.data = data.name+", "+data.total_hours;

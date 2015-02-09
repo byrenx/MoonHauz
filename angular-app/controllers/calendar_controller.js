@@ -1,67 +1,62 @@
-appControllers.controller('calendarCtrl', function($scope){
+appControllers.controller('calendarCtrl', function($scope, BarmService){
+    $scope.events = []
+    
+
     $(document).ready(function() {
+
+	BarmService.getCalendar()
+	    .success(function(data,status){
+		var p = data.items;
+		for (i=0; i< p.length; i++){
+		    $scope.events.push(
+			{
+			    title  : p[i].project_name,
+			    start  : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
+			    end    : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+""
+			}
+		    );
+		}
+		//console.log($scope.events);
+	    })
+	    .error(function(data, status){
+		
+	    });
+
+	
+
+	//console.log(events_list);
 	var events_list = [
             {
-		title  : 'beckTaxi',
+		title  : 'event1',
 		start  : '2015-02-09'
             },
-
             {
-		title  : 'Chicos',
-		start  : '2015-02-13',
-		end    : '2015-02-14'
-            },
-
-            {
-		title  : 'Valentines',
-		start  : '2015-02-09',
-		end    : '2015-02-11'
-            },
-            {
-		title  : 'Chicos',
-		start  : '2015-02-09',
-		end    : '2015-02-11'
-            },
-
-            {
-		title  : 'Valentines',
-		start  : '2015-02-09',
-		end    : '2015-02-11'
-            },
-
-            {
-		title  : 'New year',
-		start  : '2015-02-09',
-		end    : '2015-02-09'
+		title  : 'event2',
+		start  : '2015-09-02',
+		end    : '2015-09-02'
             },
             {
 		title  : 'event3',
-		start  : '2010-02-09 12:30:00',
+		start  : '2010-01-09T12:30:00',
 		allDay : false // will make the time show
             }
 	]
+	console.log(events_list);
 	// page is now ready, initialize the calendar...
-	     $('#calendar').fullCalendar({
-        // put your options and callbacks here
+	$('#calendar').fullCalendar({
 
 
+	    // put your options and callbacks here
+	    header: {
+		left: 'prev,next today',
+		center: 'title',
+		right: 'month,basicWeek,basicDay',
+	    },
+	    defaultView: 'basicWeek',
+	    events: events_list,
 
-	header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,basicWeek,basicDay',
-	},
-		 defaultView: 'basicWeek',
-		 events: events_list,
-		 eventColor: '#378006',
-		 contentHeight: 'auto'
-
+	    contentHeight: 'auto'
+		 
+	});
     });
-
-
-	
-});
- 
-
-
 });

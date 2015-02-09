@@ -14,6 +14,9 @@ appServices.service('BarmService', function($http){
     },
     getAllocation: function(){
 	return $http.get('/api/allocations/list');
+    },
+    getCalendar: function(){
+	return $http.get('/api/allocations/calendar');
     }
 
     };
