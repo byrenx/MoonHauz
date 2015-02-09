@@ -27,7 +27,6 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
 
     $scope.ok = function(){
 	$scope.project['color'] = getRandomColor();
-	alert($scope.project['color']);
 	if($scope.project['name'] == null || $scope.project['name'] == ''){
 	    $("#namer_err").focus();
 	    //setTimeout( $("#hour_err").hide(), 3000);

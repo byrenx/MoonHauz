@@ -6,14 +6,16 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
 	BarmService.getCalendar()
 	    .success(function(data,status){
+		
 		var p = data.items;
 		for (i=0; i< p.length; i++){
+		    var params = {
+			title:p[i].project_name,
+			start:''+p[i].alloc_date.year+"-0"+p[i].alloc_date.month+"-0"+p[i].alloc_date.day+'',
+			//end  :''+p[i].alloc_date.year+"-0"+p[i].alloc_date.month+"-0"+p[i].alloc_date.day+''
+		    }
 		    $scope.events.push(
-			{
-			    title  : p[i].project_name,
-			    start  : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
-			    end    : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+""
-			}
+			params
 		    );
 		}
 		//console.log($scope.events);
@@ -23,24 +25,25 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 	    });
 
 	
-
+	var events_list = $scope.events;
 	//console.log(events_list);
-	var events_list = [
+	 /*var events_list = [
             {
 		title  : 'event1',
 		start  : '2015-02-09'
             },
             {
 		title  : 'event2',
-		start  : '2015-09-02',
-		end    : '2015-09-02'
+		start  : '2015-02-08',
+		end    : '2015-02-08'
             },
             {
 		title  : 'event3',
 		start  : '2010-01-09T12:30:00',
 		allDay : false // will make the time show
             }
-	]
+	]*/
+
 	console.log(events_list);
 	// page is now ready, initialize the calendar...
 	$('#calendar').fullCalendar({
