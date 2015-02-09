@@ -5,14 +5,38 @@ appControllers.controller('calendarCtrl', function($scope){
 		title  : 'beckTaxi',
 		start  : '2015-02-09'
             },
+
+            {
+		title  : 'Chicos',
+		start  : '2015-02-13',
+		end    : '2015-02-14'
+            },
+
+            {
+		title  : 'Valentines',
+		start  : '2015-02-09',
+		end    : '2015-02-11'
+            },
             {
 		title  : 'Chicos',
 		start  : '2015-02-09',
 		end    : '2015-02-11'
             },
+
+            {
+		title  : 'Valentines',
+		start  : '2015-02-09',
+		end    : '2015-02-11'
+            },
+
+            {
+		title  : 'New year',
+		start  : '2015-02-09',
+		end    : '2015-02-09'
+            },
             {
 		title  : 'event3',
-		start  : '2010-01-09 12:30:00',
+		start  : '2010-02-09 12:30:00',
 		allDay : false // will make the time show
             }
 	]
@@ -29,7 +53,8 @@ appControllers.controller('calendarCtrl', function($scope){
 	},
 		 defaultView: 'basicWeek',
 		 events: events_list,
-		 eventColor: '#378006'
+		 eventColor: '#378006',
+		 contentHeight: 'auto'
 
     });
 

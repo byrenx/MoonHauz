@@ -14,6 +14,7 @@
 	<!-- Context -->
 	<link href="ng/public/vendor/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="ng/public/vendor/fonts/flaticon/flaticon.css" rel="stylesheet">
+	<link href="ng/public/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
 
   <!-- Bootstrap -->
   <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +32,7 @@
 	 </div>
 	 <div class="col-md-10">
 	   <h1>B. A. R. M.</h1><br/>
-	   <div class="col-md-8 col-md-push-4">
+	   <div class="col-md-6 col-md-push-6">
 	     <h3 > Billing and Resource Management</h3>
 	   </div>
 	 </div>
@@ -79,34 +80,9 @@
 </div>
 
 <div class ="col-md-10 col-md-push-2">
-  <br/ > 
-      <table class="table table-bordered">
-	<thead>
-	  <tr>
-	    <th>SUN</th>
-	    <th>MON</th>
-	    <th>TUE</th>
-	    <th>WED</th>
-	    <th>THU</th>
-	    <th>FRI</th>
-	    <th>SAT</th>
-	  </tr>
-	</thead>
-	
-	<tbody>
-	  <tr class="info">
-	    <td>fds </td>
-	    <td>gfd </td>
-	    <td>gd </td>
-	    <td>fsd </td>
-	    <td>gfds </td>
-	    <td>ds </td>
-	    <td>fdsg </td>
-	  <tr>
-	</tbody
-	  
-      </table>
-</div>
+  <div id="calendar" ng-controller="calendarCtrl">
+
+  </div>
 
 </div>
 
@@ -126,13 +102,15 @@
 
 <!-- jQuery -->
 <script src="ng/public/vendor/js/jquery.min.js"></script>
-
+<!-- jQuery fullcalendar-->
+<script src="ng/public/bower_components/moment/min/moment.min.js"></script>
+<script src="ng/public/bower_components/fullcalendar/dist/fullcalendar.js"></script>
 
 
 <!-- Angular App -->
 <script src="ng/angular/angular/angular.js"></script>
 <!-- bootstrap.js -->
-<script src="ng/public/vendor/css/bootstrap.min.css"></script>
+<scropt src="ng/public/vendor/css/bootstrap.min.css"></script>
 <script src="ng/angular/angular/angular-resource.js"></script>
 <script src="ng/angular/angular/angular-cookies.js"></script>
 <script src="ng/angular/angular/angular-sanitize.js"></script>
@@ -165,6 +143,7 @@
   <script src="ng/controllers/alloc_controller.js"></script>
   <script src="ng/controllers/prog_controller.js"></script>
   <script src="ng/controllers/resource_controller.js"></script>
+  <script src="ng/controllers/calendar_controller.js"></script>
 <!-- services here -->
 <script src="ng/directives/inputvalidator.js"></script>
 
