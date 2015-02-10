@@ -1,10 +1,15 @@
 appControllers.controller('calendarCtrl', function($scope, BarmService){
     $scope.items = {}
     $scope.events = [];
+    $scope.resources = {};
+    
+
+
+
     $scope.setEvents = function(){
 	BarmService.getCalendar()
 	    .success(function(data,status){
-		
+		$scope.resources = data.items;
 		p = data.items
 		for (i=0; i< p.length; i++){
 		    if (p[i].alloc_hours < 8){
