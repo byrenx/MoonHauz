@@ -27,10 +27,10 @@
        <div class="row">
 	 <div class="col-md-10" >
 	   <div ng-controller="ProgressDemoCtrl">
-	     <h4>BILLABLE BANK  <label> : label1 </label> </h4>
-	     <progressbar animate="false" value="max" type="danger"><b ng-bind="max"></b></progressbar>
+	     <h4>BILLABLE BANK:  <label ng-bind="max"></label> hrs.</h4>
+	     <progressbar animate="false" value="max/max*100" type="danger"><b ng-bind="max"></b></progressbar>
 	   
-	     <h4>ALLOCATED RESOURCES   <label> : label2 </label> </h3><progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
+	     <h4>ALLOCATED RESOURCES:   <label ng-bind="dynamic"></label>/<label ng-bind="max"></label> hrs.</h3><progressbar animate="false" value="dynamic/max *100" type="primary"><b ng-bind="dynamic">%</b></progressbar>
           </div> <!--end og progress bar-->   
          </div><!--end of col 10-->
        
@@ -56,13 +56,13 @@
 <div class="main-body">
   <div class="body-left">
    <legend>Resource</legend>
-    <div class="checkbox" ng-controller="resourceCtrl">
-      <ul ng-repeat="resource in resources">
-	<li>
-	  <input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
-	</li>
-      </ul>
-    </div>
+   <div class="checkbox" ng-controller="calendarCtrl">
+     <ul ng-repeat="resource in resources | unique: 'resource_name'">
+       <li>
+	 <input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
+       </li>
+     </ul>
+   </div>
 </div>
 
     <div class="body-right">
@@ -78,15 +78,6 @@
 
   </div><!-- end left-body-->
 
-   
-   
-
-
-
-
-
- 
-  
  </div>
 
 
@@ -103,6 +94,7 @@
 
 <!-- Angular App -->
 <script src="ng/angular/angular/angular.js"></script>
+<script src="ng/public/bower_components/angular-ui-utils/ui-utils.js"></script>
 <!-- bootstrap.js -->
 <scropt src="ng/public/vendor/css/bootstrap.min.css"></script>
 <script src="ng/angular/angular/angular-resource.js"></script>
