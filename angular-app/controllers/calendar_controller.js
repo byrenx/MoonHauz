@@ -1,54 +1,58 @@
 appControllers.controller('calendarCtrl', function($scope, BarmService){
-    $scope.events = []
-    
-
-    $(document).ready(function() {
-
+    $scope.items = {}
+    $scope.events = [];
+    $scope.setEvents = function(){
 	BarmService.getCalendar()
 	    .success(function(data,status){
 		
-		var p = data.items;
+		p = data.items
 		for (i=0; i< p.length; i++){
-		    var params = {
-			title:p[i].project_name,
-			start:''+p[i].alloc_date.year+"-0"+p[i].alloc_date.month+"-0"+p[i].alloc_date.day+'',
-			//end  :''+p[i].alloc_date.year+"-0"+p[i].alloc_date.month+"-0"+p[i].alloc_date.day+''
+		    if (p[i].alloc_hours < 8){
+			$scope.events.push(
+			    {
+				title : ""+p[i].project_name+" ("+p[i].resource_name+")",
+				start : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
+				end : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
+				color   : ""+p[i].color+""
+			    }
+
+			);
+		    }else{
+			days = Math.ceil(p[i].alloc_hours / 8);
+			alloc_days = p[i].alloc_date.day + days;
+			if(days > 5){
+			    skip_weekend = alloc_days+2;
+			    $scope.events.push(
+				{
+				    title : ""+p[i].project_name+" ("+p[i].resource_name+")",
+				    end : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+skip_weekend+"",
+				    start : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
+				    color   : ""+p[i].color+""
+				}
+			    );
+			}else{
+			    $scope.events.push(
+				{
+				    title : ""+p[i].project_name+" ("+p[i].resource_name+")",
+				    end : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+alloc_days+"",
+				    start : ""+p[i].alloc_date.year+"-"+p[i].alloc_date.month+"-"+p[i].alloc_date.day+"",
+				    color   : ""+p[i].color+""
+				}
+			    );
+			}
 		    }
-		    $scope.events.push(
-			params
-		    );
 		}
-		//console.log($scope.events);
+		$scope.startCalendar();
 	    })
 	    .error(function(data, status){
 		
 	    });
+    }
 
-	
-	var events_list = $scope.events;
-	//console.log(events_list);
-	 /*var events_list = [
-            {
-		title  : 'event1',
-		start  : '2015-02-09'
-            },
-            {
-		title  : 'event2',
-		start  : '2015-02-08',
-		end    : '2015-02-08'
-            },
-            {
-		title  : 'event3',
-		start  : '2010-01-09T12:30:00',
-		allDay : false // will make the time show
-            }
-	]*/
-
-	console.log(events_list);
+    
+    $scope.startCalendar = function(){
 	// page is now ready, initialize the calendar...
 	$('#calendar').fullCalendar({
-
-
 	    // put your options and callbacks here
 	    header: {
 		left: 'prev,next today',
@@ -56,10 +60,14 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 		right: 'month,basicWeek,basicDay',
 	    },
 	    defaultView: 'basicWeek',
-	    events: events_list,
-
+	    events: $scope.events,
+	    //weekends: false,
 	    contentHeight: 'auto'
-		 
 	});
-    });
+	console.log($scope.events);
+    }
+    $scope.setEvents();
+
+
+
 });

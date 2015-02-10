@@ -45,12 +45,14 @@ class Allocations(Controller):
             print params['alloc_hours'][i]
             print params['resource_name'][i]
             print params['alloc_date']
+            alloc = datetime.datetime.utcfromtimestamp(float(params['alloc_date'][i])) + datetime.timedelta(days=1)
+            print alloc
             info = { 'project_id' : key,
                      'resource_name' : params['resource_name'][i],
                      'alloc_hours' : int(params['alloc_hours'][i]),
                      'color' : color,
                      'project_name' : name,
-                     'alloc_date' : datetime.datetime.utcfromtimestamp(float(params['alloc_date'][i]))
+                     'alloc_date' : alloc
                     }
             Allocation.create(info)
 
