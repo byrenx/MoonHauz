@@ -103,9 +103,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     };
     
     $scope.getProjects();
-
-
-
     
     
 });
