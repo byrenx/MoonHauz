@@ -57,9 +57,9 @@
   <div class="body-left">
    <legend>Resource</legend>
    <div class="checkbox" ng-controller="calendarCtrl">
-     <ul ng-repeat="resource in resources | unique: 'resource_name'">
+     <ul ng-repeat="team in teams | unique: 'name'">
        <li>
-	 <input type="checkbox" ng-model="resource.key.urlsafe"> <span ng-bind="resource.resource_name"></span>
+	 <input type="checkbox" ng-model="team.isChecked" ng-click="getResource()"> <span ng-bind="team.name"></span>
        </li>
      </ul>
    </div>
