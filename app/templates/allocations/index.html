@@ -25,27 +25,16 @@
  <body ng-app="mailApp" mousetrap style="min-width: 1100px;">
      <div class="header">
        <div class="row">
-	 <div class="col-md-8" >
+	 <div class="col-md-10" >
 	   <div ng-controller="ProgressDemoCtrl">
-	     <h4>BILLABLE BANK </h4>
+	     <h4>BILLABLE BANK  <label> : label1 </label> </h4>
 	     <progressbar animate="false" value="max" type="danger"><b ng-bind="max"></b></progressbar>
 	   
-	     <h4>ALLOCATED RESOURCES</h3><progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
+	     <h4>ALLOCATED RESOURCES   <label> : label2 </label> </h3><progressbar animate="false" value="dynamic" type="primary"><b ng-bind="dynamic">%</b></progressbar>
           </div> <!--end og progress bar-->   
          </div><!--end of col 10-->
        
-         <div class="col-md-2">
-	   <br />
-	   <br />
-	   <ul>
-	     <label>label1 </label>
-	   <br />
-	   <br />
-	   <br />
-	     <label>label2 </label>
-	   </ul>
-	 </div>
-
+       
 
          <div class="col-md-2" ng-controller="ModalDemoCtrl">
 	  <br/ >
@@ -78,7 +67,7 @@
 
     <div class="body-right">
 	<br />
-     <div class ="col-md-10">
+     <div class ="col-md-12">
        <div id="calendar" ng-controller="calendarCtrl">
        </div>
      </div> <!---calendar---->
