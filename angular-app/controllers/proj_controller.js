@@ -43,7 +43,6 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
 	    .success(function(data, status){
 		$scope.data = data.name+", "+data.total_hours;
 		$("#form_message").removeClass().addClass("alert alert-success").html("Add project success!");
-		$scope.selected = data.name+", "+data.total_hours;
 		$modalInstance.dismiss('cancel');
 	    })
 	    .error(function(data, status){

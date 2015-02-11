@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
- <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en" ng-app="mailApp" ng-controller="ProgressDemoCtrl">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Sugar Ray Tenorio, ray@hotmail.ph, Joeper Serrano, Eric de Felix, Jona Eroy">
-	<meta name="copyright" content="Cloudsherpas 2014, Google GDC Internal">
+	       <meta name="copyright" content="Cloudsherpas 2014, Google GDC Internal">
 
 	<title>Billing and Resource Management App</title>
 
@@ -14,79 +14,67 @@
 	<!-- Context -->
 	<link href="ng/public/vendor/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="ng/public/vendor/fonts/flaticon/flaticon.css" rel="stylesheet">
-	<link href="ng/public/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+	<link href="ng/public/jquery-ui.custom/jquery-ui.css" rel="stylesheet">
+	<link href="ng/public/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet">
 
   <!-- Bootstrap -->
   <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
   <link href="ng/public/vendor/css/barm.css" rel="stylesheet">
 
  </head>
- 
- <body ng-app="mailApp" mousetrap style="min-width: 1100px;">
-     <div class="header">
-       <div class="row">
-	 <div class="col-md-10" >
-	   <div ng-controller="ProgressDemoCtrl">
-	     <h4>BILLABLE BANK:  <label ng-bind="max"></label> hrs.</h4>
-	     <progressbar animate="false" value="max/max*100" type="danger"><b ng-bind="max"></b></progressbar>
-	   
-	     <h4>ALLOCATED RESOURCES:   <label ng-bind="dynamic"></label>/<label ng-bind="max"></label> hrs.</h3><progressbar animate="false" value="dynamic/max *100" type="primary"><b ng-bind="dynamic">%</b></progressbar>
-          </div> <!--end og progress bar-->   
-         </div><!--end of col 10-->
-       
-       
 
-         <div class="col-md-2" ng-controller="ModalDemoCtrl">
-	  <br/ >
-	   <br />
-	      <ul>
-		<p><button class="btn btn-sm btn-primary" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i>   ADD PROJECT</button></p>
-		<br />
-		<p><button class="btn btn-sm btn-primary" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATED RESOURCES</button></p>
-	      </ul>
-	 </div><!---end of col-2-->
+ <body  mousetrap style="min-width: 1100px;" ng-controller="calendarCtrl">
+      <div class="header">
+        <div class="row">
+	         <div class="col-md-10">
 
-     </div><!--row-->
-   </div><!--end of header-->
-     
-<div class"middle">
+	           <h4>BILLABLE BANK:  <label ng-bind="max"></label> hrs.</h4>
+	           <progressbar animate="false" value="max/max*100" type="danger"><b ng-bind="max"></b></progressbar>
 
-</div>
-<hr />
-<div class="main-body">
-  <div class="body-left">
-   <legend>Resource</legend>
-   <div class="checkbox" ng-controller="calendarCtrl">
-     <ul ng-repeat="team in teams | unique: 'name'">
-       <li>
-	 <input type="checkbox" ng-model="team.isChecked" ng-click="getResource()"> <span ng-bind="team.name"></span>
-       </li>
-     </ul>
-   </div>
-</div>
+	           <h4>ALLOCATED RESOURCES:   <label ng-bind="dynamic"></label>/<label ng-bind="max"></label> hrs.</h3><progressbar animate="false" value="dynamic/max *100" type="primary"><b ng-bind="dynamic">%</b></progressbar>
 
-    <div class="body-right">
-	<br />
-     <div class ="col-md-12">
-       <div id="calendar" ng-controller="calendarCtrl">
-       </div>
-     </div> <!---calendar---->
+            </div><!--end of col 10-->
 
 
 
-   </div>  <!--end right-body-->
+            <div class="col-md-2" ng-controller="ModalDemoCtrl"><br/ ><br />
+	             <ul>
+		              <p><button class="btn btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i>   ADD PROJECT</button></p><br />
+		              <p><button class="btn btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATED RESOURCES</button></p>
+	             </ul>
+	           </div><!---end of col-2-->
 
-  </div><!-- end left-body-->
+          </div><!--row-->
+        </div><!--end of header-->
 
- </div>
+        <div class"middle">
+
+        </div><hr />
+        <div class="main-body">
+          <div class="body-left">
+            <legend>Resource</legend>
+            <div class="checkbox">
+              <ul ng-repeat="team in teams | unique: 'name'">
+                <li>
+	                <input type="checkbox" ng-model="team.isChecked" ng-click="getResource()"> <span ng-bind="team.name"></span>
+                </li>
+              </ul>
+            </div>
+          </div><!-- end left-body-->
+          <div class="body-right"><br />
+            <div class ="col-md-12">
+                <div id="calendar" ng-controller="calendarCtrl"></div>
+              </div> <!---calendar---->
+          </div>  <!--end right-body-->
 
 
-</div>
+        </div>
 
-          
-</div><!--end of body tag--->
+
+
 <!-- jQuery -->
-<script src="ng/public/vendor/js/jquery.min.js"></script>
+<script src="ng/public/jquery-ui.custom/external/jquery/jquery.js"></script>
+<script src="ng/public/jquery-ui.custom/jquery-ui.min.js"></script>
 <!-- jQuery fullcalendar-->
 <script src="ng/public/bower_components/moment/min/moment.min.js"></script>
 <script src="ng/public/bower_components/fullcalendar/dist/fullcalendar.js"></script>

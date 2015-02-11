@@ -25,7 +25,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     
     $scope.formats = ['dd-MMMM-yyyy','MM/dd/yyyy', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
-
+    
 
 
     //initalizing models
@@ -41,6 +41,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	counter  = parseInt($scope.hour) + parseInt($scope.hour_counter);
 	if($scope.hour == null || $scope.hour == '' || $scope.hour == 0 || $scope.hour > time){
 	    $("#hour_err").focus();
+	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
 	    //setTimeout( $("#hour_err").hide(), 3000);
 	}else if($scope.resource == null || $scope.resource == ''){
 	    $("#resource_err").focus();
@@ -82,27 +83,37 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.allocation['alloc_date'] = $scope.dates;
     
     $scope.ok = function(){
-	console.log($scope.selected['project_id'].key);    
-	$scope.allocation['project_id'] = $scope.selected['project_id'].key;
-	$scope.allocation['color'] = $scope.selected['project_id'].color;
-	$scope.allocation['name'] = $scope.selected['project_id'].name;
-	BarmService.addAllocation($scope.allocation)
-	    .success(function(data, status){
-		$scope.data = data.name+", "+data.total_hours;
-		$("#form_message").removeClass().addClass("alert alert-success").html("Add project success!");
-		$scope.selected = data.name+", "+data.total_hours;
-		$modalInstance.close($scope.selected);
-		//console.log($scope.data)
-	    })
-	    .error(function(data, status){
-		$("#error_msg").removeClass().addClass("alert alert-danger").html("Add Project Failed!");
-	    });
+
+	if($scope.allocation['alloc_hours'].length == 0 || $scope.allocation['resource_name'].length == 0 || $scope.allocation['alloc_date'].length == 0){
+	    
+	    $("#error_msg").show().html("Please Add resource information!");    
+            $("#resource_err").focus();
+
+	}else{
+
+	    console.log($scope.selected['project_id'].key);    
+	    $scope.allocation['project_id'] = $scope.selected['project_id'].key;
+	    $scope.allocation['color'] = $scope.selected['project_id'].color;
+	    $scope.allocation['name'] = $scope.selected['project_id'].name;
+	    BarmService.addAllocation($scope.allocation)
+		.success(function(data, status){
+		    $scope.data = data.name+", "+data.total_hours;
+		    
+		    setTimeout($modalInstance.dismiss('cancel'), 3000);
+		    //console.log($scope.data)
+		})
+		.error(function(data, status){
+		    $("#error_msg").removeClass().addClass("alert alert-danger").html("Add Project Failed!");
+		});
+	}
     }
+
     $scope.cancel = function () {
 	$modalInstance.dismiss('cancel');
     };
-    
-    $scope.getProjects();
+
+
+$scope.getProjects();
     
     
 });

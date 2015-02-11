@@ -1,11 +1,5 @@
 appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmService) {
-
-
   $scope.items = {};
-
-
-
-
     $scope.open = function (size) {
 
     var modalInstance = $modal.open({
@@ -43,10 +37,11 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmS
       });
 
       modalInstance.result.then(function (selectedItem) {
-	  $scope.selected = selectedItem;
+	 
 
       }, function () {
 	  $log.info('Modal dismissed at: ' + new Date());
+	  $scope.getBank();
       });
   };
 
@@ -63,10 +58,11 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmS
 	});
 	
 	modalInstance.result.then(function (selectedItem) {
-	    $scope.selected = selectedItem;
+	    $scope.refreshCalendar();
 
 	}, function () {
 	  $log.info('Modal dismissed at: ' + new Date());
+	    $scope.refreshCalendar();
 	});
     };
 
