@@ -5,7 +5,6 @@ import datetime
 
 class Project(BasicModel):
     name = ndb.StringProperty()
-    color = ndb.StringProperty()
     billable_hours = ndb.IntegerProperty()
     start_date = ndb.DateTimeProperty()
 
@@ -30,7 +29,6 @@ class Project(BasicModel):
         print params['start_date']
         item = cls(name = params['name'],
                    billable_hours = params['billable_hours'],
-                   color = params['color'],
                    start_date = datetime.datetime.utcfromtimestamp(float(params['start_date']))
                )
         item.put()

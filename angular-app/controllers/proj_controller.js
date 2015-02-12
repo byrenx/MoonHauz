@@ -5,14 +5,7 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
     $scope.selected = $scope.items[0];
     //Configurations for datepicker angular bootstrap
 
-    function getRandomColor() {
-	var letters = '0123456789ABCDEF'.split('');
-	var color = '#';
-	for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-	}
-	return color;
-    }
+    
 
 
     $scope.open = function($event) {
@@ -26,7 +19,7 @@ appControllers.controller('projectCtrl', function ($scope, $modalInstance, items
     $scope.format = $scope.formats[1];
 
     $scope.ok = function(){
-	$scope.project['color'] = getRandomColor();
+
 	if($scope.project['name'] == null || $scope.project['name'] == ''){
 	    $("#namer_err").focus();
 	    //setTimeout( $("#hour_err").hide(), 3000);

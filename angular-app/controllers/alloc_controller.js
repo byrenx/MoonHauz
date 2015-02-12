@@ -14,6 +14,16 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 		
 	    });	
     };
+
+    function getRandomColor() {
+	var letters = '0123456789ABCDEF'.split('');
+	var color = '#';
+	for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+    }
+
     //Configurations for datepicker angular bootstrap
     
     $scope.open = function($event) {
@@ -32,9 +42,11 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.resources = [];
     $scope.hours = [];
     $scope.dates = [];
+    $scope.colors = [];
     $scope.disp_dates = [];
     $scope.hour_counter = parseInt(0);
     $scope.addTodo = function () {
+	$scope.color = getRandomColor();
 	var counter = 0;
 	console.log($scope.selected['project_id'].billable_hours);
 	var time = parseInt($scope.selected['project_id'].billable_hours);
@@ -60,7 +72,9 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 	    $scope.hours.push($scope.hour);
 	    $scope.dates.push($scope.date);
 	    $scope.disp_dates.push($scope.disp_date);
+	    $scope.colors.push($scope.color);
 	    $scope.resource = null;
+	    $scope.color = null;
 	    $scope.hour_counter += parseInt($scope.hour);
 	    $scope.hour = null;
 	    $scope.date = '';
@@ -81,6 +95,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.allocation['alloc_hours'] = $scope.hours;
     $scope.allocation['resource_name'] = $scope.resources;
     $scope.allocation['alloc_date'] = $scope.dates;
+    $scope.allocation['color'] = $scope.colors;
     
     $scope.ok = function(){
 
@@ -93,7 +108,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 
 	    console.log($scope.selected['project_id'].key);    
 	    $scope.allocation['project_id'] = $scope.selected['project_id'].key;
-	    $scope.allocation['color'] = $scope.selected['project_id'].color;
 	    $scope.allocation['name'] = $scope.selected['project_id'].name;
 	    BarmService.addAllocation($scope.allocation)
 		.success(function(data, status){

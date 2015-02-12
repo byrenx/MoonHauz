@@ -40,7 +40,7 @@
             <div class="col-md-2" ng-controller="ModalDemoCtrl"><br/ ><br />
 	             <ul>
 		              <p><button class="btn btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i>   ADD PROJECT</button></p><br />
-		              <p><button class="btn btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATED RESOURCES</button></p>
+		              <p><button class="btn btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i>   ALLOCATE RESOURCES</button></p>
 	             </ul>
 	           </div><!---end of col-2-->
 
@@ -56,7 +56,7 @@
             <div class="checkbox">
               <ul ng-repeat="team in teams | unique: 'name'">
                 <li>
-	                <input type="checkbox" ng-model="team.isChecked" ng-click="getResource()"> <span ng-bind="team.name"></span>
+	                <input type="checkbox" ng-model="team.isChecked" ng-click="getResource()"> <label><span ng-bind="team.name" ng-style="{color : team.color}"></span></label>
                 </li>
               </ul>
             </div>
