@@ -5,32 +5,34 @@ import json
 
 
 class Projects(Controller):
-    
+
     class Meta:
         components = (messages.Messaging, Pagination,)
         Model = Project
         pagination_limit = 25
         prefixes = ('api',)
-        
+
     @route_with('/api/projects/list', methods=['GET'])
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Project.list_all())
-    
+
     @route_with('/api/projects/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
         hours = int(params['billable_hours']);
         params['billable_hours'] = hours
+        params['remaining_hours'] = hours
         self.context['data'] = Project.create(params)
 
     @route_with('/api/projects/:<key>', methods=['GET'])
     def api_get(self, key):
         project = self.util.decode_key(key).get()
         self.context['data'] = project
-    
+
     @route_with('/api/projects/:<key>', methods=['POST'])
     def api_update(self, key):
         params = json.loads(self.request.body)
+        print params
         project = self.util.decode_key(key).get()
         project.update(params)
         self.context['data'] = project

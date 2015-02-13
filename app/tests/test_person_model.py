@@ -6,19 +6,19 @@ class TestPersonModel(FerrisAppTest):
     
     def setUp(self):
         super(self.__class__, self).setUp()
-        person_params = {'firstname' : 'John', 'lastname' : 'Parrot'}
+        person_params = {'name' : 'John', 'color' : 'wasad'}
         self.person = Person.create(person_params)
         
     """ Test Add Person """
     def testCreate(self):
         assert self.person.key
-        assert self.person.firstname == 'John'
-        assert self.person.lastname == 'Parrot'
+        assert self.person.name == 'John'
+        assert self.person.color == 'wasad'
 
     """ test retrieve a person """
     def testRetrieve(self):
-        p = Person.find_by_firstname('John')
+        p = Person.find_by_name('John')
         assert p.key == self.person.key
-        assert p.firstname == self.person.firstname
-        assert p.lastname == self.person.lastname
+        assert p.name == self.person.name
+        assert p.color == self.person.color
         

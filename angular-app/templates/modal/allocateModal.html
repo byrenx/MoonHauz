@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title">Allocate Resources</h3>
-  
+
 </directivesiv>
 <div class=" modal-body">
   <form name="form" validate>
@@ -9,11 +9,12 @@
     </select></br>
     <label>Total Billable Hours: </label>
     <span class="text-danger" ng-bind-html="selected.project_id.billable_hours"></span></br>
-      
+    <label>Remaining Hours: </label>
+    <span class="text-danger" ng-bind-html="selected.project_id.remaining_hours"></span></br>
     <label>Start Date: </label>
-    
+
     <span class="text-danger" ng-required="true" ng-bind-html="selected.project_id.start_date | date:'medium'"></span><hr/><br>
-	<label>ADD RESOURCE INFORMATION</label>    
+	<label>ADD RESOURCE INFORMATION</label>
     <div class="row">
       <div class="col-md-5">
 	<input id="resource_err" type="text" mandatory ng-model="resource" class="form-control" placeholder="Name">
@@ -35,9 +36,9 @@
     </div>
     <span class="alert alert-danger" style="display:none;" id="error_msg"></span>
     <hr />
-      
+
     <table class="table ">
-     
+
       <thead>
 	<tr>
 	  <th width="50%">RESOURCE NAME</th>
@@ -46,16 +47,16 @@
 	  <th width="1%"></th>
 	</tr>
       </thead>
-      
+
       <tbody>
 	<tr>
-	 
+
 	  <td >
 	    <p ng-repeat="resource in resources track by $index">
 	      <span ng-bind-html="resource"></span>
-	    </p> 
+	    </p>
 	  </td>
-	  
+
 	  <td>
 	    <p ng-repeat="hour in hours track by $index">
 	      <span ng-bind-html="hour"></span>
@@ -69,7 +70,7 @@
 	  </td>
 
 	  <td width="1%">
-	    <p ng-repeat="hour in hours track by $index">  
+	    <p ng-repeat="hour in hours track by $index">
 	      <a class="btn-link" ng-click="removeTodo($index)" aria-label="Remove"><span class="fa fa-times fa-1g text-danger"></span></a>
 	    </p>
 	  </td>
@@ -79,14 +80,14 @@
 
 
     </table>
-    
-    
-  
+
+
+
 </div>
 
 <div class="modal-footer">
-  
-  
+
+
   <button class="btn btn-primary" ng-click="ok()">Save Changes</button>
 </form>
 <button class="btn btn-default" ng-click="cancel()">Cancel</button>

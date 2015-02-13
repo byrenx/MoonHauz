@@ -12,11 +12,12 @@ class TestAllocation(FerrisAppTest):
     def setUp(self):
         super(self.__class__, self).setUp()
         ''' create person to be the resource '''
-        person_params = {'firstname' : 'John', 'lastname' : 'Parrot'}
+        person_params = {'name' : 'John', 'color' : 'Parrot'}
         self.person = Person.create(person_params)
 
         ''' create project instance'''
-        project_params = {'name' : 'BeckTaxi', 'total_hours' : 100}
+        project_params = {'name' : 'BeckTaxi', 'billable_hours' : 100, 'start_date' : '1/28/2015'}
+        project_params['start_date'] = datetime.datetime.strptime(project_params['start_date'], '%m/%d/%Y')
         self.project = Project.create(project_params)
         ''' create allocation instance '''
         # params = {'date_from': '1/28/2015', 'date_to': '1/29/2015'}
@@ -24,10 +25,10 @@ class TestAllocation(FerrisAppTest):
         alloc_params = {
             'project_id' : self.project.key,
             'person_id' : self.person.key,
-            'start_date' : '1/28/2015',
+            
             'hours' : 20
         }
-        alloc_params['start_date'] = datetime.datetime.strptime(alloc_params['start_date'], '%m/%d/%Y')
+
 
         self.allocation = Allocation.create(alloc_params)
         

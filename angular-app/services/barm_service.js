@@ -9,6 +9,9 @@ appServices.service('BarmService', function($http){
     getProjects: function(){
 	return $http.get('/api/projects/list', {});
     },
+    updateProject: function(params){
+	return $http.post('/api/projects/:'+params.key.urlsafe, params);
+    },
     addAllocation: function(params){
 	return $http.post('/api/allocations/create', params);
     },
@@ -17,7 +20,7 @@ appServices.service('BarmService', function($http){
     },
     getCalendar: function(){
 	return $http.get('/api/allocations/calendar');
-    }
+    },
 
     };
 });

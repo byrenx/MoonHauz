@@ -12,8 +12,6 @@ class Person(BasicModel):
     def find_by_person_id(cls, person_id):
         return cls.query().filter(cls.key == person_id)
 
-    
-
     @classmethod
     def create(cls, params):
         item = cls()
