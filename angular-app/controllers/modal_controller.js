@@ -2,68 +2,62 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmS
   $scope.items = {};
     $scope.open = function (size) {
 
-    var modalInstance = $modal.open({
-      templateUrl: 'ng/templates/modal/addDevModal.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
+    var modalInstance = $modal.open(  {
+        templateUrl: 'ng/templates/modal/addDevModal.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
         }
-      }
     });
-
-
-    
-
     modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
   };
 
-  $scope.openproj = function (size){
+  $scope.openproj = function (size) {
 
-      var modalInstance = $modal.open({
-	  templateUrl: 'ng/templates/modal/addProjModal.html',
-	  controller: 'projectCtrl',
-	  size: size,
-	  resolve:{
-	      items: function (){
-		  return $scope.items;
-	      }
-	  }
+      var modalInstance = $modal.open(  {
+      	  templateUrl: 'ng/templates/modal/addProjModal.html',
+      	  controller: 'projectCtrl',
+      	  size: size,
+      	  resolve:{
+      	      items: function (){
+      		        return $scope.items;
+      	       }
+      	  }
       });
 
       modalInstance.result.then(function (selectedItem) {
-	 
-
+        $scope.getBank();
       }, function () {
-	  $log.info('Modal dismissed at: ' + new Date());
-	  $scope.getBank();
+    	  $log.info('Modal dismissed at: ' + new Date());
+        $scope.getBank();
       });
   };
 
     $scope.allocate = function (size){
-	var modalInstance = $modal.open({
-	    templateUrl: 'ng/templates/modal/allocateModal.html',
-	    controller: 'allocateCtrl',
-	    size: size,
-	    resolve:{
-	      items: function (){
-		  return $scope.items;
-	      }
-	    }
-	});
-	
-	modalInstance.result.then(function (selectedItem) {
-	    $scope.refreshCalendar();
+      	var modalInstance = $modal.open({
+      	    templateUrl: 'ng/templates/modal/allocateModal.html',
+      	    controller: 'allocateCtrl',
+      	    size: size,
+      	    resolve:{
+      	      items: function (){
+      		      return $scope.items;
+      	      }
+      	    }
+	 });
 
-	}, function () {
-	  $log.info('Modal dismissed at: ' + new Date());
-	    $scope.refreshCalendar();
-	});
+  	modalInstance.result.then(function (selectedItem) {
+  	    $scope.refreshCalendar();
+  	}, function () {
+  	    $log.info('Modal dismissed at: ' + new Date());
+  	    $scope.refreshCalendar();
+  	});
     };
 
 
@@ -81,7 +75,7 @@ appControllers.controller('ModalInstanceCtrl', function ($scope, $modalInstance,
   };
   $scope.data = {};
   $scope.ok = function () {
-    
+
     BarmService.addPerson($scope.person)
         .success(function(data, status){
 	    $scope.data = data.lastname+", "+data.firstname;
@@ -94,7 +88,6 @@ appControllers.controller('ModalInstanceCtrl', function ($scope, $modalInstance,
             $("#form_message").removeClass().addClass("alert alert-danger").html("Add Developer Failed!");
         });
     }
-2  
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
