@@ -54,9 +54,11 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmS
 
   	modalInstance.result.then(function (selectedItem) {
   	    $scope.refreshCalendar();
+        $scope.getBank();
   	}, function () {
   	    $log.info('Modal dismissed at: ' + new Date());
   	    $scope.refreshCalendar();
+        $scope.getBank();
   	});
     };
 
