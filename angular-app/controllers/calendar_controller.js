@@ -76,6 +76,11 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             });
     };
 
+    //function to calculate window height
+    function get_calendar_height() {
+          return $(window).height() - 300;
+    }
+
     $scope.startCalendar = function()   {
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
@@ -89,17 +94,21 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             events: $scope.events,
             droppable:true,
             theme: false,
+            height: get_calendar_height(),
             //weekends: false,
-            contentHeight: 'auto'
+            contentHeight: get_calendar_height()
         });
         console.log($scope.events);
 
     };
 
-
-    $(document).ready(function()    {
+    $(document).ready(function() {
         $scope.setEvents();
+        $(window).resize(function() {
+            $('#calendar').fullCalendar('option', 'contentHeight', get_calendar_height());
+        });
     });
+
 
     $scope.getResource = function(params)   {
         var t = $scope.teams;

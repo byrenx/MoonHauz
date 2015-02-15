@@ -3498,15 +3498,16 @@ select[multiple].form-group-lg .form-control,textarea.form-group-lg .form-contro
 }
 
 .btn-warning {
-  color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+    color: #fff;
+    background-color: #ff8e11;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffa33d), to(#ff8e11));
+    background-image: -webkit-linear-gradient(top, #ffa33d, #ff8e11);
+    background-image: linear-gradient(to bottom, #ffa33d,#ff8e11);
 }
 
 .btn-warning.active,.btn-warning.focus,.btn-warning:active,.btn-warning:focus,.btn-warning:hover,.open>.dropdown-toggle.btn-warning {
-  color: #fff;
-  background-color: #ec971f;
-  border-color: #d58512;
+    color: #fff ;
+    background: #000;
 }
 
 .btn-warning.active,.btn-warning:active,.open>.dropdown-toggle.btn-warning {
