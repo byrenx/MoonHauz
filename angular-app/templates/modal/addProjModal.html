@@ -1,32 +1,38 @@
-
-
-
 <div class="modal-header">
-           <h3 class="modal-title">Add a project</h3>
+    <h3 class="modal-title">Add a Project</h3>
+</div>
 
-       </directivesiv>
-       <div class="modal-body">
-           <form>
-	     <label>Project Name</label>
-            <input id="name_err" ng-model="project.name" mandatory type="text" class="form-control" placeholder="Type here..." ng-required="true"></br>
-	     <label>Total Billable Hours</label>
-            <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="form-control" placeholder="Total hours..." ng-required="true"></br>
-	    <label> Start Date </label>
-            <div class="row">
-              <div class="col-md-8">
-		<p class="input-group">
-		  <input id="dateString" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required readonly ng-click="open($event)" />
-		  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-		  </span>
-		</p>
-              </div>
-	    </div>
-	    <span id="error_msg"></span>
-       </div>
-       <div class="modal-footer">
-         <button id="ok-btn" class="btn btn-primary" ng-click="ok()">Save</button>
-         </form>
-         <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+<form>
+<div class="modal-body">
+    <div class="row">
+        
+        <div class="col-xs-12"><label>Project Name</label></div>
+        <div class="col-xs-12 form-group">
+            <input id="name_err" ng-model="project.name" mandatory type="text" class="input-sm form-control" placeholder="Project Name" ng-required="true">
         </div>
+    
+        <div class="col-xs-12"><label>Total Billable Hours</label></div>
+        <div class="col-xs-12 form-group">
+            <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Total Billable Hours" ng-required="true">
+        </div>
+    
+        <div class="col-xs-12"><label> Start Date </label></div>
+        <div class="col-xs-5 form-group">
+    		<div class="input-group input-group-sm dropdown-menu-datepicker">
+                <input id="dateString" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required readonly ng-click="open($event)" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+    		</div>
+        </div>
+
+        <span id="error_msg"></span>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button id="ok-btn" class="btn btn-sm btn-primary" ng-click="ok()">Save</button>
+    <button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
+</div>
+</form>
 
