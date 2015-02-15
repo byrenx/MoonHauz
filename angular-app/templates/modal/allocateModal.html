@@ -35,13 +35,13 @@
             <hr>
             <label>Add Resource Information</label>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" style="padding-right: 0;">
                     <input id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="padding-right: 0;">
                     <input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="Hours" class="input-sm form-control">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding-right: 0;">
                     <div class="input-group input-group-sm dropdown-menu-datepicker">
                         <input id="dateString" ng-model="disp_date" datepicker-popup="{{format}}" type="text"  class="form-control" placeholder="Date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" readonly date-disabled="disabled(date, mode)" close-text="Close" ng-click="open($event)">
                         <span class="input-group-btn">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary btn-sm btn-block" ng-click="addTodo()"><i class="fa fa-plus-circle fa-lg"></i> Add to Pool</button>
+                    <button class="btn btn-warning btn-sm btn-block" ng-click="addTodo()"><i class="fa fa-level-down fa-lg"></i> Add to Pool</button>
                 </div>
 
                 <div class="col-xs-12">
@@ -110,7 +110,7 @@
 <!-- Modal Body -->
 
 <div class="modal-footer">
-    <button id="ok-btn" class="btn btn-primary btn-sm" ng-click="ok()">Save Changes</button>
+    <button id="ok-btn" class="btn btn-primary btn-sm" ng-click="ok()">Confirm</button>
     <button class="btn btn-link btn-sm" ng-click="cancel()">Cancel</button>
 </div>
 </form>
