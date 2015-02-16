@@ -30,8 +30,8 @@ class Allocations(Controller):
     def isWeekend(self, myDate):
         return True if myDate.weekday() == 5 or myDate.weekday() == 6 else False
 
-    @route
-    def get_events(self):
+    @route_with('/api/allocations/calendar', methods=['GET'])
+    def api_calendar(self):
         allocations = Allocation.list_all()
         events = []
         for items in allocations:
@@ -41,14 +41,13 @@ class Allocations(Controller):
             while total > 0:
                 if self.isWeekend(myDate) is False:
                     conv_date = myDate.strftime('%Y-%m-%d')
-                    events += [{'resource_name' : items.resource_name, 'color' : items.color, 'project_name' : items.project_name, 'alloc_date' : myDate.strftime('%Y-%m-%d')}]
+                    if total < 8:
+                        events += [{'resource_name' : items.resource_name, 'color' : items.color, 'project_name' : items.project_name, 'alloc_date' : myDate.strftime('%Y-%m-%d'), 'alloc_hours' : total}]
+                    else:
+                        events += [{'resource_name' : items.resource_name, 'color' : items.color, 'project_name' : items.project_name, 'alloc_date' : myDate.strftime('%Y-%m-%d'), 'alloc_hours' : 8}]
                     total -= 8
                 myDate += datetime.timedelta(days=1)
         return json.dumps(events)
-
-    @route_with('/api/allocations/calendar', methods=['GET'])
-    def api_calendar(self):
-        return self.get_events()
 
 
     @route_with('/api/allocations/create', methods=['POST'])

@@ -32,7 +32,7 @@
 <body style="min-width: 1100px;" ng-controller="calendarCtrl">
 
 <div class="container-fluid">
-    
+
     <!-- Header -->
     <div class="row header">
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="progress-control-gauge">
                     <label>Allocated Resources</label>
-                    <progressbar animate="false" value="dynamic/max *100" type="primary"><strong class="push-left unit-percent" ng-bind="dynamic"></strong></progressbar>
+                    <progressbar animate="true" value="dynamic/max *100" type="primary"><strong class="push-left unit-percent" ng-bind="dynamic/max * 100 | number:2"></strong></progressbar>
                 </div>
             </div>
             <!-- Progress bar 2 -->
@@ -92,7 +92,6 @@
         <!-- Resources -->
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidebar">
             <h3>Resources</h3>
-
             <div class="checkbox checkbox-primary" ng-repeat="team in teams | unique: 'name'" click-checkbox>
                 <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
                 <label><span ng-bind="team.name" ng-style="{color : team.color}"></span></label>
@@ -162,8 +161,6 @@
 <script src="ng/controllers/resource_controller.js"></script>
 <script src="ng/controllers/calendar_controller.js"></script>
 
-<!-- services here -->
-<script src="ng/directives/inputvalidator.js"></script>
 
 </body>
 </html>

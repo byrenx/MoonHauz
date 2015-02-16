@@ -1,6 +1,7 @@
 appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 	$scope.max = 0;
 	$scope.dynamic = 0;
+	$scope.Math = window.Math;
     $scope.getBank = function()	{
 		BarmService.getProjects()
 		    .success(function(data,status)	{

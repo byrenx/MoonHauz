@@ -24,7 +24,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
         	    var projectName = p[i].project_name;
         	    var resourceName = p[i].resource_name;
         	    var color = p[i].color;
-    	        var title = ""+resourceName+" ("+projectName+")";
+                var alloc_hours = p[i].alloc_hours
+                var title = ""+projectName+" ("+alloc_hours+")";
     	       if(SearchString(resourceName,dupNames))    {
 
     	       }else  {
@@ -60,7 +61,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                     var projectName = p[i].project_name;
                     var resourceName = p[i].resource_name;
                     var color = p[i].color;
-                    var title = ""+resourceName+" ("+projectName+")";
+                    var alloc_hours = p[i].alloc_hours
+                    var title = ""+projectName+" ("+alloc_hours+")";
                     if(SearchString(resourceName,dupNames))   {
 
                     }else   {
@@ -133,7 +135,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                 var projectName = p[i].project_name;
                 var resourceName = p[i].resource_name;
                 var color = p[i].color;
-                var title = ""+resourceName+" ("+projectName+")";
+                var alloc_hours = p[i].alloc_hours
+                var title = ""+projectName+" ("+alloc_hours+")";
                   for(n=0; n<name_list.length; n++) {
                    if(name_list[n] == resourceName)   {
                         pushEvent(inputDay, title,color);
@@ -146,5 +149,5 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
         });
     }
-        
+
 });

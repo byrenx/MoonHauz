@@ -26,7 +26,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     }
 
     //Configurations for datepicker angular bootstrap
-
     $scope.open = function($event) {
     	$event.preventDefault();
     	$event.stopPropagation();
@@ -38,7 +37,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 
 
 
-    //initalizing models
+    //initializing models
     $scope.resources = [];
     $scope.hours = [];
     $scope.dates = [];
@@ -51,8 +50,10 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	console.log($scope.selected['project_id'].remaining_hours);
     	var time = parseInt($scope.selected['project_id'].remaining_hours);
     	counter  = parseInt($scope.hour) + parseInt($scope.hour_counter);
-        	if($scope.hour == null || $scope.hour == '' || $scope.hour == 0 || $scope.hour > time) {
+        	if($scope.hour == null || $scope.hour == '' || $scope.hour == 0) {
         	    $("#hour_err").focus();
+            }else if ($scope.hour > time) {
+                $("#hour_err").focus();
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
         	}else if($scope.resource == null || $scope.resource == '') {
         	    $("#resource_err").focus();
@@ -117,6 +118,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     		.success(function(data, status)   {
     		    $scope.data = data.name+", "+data.total_hours;
                 $("#ok-btn").addClass("btn-disabled").html("<span id='loading' class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> saving...");
+
                     setTimeout(function()   {
                         $("#ok-btn").removeClass("btn-disabled").html("Saved!");
                     }, 1000);

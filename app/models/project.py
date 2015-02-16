@@ -27,6 +27,13 @@ class Project(BasicModel):
         self.put()
 
     @classmethod
+    def updateHours(self, params,key):
+        data = self.query(self.key == key).fetch()
+        print repr(data)
+        data[0].remaining_hours=params['remaining_hours']
+        data[0].put()
+
+    @classmethod
     def create(cls, params):
         item = cls(name = params['name'],
                    billable_hours = params['billable_hours'],

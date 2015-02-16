@@ -32,10 +32,8 @@ class Projects(Controller):
     @route_with('/api/projects/:<key>', methods=['POST'])
     def api_update(self, key):
         params = json.loads(self.request.body)
-        print params
-        project = self.util.decode_key(key).get()
-        project.update(params)
-        self.context['data'] = project
+        keyS = self.util.decode_key(params['key']['urlsafe'])
+        Project.updateHours(params,keyS)
 
     @route_with('/api/projects/:<key>', methods=['DELETE'])
     def api_delete(self, key):
