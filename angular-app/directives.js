@@ -11,7 +11,6 @@ appDirectives.directive('numberOnly', function() {
     };
 });
 
-
 appDirectives.directive('numbersLimit', function() {
     return {
         restrict: 'A',
@@ -87,6 +86,17 @@ appDirectives.directive('mandatory', function() {
             elm.blur(function(){
                 add_validator(elm);
             });
+        }
+    };
+});
+
+// Hook to getResource function. getResource does not work if checkboxes are styled on this case.
+appDirectives.directive('clickCheckbox', function() {
+    return {
+        link: function(scope, elm, attrs){
+           elm.click(function(event){
+                $(elm).find('input').click();
+           });
         }
     };
 });

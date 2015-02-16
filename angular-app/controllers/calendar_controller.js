@@ -38,7 +38,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             .error(function(data, status){
             $scope.startCalendar();
             });
-    }
+    };
 
 
     function pushEvent(inputDay,title,color)    {
@@ -74,6 +74,11 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             .error(function(data, status){
 
             });
+    };
+
+    //function to calculate window height
+    function get_calendar_height() {
+          return $(window).height() - 300;
     }
 
     $scope.startCalendar = function()   {
@@ -88,22 +93,27 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             defaultView: 'month',
             events: $scope.events,
             droppable:true,
-            theme: true,
+            theme: false,
+            height: get_calendar_height(),
             //weekends: false,
-            contentHeight: 'auto'
+            contentHeight: get_calendar_height()
         });
         console.log($scope.events);
 
-    }
+    };
 
-
-    $(document).ready(function()    {
+    $(document).ready(function() {
         $scope.setEvents();
+        $(window).resize(function() {
+            $('#calendar').fullCalendar('option', 'contentHeight', get_calendar_height());
+        });
     });
 
+
     $scope.getResource = function(params)   {
-        var t = $scope.teams
+        var t = $scope.teams;
         var name_list = [];
+
         for (i=0; i< t.length; i++){
             if(t[i].isChecked == true){
                 name_list.push(t[i].name);
@@ -111,6 +121,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
             }
         }
+
         $('#calendar').fullCalendar('removeEventSource',$scope.events);
             $scope.events = [];
             BarmService.getCalendar()
@@ -135,4 +146,5 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
         });
     }
+        
 });
