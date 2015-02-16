@@ -37,7 +37,6 @@ class Allocations(Controller):
         for items in allocations:
             total = items.alloc_hours
             divider = 8
-            #print items
             myDate = items.alloc_date
             while total > 0:
                 if self.isWeekend(myDate) is False:
@@ -45,7 +44,6 @@ class Allocations(Controller):
                     events += [{'resource_name' : items.resource_name, 'color' : items.color, 'project_name' : items.project_name, 'alloc_date' : myDate.strftime('%Y-%m-%d')}]
                     total -= 8
                 myDate += datetime.timedelta(days=1)
-        print events
         return json.dumps(events)
 
     @route_with('/api/allocations/calendar', methods=['GET'])

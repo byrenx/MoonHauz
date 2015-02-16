@@ -65,7 +65,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
                     }else   {
                         dupNames.push(resourceName);
-                        $scope.teams.push({name: resourceName, id: i, isChecked:true});
+                        $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
                     }
                         pushEvent(inputDay, title,color);
                 }
