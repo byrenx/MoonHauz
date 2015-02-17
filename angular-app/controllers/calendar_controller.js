@@ -13,28 +13,28 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
         }
         return false;
     }
-
+    /* Setting calendar events during page load/ initialization of the calendar events*/
     $scope.setEvents = function()   {
-            $scope.events = [];
-            $scope.teams = [];
+            $scope.events = [];//clear events model array
+            $scope.teams = [];//clear teams/resources model array
 
-            BarmService.getCalendar()
+            BarmService.getCalendar()//get events from calendar service
             .success(function(data,status)  {
-              $scope.resources = data;
+              $scope.resources = data;//store temporarily the data into scope-resources
               p = data;
-              var dupNames = [];
-              var dupProjects = [];
+              var dupNames = []; // temporary storage for the list of resource names
+              var dupProjects = []; // temporary storage for the list of project names
               for (i=0; i< p.length; i++)   {
-                var inputDay = p[i].alloc_date;
-        	    var projectName = p[i].project_name;
+                var inputDay = p[i].alloc_date;//allocated date for the event
+        	    var projectName = p[i].project_name;//project name of the event
         	    var resourceName = p[i].resource_name;
         	    var color = p[i].color;
                 var alloc_hours = p[i].alloc_hours
                 var title = ""+projectName+" ("+alloc_hours+")";
-    	       if (SearchString(resourceName,dupNames)){
+    	       if (SearchString(resourceName,dupNames)){ // check if the resources has been added in the dupNames list
 
                }else{
-                dupNames.push(resourceName);
+                dupNames.push(resourceName); //push resource name if not in the list
                 $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
                }
                if(SearchString(projectName,dupProjects)){
