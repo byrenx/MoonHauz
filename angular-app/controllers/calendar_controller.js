@@ -53,7 +53,9 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             });
     };
 
+    function reloadSouces(){
 
+    }
     function pushEvent(inputDay,title,color)    {
         $scope.events.push({title : title,start : ""+inputDay+"",color   : ""+color+""});
     }
@@ -63,11 +65,13 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             $('#calendar').fullCalendar('removeEventSource',$scope.events);
             $scope.events = [];
             $scope.teams = [];
+            $scope.projects = [];
             BarmService.getCalendar()
             .success(function(data,status){
                     $scope.resources = data;
                     p = data;
                     var dupNames = [];
+                    var dupProjects = [];
                 for (i=0; i< p.length; i++){
                     var inputDay = p[i].alloc_date;
                     var projectName = p[i].project_name;
@@ -75,7 +79,18 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                     var color = p[i].color;
                     var alloc_hours = p[i].alloc_hours
                     var title = ""+projectName+" ("+alloc_hours+")";
-                    (SearchString(resourceName,dupNames)) ? '' :  $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
+                    if (SearchString(resourceName,dupNames)){
+
+                   }else{
+                    dupNames.push(resourceName);
+                    $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
+                   }
+                   if(SearchString(projectName,dupProjects)){
+
+                   }else{
+                    dupProjects.push(projectName);
+                    $scope.projects.push({name: projectName, id: i, isChecked:true});
+                   }
                     pushEvent(inputDay, title,color);
                 }
                     $('#calendar').fullCalendar('addEventSource',$scope.events);
@@ -158,7 +173,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
 
     $scope.getProjects = function  (params) {
         var p = $scope.projects;
-        $scope.teams = [];
+        //$scope.teams = [];
         //console.log($scope.projects)
         var proj_list = [];
         for (var i = p.length - 1; i >= 0; i--) {
@@ -183,7 +198,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                           for(n=0; n<proj_list.length; n++) {
                                 if(proj_list[n] == projectName){
                                     pushEvent(inputDay, title,color);
-                                    if(SearchString(resourceName,dupNames)){
+                                   /* if(SearchString(resourceName,dupNames)){
 
                                     }else{
                                         dupNames.push(resourceName);
@@ -195,9 +210,10 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                         }else{
                             dupNames.push(resourceName)
                             $scope.teams.push({name: resourceName, id: i, isChecked:false, color:color});
+                        }*/
+                            }
                         }
                     }
-
 
                         //end for checking of allocated hours
                     $('#calendar').fullCalendar('addEventSource',$scope.events);
