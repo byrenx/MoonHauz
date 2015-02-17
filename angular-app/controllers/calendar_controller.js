@@ -3,22 +3,27 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
     $scope.events = [];
     $scope.selected = {};
     $scope.teams = [];
+    $scope.projects = [];
 
     function SearchString (str,arr) {
-        for (var i = arr.length - 1; i >= 0; i--) {
-            return (arr[i] == str) ? true : false;
-        };
+        for (var i=0; i<arr.length; i++) {
+            if (arr[i] == str){
+                return true;
+            }
+        }
+        return false;
     }
+
     $scope.setEvents = function()   {
             $scope.events = [];
             $scope.teams = [];
 
             BarmService.getCalendar()
             .success(function(data,status)  {
-                console.log(data);
               $scope.resources = data;
               p = data;
               var dupNames = [];
+              var dupProjects = [];
               for (i=0; i< p.length; i++)   {
                 var inputDay = p[i].alloc_date;
         	    var projectName = p[i].project_name;
@@ -26,15 +31,22 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
         	    var color = p[i].color;
                 var alloc_hours = p[i].alloc_hours
                 var title = ""+projectName+" ("+alloc_hours+")";
-    	       if(SearchString(resourceName,dupNames))    {
+    	       if (SearchString(resourceName,dupNames)){
 
-    	       }else  {
-                    dupNames.push(resourceName);
-                    $scope.teams.push({name: resourceName, id: i, isChecked:true, color: color});
-                }
+               }else{
+                dupNames.push(resourceName);
+                $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
+               }
+               if(SearchString(projectName,dupProjects)){
+
+               }else{
+                dupProjects.push(projectName);
+                $scope.projects.push({name: projectName, id: i, isChecked:true});
+               }
                 pushEvent(inputDay, title,color);
             }
                 $scope.startCalendar();
+                //console.log($scope.teams)
             })
             .error(function(data, status){
             $scope.startCalendar();
@@ -63,13 +75,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                     var color = p[i].color;
                     var alloc_hours = p[i].alloc_hours
                     var title = ""+projectName+" ("+alloc_hours+")";
-                    if(SearchString(resourceName,dupNames))   {
-
-                    }else   {
-                        dupNames.push(resourceName);
-                        $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
-                    }
-                        pushEvent(inputDay, title,color);
+                    (SearchString(resourceName,dupNames)) ? '' :  $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
+                    pushEvent(inputDay, title,color);
                 }
                     $('#calendar').fullCalendar('addEventSource',$scope.events);
                 })
@@ -100,7 +107,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             //weekends: false,
             contentHeight: get_calendar_height()
         });
-        console.log($scope.events);
+        //console.log($scope.events);
 
     };
 
@@ -119,10 +126,9 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
         for (i=0; i< t.length; i++){
             if(t[i].isChecked == true){
                 name_list.push(t[i].name);
-            }else{
-
             }
         }
+        //console.log(name_list);
 
         $('#calendar').fullCalendar('removeEventSource',$scope.events);
             $scope.events = [];
@@ -138,16 +144,67 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                 var alloc_hours = p[i].alloc_hours
                 var title = ""+projectName+" ("+alloc_hours+")";
                   for(n=0; n<name_list.length; n++) {
-                   if(name_list[n] == resourceName)   {
-                        pushEvent(inputDay, title,color);
-        		    }//end for checking of allocated hours
-        		}
-            }
+                   if (name_list[n] == resourceName){
+                     pushEvent(inputDay, title,color);
+                   }
+        		  }
+            }//end for checking of allocated hours
             $('#calendar').fullCalendar('addEventSource',$scope.events);
         })
         .error(function(data,status){
 
         });
+    }
+
+    $scope.getProjects = function  (params) {
+        var p = $scope.projects;
+        $scope.teams = [];
+        //console.log($scope.projects)
+        var proj_list = [];
+        for (var i = p.length - 1; i >= 0; i--) {
+            if(p[i].isChecked == true)  {
+                proj_list.push(p[i].name);
+            }
+        };
+
+        $('#calendar').fullCalendar('removeEventSource', $scope.events);
+            $scope.events = [];
+            BarmService.getCalendar()
+                .success(function (data, status) {
+                    d = data;
+                    var dupNames = [];
+                    for(i=0; i<d.length; i++)   {
+                        var inputDay = d[i].alloc_date;
+                        var projectName = d[i].project_name;
+                        var resourceName = d[i].resource_name;
+                        var color = d[i].color;
+                        var alloc_hours = d[i].alloc_hours
+                        var title = ""+projectName+" ("+alloc_hours+")";
+                          for(n=0; n<proj_list.length; n++) {
+                                if(proj_list[n] == projectName){
+                                    pushEvent(inputDay, title,color);
+                                    if(SearchString(resourceName,dupNames)){
+
+                                    }else{
+                                        dupNames.push(resourceName);
+                                        $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
+                                    }
+                                }
+                            }
+                        if(SearchString(resourceName,dupNames)){
+                        }else{
+                            dupNames.push(resourceName)
+                            $scope.teams.push({name: resourceName, id: i, isChecked:false, color:color});
+                        }
+                    }
+
+
+                        //end for checking of allocated hours
+                    $('#calendar').fullCalendar('addEventSource',$scope.events);
+                })
+                .error(function(data,status){
+
+                });
     }
 
 });

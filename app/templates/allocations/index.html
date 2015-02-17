@@ -91,13 +91,23 @@
 
         <!-- Resources -->
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidebar">
-            <h3>Resources</h3>
-            <div class="checkbox checkbox-primary" ng-repeat="team in teams | unique: 'name'" click-checkbox>
-                <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
-                <label><span ng-bind="team.name" ng-style="{color : team.color}"></span></label>
+            <div class="pre-scrollable" style="height: 250px;">
+                <h3>Resources</h3>
+                <div class="checkbox checkbox-primary" ng-repeat="team in teams" click-checkbox>
+                    <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
+                    <label><strong><span ng-bind="team.name" ng-style="{color : team.color}"></span></strong></label>
+                </div>
+            </div><hr>
+            <div class="pre-scrollable" style="height: 250px;">
+                <h3>Projects</h3>
+                <div class="checkbox checkbox-primary" ng-repeat="project in projects" click-checkbox>
+                    <input type="checkbox" ng-model="project.isChecked" ng-checked="project.isChecked" ng-click="getProjects()">
+                    <label><strong><span ng-bind="project.name"></span></strong></label>
+                </div>
             </div>
 
         </div>
+
         <!-- Resources -->
 
         <!-- Calendar -->

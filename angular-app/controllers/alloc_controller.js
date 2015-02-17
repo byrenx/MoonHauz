@@ -95,13 +95,15 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.allocation['color'] = $scope.colors;
 
     $scope.ok = function(){
-
+        $('#error_msg').hide();
     	if($scope.allocation['alloc_hours'].length == 0 || $scope.allocation['resource_name'].length == 0 || $scope.allocation['alloc_date'].length == 0)  {
 
     	    $("#error_msg").show().html("Please Add resource information!");
                 $("#resource_err").focus();
 
-    	}else  {
+    	}else if($scope.selected['project_id'].remaining_hours == 0 || $scope.selected['project_id'].remaining_hours == null)    {
+            $("#error_msg").show().html($scope.selected['project_id'].name+": has no remaining hours!");
+        }else  {
     	    console.log($scope.selected['project_id'].key);
     	    $scope.allocation['project_id'] = $scope.selected['project_id'].key;
     	    $scope.allocation['name'] = $scope.selected['project_id'].name;
@@ -112,7 +114,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	    $scope.params['billable_hours'] = $scope.selected['project_id'].billable_hours;
     	    $scope.params['start_date'] = $scope.selected['project_id'].start_date;
     	    $scope.params['remaining_hours'] = $scope.selected['project_id'].remaining_hours - $scope.allocation['alloc_hours'];
-
     	    BarmService.updateProject($scope.params);
     	    BarmService.addAllocation($scope.allocation)
     		.success(function(data, status)   {
