@@ -3,11 +3,11 @@ from ferris import BasicModel, ndb
 class Person(BasicModel):
     name = ndb.StringProperty()
     color = ndb.StringProperty()
-    
+
     @classmethod
     def list_all(cls):
-        return cls.query().order(cls.lastname)
-    
+        return cls.query().order(cls.name)
+
     @classmethod
     def find_by_person_id(cls, person_id):
         return cls.query().filter(cls.key == person_id)
@@ -18,7 +18,7 @@ class Person(BasicModel):
         item.populate(**params)
         item.put()
         return item
-    
-    
-    
-    
+
+
+
+

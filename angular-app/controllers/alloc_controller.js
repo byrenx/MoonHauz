@@ -4,16 +4,50 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.allocation = {};
     $scope.selected = {};
     $scope.params = {};
-    $scope.getProjects = function(){
+    $scope.selected_person = {};
+    $scope.addPersonToggle = ['list'];
+    $scope.getProjects = function() {
     	BarmService.getProjects()
     	    .success(function(data, status){
         		$scope.projects = data.items;
         		$scope.selected['project_id'] = $scope.projects[0];
-        		console.log($scope.selected['project_id']);
+        		//console.log($scope.selected['project_id']);
     	    })
     	    .error(function(data, status){
 
     	    });
+    };
+
+
+    $scope.showAddPerson = function()   {
+
+        var toggleAdd = 'add';
+        var toggleList = 'list';
+        if($scope.addPersonToggle[0] == 'list'){
+            $scope.addPersonToggle = [];
+            $scope.addPersonToggle.push(toggleAdd);
+            $('#resource_err').show();
+            $('#user-icon').removeClass().addClass('fa fa-users');
+            $('#person_list').hide();
+        }else{
+            $scope.addPersonToggle = [];
+            $scope.addPersonToggle.push(toggleList);
+            $('#resource_err').hide();
+            $('#user-icon').removeClass().addClass('fa fa-user-plus');
+            $('#person_list').show();
+        }
+    }
+
+    $scope.getResources = function()    {
+        BarmService.getAllResources()
+            .success(function(data, status){
+                $scope.persons = data.items;
+                $scope.selected_person = $scope.persons[0];
+                console.log($scope.persons);
+            })
+            .error(function(data,status){
+
+            });
     };
 
     function getRandomColor() {
@@ -47,7 +81,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.addTodo = function () {
     	$scope.color = getRandomColor();
     	var counter = 0;
-    	console.log($scope.selected['project_id'].remaining_hours);
+    	//console.log($scope.selected['project_id'].remaining_hours);
     	var time = parseInt($scope.selected['project_id'].remaining_hours);
     	counter  = parseInt($scope.hour) + parseInt($scope.hour_counter);
         	if($scope.hour == null || $scope.hour == '' || $scope.hour == 0) {
@@ -55,31 +89,40 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
             }else if ($scope.hour > time) {
                 $("#hour_err").focus();
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
-        	}else if($scope.resource == null || $scope.resource == '') {
-        	    $("#resource_err").focus();
         	}else if($scope.disp_date == null || $scope.disp_date == '')   {
         	    $("#dateString").focus();
         	}else if(counter > time){
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
         	    $("#hour_err").focus();
-        	}else  {
-        	    $scope.resources.push($scope.resource);
-        	    var dateString = $('#dateString').val();
-        	    var timestamp = Date.parse(dateString).getTime()/1000;
-        	    $scope.disp_date = dateString;
-        	    $scope.date = timestamp;
-        	    $scope.hours.push($scope.hour);
-        	    $scope.dates.push($scope.date);
-        	    $scope.disp_dates.push($scope.disp_date);
-        	    $scope.colors.push($scope.color);
-        	    $scope.resource = null;
-        	    $scope.color = null;
-        	    $scope.hour_counter += parseInt($scope.hour);
-        	    $scope.hour = null;
-        	    $scope.date = '';
-        	    $scope.disp_date = null;
-        	    $("#error_msg").hide();
-        	}
+            }else{
+                if(($scope.resource != null || $scope.resource != '') && $scope.addPersonToggle[0] == 'add') {
+                    $scope.resources.push($scope.resource);
+                    $scope.resource = null;
+                    pushOthers();
+                }else if($scope.addPersonToggle[0] == 'list'){
+                    $scope.resources.push($scope.selected_person.name);
+                    pushOthers();
+                }else{
+                    $("#resource_err").focus();
+                }
+            }
+
+    };
+    function pushOthers(){
+        var dateString = $('#dateString').val();
+                    var timestamp = Date.parse(dateString).getTime()/1000;
+                    $scope.disp_date = dateString;
+                    $scope.date = timestamp;
+                    $scope.hours.push($scope.hour);
+                    $scope.dates.push($scope.date);
+                    $scope.disp_dates.push($scope.disp_date);
+                    $scope.colors.push($scope.color);
+                    $scope.color = null;
+                    $scope.hour_counter += parseInt($scope.hour);
+                    $scope.hour = null;
+                    $scope.date = '';
+                    $scope.disp_date = null;
+                    $("#error_msg").hide();
     };
 
     $scope.removeTodo = function (index) {
@@ -104,7 +147,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	}else if($scope.selected['project_id'].remaining_hours == 0 || $scope.selected['project_id'].remaining_hours == null)    {
             $("#error_msg").show().html($scope.selected['project_id'].name+": has no remaining hours!");
         }else  {
-    	    console.log($scope.selected['project_id'].key);
+    	    //console.log($scope.selected['project_id'].key);
     	    $scope.allocation['project_id'] = $scope.selected['project_id'].key;
     	    $scope.allocation['name'] = $scope.selected['project_id'].name;
 
@@ -140,6 +183,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 
 
 $scope.getProjects();
-
+$scope.getResources();
 
 });

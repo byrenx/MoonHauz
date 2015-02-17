@@ -6,7 +6,7 @@
 
 <!-- Modal Body -->
 <div class=" modal-body">
-  
+
     <div class="row">
         <div class="col-xs-3" style="padding-right: 0;">
             <div class="well well-billable">
@@ -14,7 +14,7 @@
                     <label class="btn-block">Total Billable Hours</label>
                     <span ng-bind-html="selected.project_id.billable_hours"></span>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="btn-block">Remaining Hours</label>
                     <span ng-bind-html="selected.project_id.remaining_hours"></span>
@@ -31,12 +31,16 @@
             <div class="form-group">
                 <label>Project Name</label>
                 <select ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
-            </div> 
+            </div>
             <hr>
             <label>Add Resource Information</label>
             <div class="row">
-                <div class="col-md-4" style="padding-right: 0;">
-                    <input id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name">
+                <div class="col-md-3" style="padding-right: 0;">
+                    <select id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
+                    <input  id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
+                </div>
+                <div class="col-md-1" style="padding-right: 0;">
+                    <button ng-click="showAddPerson()" id="add-person-btn" class="btn btn-primary btn-sm btn-block"><i id="user-icon" class="fa fa-user-plus"></i></button>
                 </div>
                 <div class="col-md-2" style="padding-right: 0;">
                     <input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="Hours" class="input-sm form-control">
@@ -103,7 +107,7 @@
         </div>
     </div>
 
-    
+
 
 
 </div>

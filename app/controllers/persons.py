@@ -5,17 +5,17 @@ import json
 
 
 class Persons(Controller):
-    
+
     class Meta:
         components = (messages.Messaging, Pagination,)
         Model = Person
         pagination_limit = 25
         prefixes = ('api',)
-        
-    @route_with('/api/persons', methods=['GET'])
+
+    @route_with('/api/persons/list', methods=['GET'])
     def api_list(self):
         self.context['data'] = self.components.pagination.paginate(query=Person.list_all())
-    
+
     @route_with('/api/persons/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
@@ -25,7 +25,7 @@ class Persons(Controller):
     def api_get(self, key):
         person = self.util.decode_key(key).get()
         self.context['data'] = person
-    
+
     @route_with('/api/persons/:<key>', methods=['POST'])
     def api_update(self, key):
         params = json.loads(self.request.body)
