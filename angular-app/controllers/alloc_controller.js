@@ -95,7 +95,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
         	    $("#hour_err").focus();
             }else{
-                if(($scope.resource != null || $scope.resource != '') && $scope.addPersonToggle[0] == 'add') {
+                if(($scope.resource != null && $scope.resource != '') && $scope.addPersonToggle[0] == 'add') {
                     $scope.resources.push($scope.resource);
                     $scope.resource = null;
                     pushOthers();

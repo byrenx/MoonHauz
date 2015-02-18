@@ -91,8 +91,20 @@
 
         <!-- Resources -->
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidebar">
-            <h3>Resources</h3>
-            <div class="pre-scrollable" style="height: 230px;">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Resources</h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="checkbox checkbox-danger" click-checkbox>
+                    <input type="checkbox" ng-checked="allteams" ng-model="allteams" ng-click="selectAll()">
+                    <label><strong>Select All</strong></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pre-scrollable" style="height: 210px;">
 
                 <div class="checkbox checkbox-primary" ng-repeat="team in teams" click-checkbox>
                     <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
@@ -100,7 +112,7 @@
                 </div>
             </div><hr>
             <h3>Projects</h3>
-            <div class="pre-scrollable" style="height: 230px;">
+            <div class="pre-scrollable" style="height: 210px;">
 
                 <div class="checkbox checkbox-primary" ng-repeat="project in projects" click-checkbox>
                     <input type="checkbox" ng-model="project.isChecked" ng-checked="project.isChecked" ng-click="getProjects()">

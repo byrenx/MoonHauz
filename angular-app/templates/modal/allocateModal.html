@@ -35,12 +35,14 @@
             <hr>
             <label>Add Resource Information</label>
             <div class="row">
-                <div class="col-md-3" style="padding-right: 0;">
-                    <select id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
-                    <input  id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
-                </div>
-                <div class="col-md-1" style="padding-right: 0;">
-                    <button ng-click="showAddPerson()" id="add-person-btn" class="btn btn-primary btn-sm btn-block"><i id="user-icon" class="fa fa-user-plus"></i></button>
+                <div class="col-md-4" style="padding-right: 0;">
+                    <div class="input-group input-group-sm">
+                        <select id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
+                        <input  id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
+                    <span class="input-group-btn">
+                        <button ng-click="showAddPerson()" id="add-person-btn" class="btn btn-default btn-sm btn-block"><i id="user-icon" class="fa fa-user-plus"></i></button>
+                    </span>
+                    </div>
                 </div>
                 <div class="col-md-2" style="padding-right: 0;">
                     <input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="Hours" class="input-sm form-control">

@@ -4,7 +4,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
     $scope.selected = {};
     $scope.teams = [];
     $scope.projects = [];
-
+    $scope.selector = [];
     function SearchString (str,arr) {
         for (var i=0; i<arr.length; i++) {
             if (arr[i] == str){
@@ -46,6 +46,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                 pushEvent(inputDay, title,color);
             }
                 $scope.startCalendar();
+                $scope.allteams = true;
+                $scope.allprojects = true;
                 //console.log($scope.teams)
             })
             .error(function(data, status){
@@ -53,9 +55,6 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             });
     };
 
-    function reloadSouces(){
-
-    }
     function pushEvent(inputDay,title,color)    {
         $scope.events.push({title : title,start : ""+inputDay+"",color   : ""+color+""});
     }
@@ -223,4 +222,23 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                 });
     }
 
+    $scope.selectAll = function(params){
+        if($scope.allteams == true){
+            $scope.refreshCalendar();
+        }else{
+            $('#calendar').fullCalendar('removeEventSource', $scope.events);
+            $scope.events = [];
+            uncheckResources();
+            $calendar('#calendar').fullCalendar('removeEventSource', $scope.events);
+        }
+    }
+
+    function uncheckResources(){
+        for (i=0; i<$scope.teams.length; i++){
+            $scope.teams[i].isChecked = false;
+        }
+        for (var i = $scope.projects.length - 1; i >= 0; i--) {
+            $scope.projects[i].isChecked = false;
+        };
+    }
 });
