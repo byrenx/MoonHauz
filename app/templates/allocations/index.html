@@ -106,7 +106,7 @@
 
             <div class="pre-scrollable" style="height: 210px;">
 
-                <div class="checkbox checkbox-primary" ng-repeat="team in teams" click-checkbox>
+                <div class="checkbox checkbox-primary" ng-repeat="team in teams | orderBy:'name':false" click-checkbox>
                     <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
                     <label><strong><span ng-bind="team.name" ng-style="{color : team.color}"></span></strong></label>
                 </div>
@@ -114,7 +114,7 @@
             <h3>Projects</h3>
             <div class="pre-scrollable" style="height: 210px;">
 
-                <div class="checkbox checkbox-primary" ng-repeat="project in projects" click-checkbox>
+                <div class="checkbox checkbox-primary" ng-repeat="project in projects | orderBy:'name':false" click-checkbox>
                     <input type="checkbox" ng-model="project.isChecked" ng-checked="project.isChecked" ng-click="getProjects()">
                     <label><strong><span ng-bind="project.name"></span></strong></label>
                 </div>

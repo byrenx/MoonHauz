@@ -5,24 +5,24 @@
             <div class="well well-billable">
                 <div class="form-group">
                     <label class="btn-block">Resource name</label>
-                    <span ng-bind-html="task.resourceName"></span>
+                    <span ng-bind-html="items.resourceName"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="btn-block">Project name</label>
-                    <span ng-bind-html="task.projectName"></span>
+                    <span ng-bind-html="items.projectName"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="btn-block">Date assigned</label>
-                    <span ng-required="true" ng-bind-html="task.alloc_date  | date:'medium'"></span>
+                    <span ng-required="true" ng-bind-html="items.alloc_date  | date:'medium'"></span>
                 </div>
             </div>
         </div>
         <div class="col-xs-9" style="padding-left: 15px;">
                 <div class="col-xs-12"><label>Task</label></div>
                 <div class="col-xs-12">
-                    <textarea id="name_err" mandatory  class="input-sm form-control" ng-required="true" style="margin: 0px -3px 0px 0px; height: 142px; width: 615px;"></textarea>
+                    <textarea id="name_err" mandatory  ng-model="task.taskContent"class="input-sm form-control" ng-required="true" style="margin: 0px -3px 0px 0px; height: 142px; width: 615px;"></textarea>
                 </div>
 
 

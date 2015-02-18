@@ -24,6 +24,12 @@ appServices.service('BarmService', function($http){
     getCalendar: function(){
 	return $http.get('/api/allocations/calendar');
     },
+    getTasks: function(){
+    return $http.get('/api/tasks/list');
+    },
+    addTask: function(params){
+    return $http.post('/api/tasks/create', params);
+    }
 
     };
 });

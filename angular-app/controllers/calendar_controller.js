@@ -43,7 +43,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                 dupProjects.push(projectName);
                 $scope.projects.push({name: projectName, id: i, isChecked:true});
                }
-                pushEvent(inputDay, title,color ,resourceName, projectName);
+                pushEvent(inputDay, title, color,resourceName, projectName);
             }
                 $scope.startCalendar();
                 $scope.allteams = true;
@@ -90,7 +90,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                     dupProjects.push(projectName);
                     $scope.projects.push({name: projectName, id: i, isChecked:true});
                    }
-                    pushEvent(inputDay, title,color);
+                    pushEvent(inputDay, title,color ,resourceName, projectName);
                 }
                     $('#calendar').fullCalendar('addEventSource',$scope.events);
                 })
@@ -113,7 +113,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                 center: 'prev , title ,next',
                 right: 'month,basicWeek,basicDay',
             },
-            defaultView: 'month',
+            defaultView: 'basicWeek',
             events: $scope.events,
             droppable:true,
             theme: false,
@@ -183,7 +183,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                 var title = ""+projectName+" ("+alloc_hours+")";
                   for(n=0; n<name_list.length; n++) {
                    if (name_list[n] == resourceName){
-                     pushEvent(inputDay, title,color);
+                     pushEvent(inputDay, title,color ,resourceName, projectName);
                    }
         		  }
             }//end for checking of allocated hours
@@ -220,7 +220,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                         var title = ""+projectName+" ("+alloc_hours+")";
                           for(n=0; n<proj_list.length; n++) {
                                 if(proj_list[n] == projectName){
-                                    pushEvent(inputDay, title,color);
+
                                    /* if(SearchString(resourceName,dupNames)){
 
                                     }else{

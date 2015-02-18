@@ -12,8 +12,8 @@ class Allocation(BasicModel):
 
     @classmethod
     def list_all(cls):
-        return cls.query().order(cls.project_id).fetch()
-    
+        return cls.query().order(cls.resource_name).fetch()
+
     @classmethod
     def create(cls, params):
         item = cls()
