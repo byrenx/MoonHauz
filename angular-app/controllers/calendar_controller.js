@@ -1,4 +1,4 @@
-appControllers.controller('calendarCtrl', function($scope, BarmService){
+appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
     $scope.items = {}
     $scope.events = [];
     $scope.selected = {};
@@ -43,7 +43,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
                 dupProjects.push(projectName);
                 $scope.projects.push({name: projectName, id: i, isChecked:true});
                }
-                pushEvent(inputDay, title,color);
+                pushEvent(inputDay, title,color ,resourceName, projectName);
             }
                 $scope.startCalendar();
                 $scope.allteams = true;
@@ -55,8 +55,8 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             });
     };
 
-    function pushEvent(inputDay,title,color)    {
-        $scope.events.push({title : title,start : ""+inputDay+"",color   : ""+color+""});
+    function pushEvent(inputDay,title,color, resourceName, projectName)    {
+        $scope.events.push({title : title,start : ""+inputDay+"",color   : ""+color+"", resourceName: ""+resourceName+"", projectName: ""+projectName+"", alloc_date: ""+inputDay+""});
     }
 
 
@@ -119,7 +119,31 @@ appControllers.controller('calendarCtrl', function($scope, BarmService){
             theme: false,
             height: get_calendar_height(),
             //weekends: false,
-            contentHeight: get_calendar_height()
+            contentHeight: get_calendar_height(),
+            eventClick: function(calEvent, jsEvent, view)   {
+                var modalInstance = $modal.open(  {
+                          templateUrl: 'ng/templates/modal/addTaskModal.html',
+                          controller: 'taskCtrl',
+                          size: 'lg',
+                          resolve:{
+                              items: function (){
+                                    return calEvent;
+                               }
+                          }
+                      });
+                /*
+                alert('Event: ' + calEvent.title);
+                console.log(calEvent.start);
+                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                alert('View: ' + view.name);
+
+                // change the border color just for fun
+                $(this).css('border-color', 'red');
+                */
+
+            }
+
+
         });
         //console.log($scope.events);
 
