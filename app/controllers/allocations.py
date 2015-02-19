@@ -27,6 +27,12 @@ class Allocations(Controller):
     def api_list(self):
         self.context['data'] = Allocation.list_all()
 
+    @route_with('/api/allocations/:<key>', methods=['GET'])
+    def api_get(self, key):
+        keyS = self.util.decode_key(key)
+        items =  Allocation.find_by_project(keyS)
+        self.context['data'] = items
+
     def isWeekend(self, myDate):
         return True if myDate.weekday() == 5 or myDate.weekday() == 6 else False
 

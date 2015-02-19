@@ -100,3 +100,4 @@ appDirectives.directive('clickCheckbox', function() {
         }
     };
 });
+

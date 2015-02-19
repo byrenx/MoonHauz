@@ -18,6 +18,7 @@
                 <div class="form-group">
                     <label class="btn-block">Remaining Hours</label>
                     <span ng-bind-html="selected.project_id.remaining_hours"></span>
+
                 </div>
 
                 <div class="form-group">
@@ -30,7 +31,7 @@
         <div class="col-xs-9" style="padding-left: 15px;">
             <div class="form-group">
                 <label>Project Name</label>
-                <select ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
+                <select ng-change="ProjectAllocations(selected.project_id.key.urlsafe)" ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
             </div>
             <hr>
             <label>Add Resource Information</label>
@@ -90,13 +91,28 @@
                                     <span ng-bind-html="disp"></span>
                                 </div>
                             </td>
-
                             <td width="1%">
                                 <div ng-repeat="hour in hours track by $index">
                                     <a class="btn btn-danger btn-xs" ng-click="removeTodo($index)" aria-label="Remove">
                                         <span class="fa fa-times"></span>
                                     </a>
                                 </div>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="items in selected.project_id.allocations">
+                            <td>
+                                    <span ng-bind-html="items.resource_name"></span>
+                            </td>
+                            <td>
+                                    <span ng-bind-html="items.alloc_hours"></span>
+                            </td>
+                            <td>
+                                    <span ng-bind-html="items.alloc_date.month"></span>/<span ng-bind-html="items.alloc_date.day"></span>/<span ng-bind-html="items.alloc_date.year"></span>
+                            </td>
+                            <td width="1%">
+                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe)" aria-label="Remove">
+                                        <span class="fa fa-times"></span>
+                                    </a>
                             </td>
                         </tr>
                         </tbody>
@@ -120,3 +136,5 @@
     <button class="btn btn-link btn-sm" ng-click="cancel()">Cancel</button>
 </div>
 </form>
+
+

@@ -11,13 +11,20 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	    .success(function(data, status){
         		$scope.projects = data.items;
         		$scope.selected['project_id'] = $scope.projects[0];
-        		//console.log($scope.selected['project_id']);
+        		$scope.ProjectAllocations($scope.selected['project_id'].key.urlsafe);
     	    })
     	    .error(function(data, status){
 
     	    });
     };
 
+    $scope.ProjectAllocations = function(key){
+        BarmService.findAllocation(key)
+            .success(function(data,status){
+                $scope.selected['project_id']['allocations'] = data.items;
+                console.log(data.items);
+            })
+    }
 
     $scope.showAddPerson = function()   {
 
@@ -170,6 +177,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                         $modalInstance.dismiss('cancel');
                     } , 2000);
             })
+
     		.error(function(data, status){
     		    $("#error_msg").removeClass().addClass("alert alert-danger").html("Add Project Failed!");
     		});

@@ -115,7 +115,9 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
             },
             defaultView: 'basicWeek',
             events: $scope.events,
-            droppable:true,
+            eventLimit: true, // allow "more" link when too many events
+            editable: true,
+            eventDurationEditable : false,
             theme: false,
             height: get_calendar_height(),
             //weekends: false,

@@ -18,6 +18,9 @@ appServices.service('BarmService', function($http){
     getAllocation: function(){
 	return $http.get('/api/allocations/list');
     },
+    findAllocation: function(key){
+    return $http.get('/api/allocations/:'+key);
+    },
     getAllResources: function(){
         return $http.get('/api/persons/list');
     },

@@ -20,3 +20,7 @@ class Allocation(BasicModel):
         item.populate(**params)
         item.put()
         return item
+
+    @classmethod
+    def find_by_project(cls, id):
+        return cls.query().filter(cls.project_id == id).fetch()
