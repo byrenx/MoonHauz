@@ -53,9 +53,23 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                 console.log($scope.persons);
             })
             .error(function(data,status){
+                $scope.addPersonToggle = ['add'];
+                $('#resource_err').show();
+                $('#add-person-btn').hide();
+                $('#person_list').hide();
 
             });
     };
+    $scope.removeResource = function(key,index)   {
+        $scope.selected['project_id']['allocations'].splice(index, 1);
+        BarmService.deleteAllocation(key)
+            .success(function(status){
+
+            })
+            .error(function(status){
+
+            });
+    }
 
     function getRandomColor() {
     	var letters = '0123456789ABCDEF'.split('');
@@ -106,7 +120,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                     $scope.resources.push($scope.resource);
                     $scope.resource = null;
                     pushOthers();
-                }else if($scope.addPersonToggle[0] == 'list'){
+                }else if(($scope.addPersonToggle != null && $scope.addPersonToggle != '') && $scope.addPersonToggle[0] == 'list'){
                     $scope.resources.push($scope.selected_person.name);
                     pushOthers();
                 }else{

@@ -18,6 +18,10 @@ class Project(BasicModel):
         return cls.query(cls.key == project_id).fetch()[0]
 
     @classmethod
+    def find_by_proj_key(cls, project_id):
+        return cls.query(cls.key == project_id).fetch()
+
+    @classmethod
     def get(cls, key):
         return cls(parent=key)
 
@@ -32,6 +36,12 @@ class Project(BasicModel):
         print repr(data)
         data[0].remaining_hours=params['remaining_hours']
         data[0].put()
+
+    @classmethod
+    def retHours(self, params, hours):
+        params[0].remaining_hours+=hours
+        print params[0].remaining_hours
+        params[0].put()
 
     @classmethod
     def create(cls, params):

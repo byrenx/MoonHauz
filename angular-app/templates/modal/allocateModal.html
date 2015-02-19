@@ -99,9 +99,9 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-repeat="items in selected.project_id.allocations">
+                        <tr ng-repeat="items in selected.project_id.allocations track by $index">
                             <td>
-                                    <span ng-bind-html="items.resource_name"></span>
+                                    <span ng-bind-html="items.resource_name"></span>`
                             </td>
                             <td>
                                     <span ng-bind-html="items.alloc_hours"></span>
@@ -110,7 +110,7 @@
                                     <span ng-bind-html="items.alloc_date.month"></span>/<span ng-bind-html="items.alloc_date.day"></span>/<span ng-bind-html="items.alloc_date.year"></span>
                             </td>
                             <td width="1%">
-                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe)" aria-label="Remove">
+                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe, $index)" aria-label="Remove">
                                         <span class="fa fa-times"></span>
                                     </a>
                             </td>

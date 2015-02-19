@@ -82,5 +82,15 @@ class Allocations(Controller):
             Allocation.create(info)
 
         return 200
+    @route_with('/api/allocations/:<key>', methods=['DELETE'])
+    def api_delete(self, key):
+        items = self.util.decode_key(key).get()
+        retHour = items.alloc_hours
+        retID = items.project_id
+        #print retID
+        retData = Project.find_by_proj_key(retID)
+        stat = Project.retHours(retData, retHour)
+        items.delete()
+        return 200
        # self.context['data'] = Allocation.create(params)
 

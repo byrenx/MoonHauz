@@ -1,6 +1,7 @@
 from ferris import BasicModel, ndb
 from datetime import datetime, timedelta
 from app.models.project import Project
+from app.behaviors.allocbehavior import AllocBehavior
 
 class Allocation(BasicModel):
     project_id = ndb.KeyProperty()
@@ -9,6 +10,9 @@ class Allocation(BasicModel):
     resource_name = ndb.StringProperty()
     alloc_hours = ndb.IntegerProperty()
     alloc_date = ndb.DateProperty()
+
+    class Meta:
+        behaviors = (AllocBehavior, )
 
     @classmethod
     def list_all(cls):
@@ -24,3 +28,6 @@ class Allocation(BasicModel):
     @classmethod
     def find_by_project(cls, id):
         return cls.query().filter(cls.project_id == id).fetch()
+
+    def delete(self):
+        ndb.delete_multi(ndb.Query(ancestor=self.key).iter(keys_only=True))
