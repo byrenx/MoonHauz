@@ -29,7 +29,11 @@ appServices.service('BarmService', function($http){
     },
     addTask: function(params){
     return $http.post('/api/tasks/create', params);
+    },
+    updateTask: function(params){
+    return $http.post('/api/tasks/:'+params.key.urlsafe, params);
     }
+
 
     };
 });

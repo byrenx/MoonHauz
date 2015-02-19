@@ -28,9 +28,9 @@ class Tasks(Controller):
    @route_with('/api/tasks/:<key>', methods=['POST'])
    def api_update(self, key):
       params = json.loads(self.request.body)
-      task = self.util.decode_key(key).get()
-      task.update(params)
-      self.context['data'] = task
+      keyS = self.util.decode_key(key)
+      Task.updateTaskContent(keyS, params)
+      return 200
 
    @route_with('/api/tasks/:<key>', methods=['DELETE'])
    def api_delete(self, key):

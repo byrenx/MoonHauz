@@ -7,7 +7,6 @@ appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 		    .success(function(data,status)	{
 				var formax = data.items;
 				var myMax = 0;
-				console.log(formax.length);
 				for (i = 0; i < formax.length; i++)	{
 				     myMax += formax[i].billable_hours;
 				}
@@ -21,7 +20,6 @@ appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 		    .success(function(data,status)	{
 				var fordyn = data.items;
 				var myDynamic = 0;
-				console.log(fordyn);
 				for (d = 0; d < fordyn.length; d++)	{
 				     myDynamic += fordyn[d].alloc_hours;
 				}
