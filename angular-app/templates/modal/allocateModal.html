@@ -31,7 +31,16 @@
         <div class="col-xs-9" style="padding-left: 15px;">
             <div class="form-group">
                 <label>Project Name</label>
-                <select ng-change="ProjectAllocations(selected.project_id.key.urlsafe)" ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
+                <select id="ui-select-project" placeholder="please select a project" ng-init="selected.project_id = option[2]" ng-change="ProjectAllocations(selected.project_id.key.urlsafe)" ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
+                <i id="placeholder-project" style="display: none; color : red"></i>
+                <!--- ui select 2 testing -->
+                <!-- <ui-select model="project" theme="bootstrap" ng-disabled="disabled">
+                    <ui-select-match placeholder="Select or search a project in the list"><i ng-bind-html="$select.selected.name"></i></ui-select-match>
+                        <ui-select-choices repeat="project in projects | filter: $select.search">
+                            <span ng-bind-html="project.name | highlight: $select.search"></span>
+                            <small ng-bind-html="project.remaining_hours"></small>
+                        </ui-select-choices>
+                </ui-select> -->
             </div>
             <hr>
             <label>Add Resource Information</label>
@@ -101,7 +110,7 @@
                         </tr>
                         <tr ng-repeat="items in selected.project_id.allocations track by $index">
                             <td>
-                                    <span ng-bind-html="items.resource_name"></span>`
+                                    <span ng-bind-html="items.resource_name"></span>
                             </td>
                             <td>
                                     <span ng-bind-html="items.alloc_hours"></span>

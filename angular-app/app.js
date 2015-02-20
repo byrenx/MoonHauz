@@ -4,6 +4,7 @@ var appServices = angular.module('app.services', []);
 var appDirectives = angular.module('app.directives', []);
 
 var mailApp = angular.module("mailApp", ['app.routes',
+					 'ui.select',
 					 'app.controllers',
 					 'app.services',
 					 'app.directives',
@@ -16,3 +17,4 @@ var mailApp = angular.module("mailApp", ['app.routes',
 					 'ngTouch'
 					]
 			    );
+

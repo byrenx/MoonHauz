@@ -89,8 +89,9 @@ class Allocations(Controller):
         retID = items.project_id
         #print retID
         retData = Project.find_by_proj_key(retID)
-        stat = Project.retHours(retData, retHour)
-        items.delete()
+        print retData
+        Project.retHours(retData, retHour)
+        #items.delete()
         return 200
        # self.context['data'] = Allocation.create(params)
 

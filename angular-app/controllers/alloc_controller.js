@@ -6,11 +6,13 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.params = {};
     $scope.selected_person = {};
     $scope.addPersonToggle = ['list'];
+    /*$scope.selected['project_id']['default'] = "---- Please Select a Project ----";*/
     $scope.getProjects = function() {
     	BarmService.getProjects()
     	    .success(function(data, status){
         		$scope.projects = data.items;
-        		$scope.selected['project_id'] = $scope.projects[0];
+        		$scope.selected['project_id'] = '';
+                $("#placeholder-project").show().html("Please Select a project");
         		$scope.ProjectAllocations($scope.selected['project_id'].key.urlsafe);
     	    })
     	    .error(function(data, status){
@@ -19,10 +21,11 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     };
 
     $scope.ProjectAllocations = function(key){
+        $("#placeholder-project").hide();
         BarmService.findAllocation(key)
             .success(function(data,status){
                 $scope.selected['project_id']['allocations'] = data.items;
-                console.log(data.items);
+                //console.log(data.items);
             })
     }
 
@@ -49,8 +52,8 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         BarmService.getAllResources()
             .success(function(data, status){
                 $scope.persons = data.items;
-                $scope.selected_person = $scope.persons[0];
-                console.log($scope.persons);
+                $scope.selected_person = '';
+                //console.log($scope.persons);
             })
             .error(function(data,status){
                 $scope.addPersonToggle = ['add'];
@@ -115,20 +118,36 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         	}else if(counter > time){
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
         	    $("#hour_err").focus();
+            }else if(isEmpty($scope.selected['project_id'])){
+                $("#error_msg").show().html("Please Select a project");
+                $('#ui-select-project').focus();
             }else{
                 if(($scope.resource != null && $scope.resource != '') && $scope.addPersonToggle[0] == 'add') {
                     $scope.resources.push($scope.resource);
                     $scope.resource = null;
                     pushOthers();
-                }else if(($scope.addPersonToggle != null && $scope.addPersonToggle != '') && $scope.addPersonToggle[0] == 'list'){
-                    $scope.resources.push($scope.selected_person.name);
-                    pushOthers();
+                }else if($scope.addPersonToggle[0] == 'list'){
+                    if(isEmpty($scope.selected_person)){
+                         $("#error_msg").show().html("Please Select a person");
+                         $('#person_list').focus();
+                    }else{
+                        $scope.resources.push($scope.selected_person.name);
+                        pushOthers();
+                    }
+
                 }else{
                     $("#resource_err").focus();
                 }
             }
 
     };
+    function isEmpty(instance){
+         if (instance=='' || instance==null){
+            return true;
+         }else{
+            return false;
+         }
+    }
     function pushOthers(){
         var dateString = $('#dateString').val();
                     var timestamp = Date.parse(dateString).getTime()/1000;
@@ -178,6 +197,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	    $scope.params['billable_hours'] = $scope.selected['project_id'].billable_hours;
     	    $scope.params['start_date'] = $scope.selected['project_id'].start_date;
     	    $scope.params['remaining_hours'] = $scope.selected['project_id'].remaining_hours - $scope.allocation['alloc_hours'];
+            alert($scope.params['remaining_hours']);
     	    BarmService.updateProject($scope.params);
     	    BarmService.addAllocation($scope.allocation)
     		.success(function(data, status)   {

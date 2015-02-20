@@ -19,7 +19,7 @@ class Projects(Controller):
     @route_with('/api/projects/create', methods=['POST'])
     def api_create(self):
         params = json.loads(self.request.body)
-        hours = int(params['billable_hours']);
+        hours = int(params['billable_hours'])
         params['billable_hours'] = hours
         params['remaining_hours'] = hours
         self.context['data'] = Project.create(params)
