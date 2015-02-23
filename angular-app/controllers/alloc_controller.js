@@ -13,6 +13,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         		$scope.projects = data.items;
         		$scope.selected['project_id'] = '';
                 $("#placeholder-project").show().html("Please Select a project");
+                $("#placeholder-resource").show().html("Please Select a resource");
         		$scope.ProjectAllocations($scope.selected['project_id'].key.urlsafe);
     	    })
     	    .error(function(data, status){
@@ -28,7 +29,9 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                 //console.log(data.items);
             })
     }
-
+    $scope.placeholder = function(){
+        $("#placeholder-resource").hide();
+    }
     $scope.showAddPerson = function()   {
 
         var toggleAdd = 'add';
@@ -128,7 +131,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                     pushOthers();
                 }else if($scope.addPersonToggle[0] == 'list'){
                     if(isEmpty($scope.selected_person)){
-                         $("#error_msg").show().html("Please Select a person");
+                         $("#error_msg").show().html("Please Select a resource");
                          $('#person_list').focus();
                     }else{
                         $scope.resources.push($scope.selected_person.name);
