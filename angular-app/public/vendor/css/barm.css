@@ -38,7 +38,7 @@ body {
     margin-bottom: 15px;
 }
 
-.progress-control-container::before { 
+.progress-control-container::before {
     display: table;
     content: " ";
 }
@@ -85,7 +85,7 @@ body {
 .sidebar {
     /*margin-top: 15px;*/
     padding-top: 15px;
-    padding-bottom: 15px;    
+    padding-bottom: 15px;
 }
 
 /* Calendar */

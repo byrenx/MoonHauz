@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label class="btn-block">Remaining Hours</label>
-                    <span ng-bind-html="selected.project_id.remaining_hours"></span>
+                    <span ng-bind-html="rem_hours"></span>
 
                 </div>
 
@@ -48,7 +48,7 @@
                 <div class="col-md-4" style="padding-right: 0;">
                     <div class="input-group input-group-sm">
                         <select ng-change="placeholder()" id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
-                        <input  id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
+                        <input  ng-change="placeholder()" id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
                     <span class="input-group-btn">
                         <button ng-click="showAddPerson()" id="add-person-btn" class="btn btn-default btn-sm btn-block"><i id="user-icon" class="fa fa-user-plus"></i></button>
                     </span>
@@ -109,6 +109,8 @@
                                 </div>
                             </td>
                         </tr>
+                        </tbody>
+                        <tbody>
                         <tr ng-repeat="items in selected.project_id.allocations track by $index">
                             <td>
                                     <span ng-bind-html="items.resource_name"></span>
@@ -120,7 +122,7 @@
                                     <span ng-bind-html="items.alloc_date.month"></span>/<span ng-bind-html="items.alloc_date.day"></span>/<span ng-bind-html="items.alloc_date.year"></span>
                             </td>
                             <td width="1%">
-                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe, $index)" aria-label="Remove">
+                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe, $index, items.alloc_hours)" aria-label="Remove">
                                         <span class="fa fa-times"></span>
                                     </a>
                             </td>

@@ -6,6 +6,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.params = {};
     $scope.selected_person = {};
     $scope.addPersonToggle = ['list'];
+    $scope.rem_hours;
     /*$scope.selected['project_id']['default'] = "---- Please Select a Project ----";*/
     $scope.getProjects = function() {
     	BarmService.getProjects()
@@ -13,8 +14,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         		$scope.projects = data.items;
         		$scope.selected['project_id'] = '';
                 $("#placeholder-project").show().html("Please Select a project");
-                $("#placeholder-resource").show().html("Please Select a resource");
-        		$scope.ProjectAllocations($scope.selected['project_id'].key.urlsafe);
+                $("#placeholder-resource").show().html("Please Add/Select a resource");
     	    })
     	    .error(function(data, status){
 
@@ -22,12 +22,16 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     };
 
     $scope.ProjectAllocations = function(key){
+        $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
         $("#placeholder-project").hide();
         BarmService.findAllocation(key)
             .success(function(data,status){
                 $scope.selected['project_id']['allocations'] = data.items;
                 //console.log(data.items);
             })
+            .error(function(data,status){
+                $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
+            });
     }
     $scope.placeholder = function(){
         $("#placeholder-resource").hide();
@@ -66,11 +70,12 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
 
             });
     };
-    $scope.removeResource = function(key,index)   {
+    $scope.removeResource = function(key,index, hours)   {
         $scope.selected['project_id']['allocations'].splice(index, 1);
         BarmService.deleteAllocation(key)
             .success(function(status){
-
+                console.log($scope.selected['project_id']['allocations'][index]);
+                $scope.rem_hours+= parseInt(hours);
             })
             .error(function(status){
 
@@ -162,6 +167,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                     $scope.colors.push($scope.color);
                     $scope.color = null;
                     $scope.hour_counter += parseInt($scope.hour);
+                    $scope.rem_hours -= parseInt($scope.hour);
                     $scope.hour = null;
                     $scope.date = '';
                     $scope.disp_date = null;
@@ -169,6 +175,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     };
 
     $scope.removeTodo = function (index) {
+      $scope.rem_hours += parseInt($scope.hours[index]);
       $scope.resources.splice(index, 1);
       $scope.hours.splice(index, 1);
       $scope.dates.splice(index, 1);
@@ -200,7 +207,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	    $scope.params['billable_hours'] = $scope.selected['project_id'].billable_hours;
     	    $scope.params['start_date'] = $scope.selected['project_id'].start_date;
     	    $scope.params['remaining_hours'] = $scope.selected['project_id'].remaining_hours - $scope.allocation['alloc_hours'];
-            alert($scope.params['remaining_hours']);
     	    BarmService.updateProject($scope.params);
     	    BarmService.addAllocation($scope.allocation)
     		.success(function(data, status)   {

@@ -222,20 +222,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                         var title = ""+projectName+" ("+alloc_hours+")";
                           for(n=0; n<proj_list.length; n++) {
                                 if(proj_list[n] == projectName){
-
-                                   /* if(SearchString(resourceName,dupNames)){
-
-                                    }else{
-                                        dupNames.push(resourceName);
-                                        $scope.teams.push({name: resourceName, id: i, isChecked:true, color:color});
-                                    }
-                                }
-                            }
-                        if(SearchString(resourceName,dupNames)){
-                        }else{
-                            dupNames.push(resourceName)
-                            $scope.teams.push({name: resourceName, id: i, isChecked:false, color:color});
-                        }*/
+                            pushEvent(inputDay, title,color ,resourceName, projectName);//Push checked projects
                             }
                         }
                     }
@@ -255,7 +242,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
             $('#calendar').fullCalendar('removeEventSource', $scope.events);
             $scope.events = [];
             uncheckResources();
-            $calendar('#calendar').fullCalendar('removeEventSource', $scope.events);
+            $('#calendar').fullCalendar('removeEventSource', $scope.events);
         }
     }
 
