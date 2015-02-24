@@ -44,6 +44,14 @@ class Project(BasicModel):
         params[0].put()
 
     @classmethod
+    def removeHours(self, params, hours):
+        params[0].remaining_hours-=hours
+
+        params[0].put()
+
+        return params[0].remaining_hours
+
+    @classmethod
     def create(cls, params):
         item = cls(name = params['name'],
                    billable_hours = params['billable_hours'],

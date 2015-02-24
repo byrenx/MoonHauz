@@ -45,7 +45,7 @@
             <hr>
             <label>Add Resource Information</label>
             <div class="row">
-                <div class="col-md-4" style="padding-right: 0;">
+                <div id="div-resource-name" class="col-md-6" style="padding-right: 0;">
                     <div class="input-group input-group-sm">
                         <select ng-change="placeholder()" id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
                         <input  ng-change="placeholder()" id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
@@ -58,6 +58,7 @@
                 <div class="col-md-2" style="padding-right: 0;">
                     <input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="Hours" class="input-sm form-control">
                 </div>
+                <!---
                 <div class="col-md-3" style="padding-right: 0;">
                     <div class="input-group input-group-sm dropdown-menu-datepicker">
                         <input id="dateString" ng-model="disp_date" datepicker-popup="{{format}}" type="text"  class="form-control" placeholder="Date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" readonly date-disabled="disabled(date, mode)" close-text="Close" ng-click="open($event)">
@@ -66,8 +67,9 @@
                         </span>
                     </div>
                 </div>
+                -->
                 <div class="col-md-3">
-                    <button class="btn btn-warning btn-sm btn-block" ng-click="addTodo()"><i class="fa fa-level-down fa-lg"></i> Add to Pool</button>
+                    <button id="pool-btn" class="btn btn-warning btn-sm btn-block" ng-click="addTodo()"><i id="pool-msg" class="fa fa-level-down fa-lg"></i> Add to Pool</button>
                 </div>
 
                 <div class="col-xs-12">
@@ -75,14 +77,14 @@
                     <table class="table table-condendsed">
                         <thead>
                             <tr>
-                                <th width="50%">Resource Name</th>
-                                <th width="5%">Hours</th>
-                                <th width="40%">Date</th>
-                                <th width="1%"></th>
+                                <th width="35%">Resource Name</th>
+                                <th width="25%">Total Hrs.</th>
+                                <th width="20%">Remaining Hrs.</th>
+                                <th width="10%"></th>
+                                <th width="10%"></th>
                             </tr>
                         </thead>
-
-                        <tbody>
+                        <!--<tbody>
                         <tr>
                             <td>
                                 <div ng-repeat="resource in resources track by $index">
@@ -92,7 +94,8 @@
 
                             <td>
                                 <div ng-repeat="hour in hours track by $index">
-                                    <span ng-bind-html="hour"></span>
+                                    <span ng-bind-html="hour"></span> <- comment this
+                                    <input type="text" numbers-limit number-only ng-model="hour" class="input-sm form-control">
                                 </div>
                             </td>
 
@@ -100,6 +103,8 @@
                                 <div ng-repeat="disp in disp_dates track by $index">
                                     <span ng-bind-html="disp"></span>
                                 </div>
+                            </td>
+                            <td>
                             </td>
                             <td width="1%">
                                 <div ng-repeat="hour in hours track by $index">
@@ -109,17 +114,26 @@
                                 </div>
                             </td>
                         </tr>
-                        </tbody>
+                        </tbody>-->
                         <tbody>
                         <tr ng-repeat="items in selected.project_id.allocations track by $index">
                             <td>
                                     <span ng-bind-html="items.resource_name"></span>
                             </td>
                             <td>
-                                    <span ng-bind-html="items.alloc_hours"></span>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6" style="padding-right: 0;">
+                                    <!--<span ng-bind-html="items.alloc_hours"></span>-->
+                                    <input type="text" numbers-limit number-only ng-value="items.total_hours" class="input-sm form-control">
+                                </div>
                             </td>
                             <td>
-                                    <span ng-bind-html="items.alloc_date.month"></span>/<span ng-bind-html="items.alloc_date.day"></span>/<span ng-bind-html="items.alloc_date.year"></span>
+                                    <span ng-bind-html="items.remaining_hours">
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-xs">
+                                    <span class="fa fa-clock-o"></span> Allocate Hours
+                                </a>
                             </td>
                             <td width="1%">
                                     <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe, $index, items.alloc_hours)" aria-label="Remove">
@@ -144,8 +158,7 @@
 <!-- Modal Body -->
 
 <div class="modal-footer">
-    <button id="ok-btn" class="btn btn-primary btn-sm" ng-click="ok()">Confirm</button>
-    <button class="btn btn-link btn-sm" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-link btn-sm" ng-click="cancel()">Close</button>
 </div>
 </form>
 

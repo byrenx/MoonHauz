@@ -21,7 +21,7 @@ appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 				var fordyn = data.items;
 				var myDynamic = 0;
 				for (d = 0; d < fordyn.length; d++)	{
-				     myDynamic += fordyn[d].alloc_hours;
+				     myDynamic += fordyn[d].total_hours;
 				}
 				$scope.dynamic = myDynamic;
 		    })

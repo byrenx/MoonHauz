@@ -51,7 +51,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
                 //console.log($scope.teams)
             })
             .error(function(data, status){
-            $scope.startCalendar();
+                $scope.startCalendar();
             });
     };
 

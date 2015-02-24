@@ -8,8 +8,9 @@ class Allocation(BasicModel):
     project_name = ndb.StringProperty() #temporarily store project_name
     color = ndb.StringProperty() #temporarily store color
     resource_name = ndb.StringProperty()
-    alloc_hours = ndb.IntegerProperty()
-    alloc_date = ndb.DateProperty()
+    total_hours = ndb.IntegerProperty()
+    remaining_hours = ndb.IntegerProperty()
+    temp_alloc = ndb.IntegerProperty()
 
     class Meta:
         behaviors = (AllocBehavior, )
@@ -24,6 +25,12 @@ class Allocation(BasicModel):
         item.populate(**params)
         item.put()
         return item
+    @classmethod
+    def updateRemaining(self, data, all_hours):
+        data.remaining_hours+=all_hours
+        data.total_hours+=all_hours
+        data.temp_alloc=all_hours
+        data.put()
 
     @classmethod
     def find_by_project(cls, id):

@@ -22,7 +22,18 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     };
 
     $scope.ProjectAllocations = function(key){
-        $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
+        $("#placeholder-project").hide();
+        BarmService.findAllocation(key)
+            .success(function(data,status){
+                $scope.selected['project_id']['allocations'] = data.items;
+                $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
+                //console.log(data.items);
+            })
+            .error(function(data,status){
+                $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
+            });
+    }
+    $scope.refreshAllocations = function(key){
         $("#placeholder-project").hide();
         BarmService.findAllocation(key)
             .success(function(data,status){
@@ -30,7 +41,6 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                 //console.log(data.items);
             })
             .error(function(data,status){
-                $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
             });
     }
     $scope.placeholder = function(){
@@ -60,13 +70,12 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
             .success(function(data, status){
                 $scope.persons = data.items;
                 $scope.selected_person = '';
+
                 //console.log($scope.persons);
             })
             .error(function(data,status){
                 $scope.addPersonToggle = ['add'];
-                $('#resource_err').show();
-                $('#add-person-btn').hide();
-                $('#person_list').hide();
+                $scope.showAddPerson();
 
             });
     };
@@ -110,6 +119,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     $scope.colors = [];
     $scope.disp_dates = [];
     $scope.hour_counter = parseInt(0);
+
     $scope.addTodo = function () {
     	$scope.color = getRandomColor();
     	var counter = 0;
@@ -121,8 +131,8 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
             }else if ($scope.hour > time) {
                 $("#hour_err").focus();
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
-        	}else if($scope.disp_date == null || $scope.disp_date == '')   {
-        	    $("#dateString").focus();
+        	/*}else if($scope.disp_date == null || $scope.disp_date == '')   {
+        	    $("#dateString").focus();*/
         	}else if(counter > time){
         	    $("#error_msg").show().html("Allocated hours for " + $scope.selected['project_id'].name+ " has been exceeded!");
         	    $("#hour_err").focus();
@@ -134,6 +144,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                     $scope.resources.push($scope.resource);
                     $scope.resource = null;
                     pushOthers();
+                    $scope.ok();
                 }else if($scope.addPersonToggle[0] == 'list'){
                     if(isEmpty($scope.selected_person)){
                          $("#error_msg").show().html("Please Select a resource");
@@ -141,6 +152,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                     }else{
                         $scope.resources.push($scope.selected_person.name);
                         pushOthers();
+                        $scope.ok();
                     }
 
                 }else{
@@ -149,30 +161,37 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
             }
 
     };
+
     function isEmpty(instance){
-         if (instance=='' || instance==null){
+         if (instance=='' || instance==null || instance == 0){
             return true;
          }else{
             return false;
          }
     }
     function pushOthers(){
-        var dateString = $('#dateString').val();
-                    var timestamp = Date.parse(dateString).getTime()/1000;
-                    $scope.disp_date = dateString;
-                    $scope.date = timestamp;
-                    $scope.hours.push($scope.hour);
-                    $scope.dates.push($scope.date);
-                    $scope.disp_dates.push($scope.disp_date);
-                    $scope.colors.push($scope.color);
-                    $scope.color = null;
-                    $scope.hour_counter += parseInt($scope.hour);
-                    $scope.rem_hours -= parseInt($scope.hour);
-                    $scope.hour = null;
-                    $scope.date = '';
-                    $scope.disp_date = null;
-                    $("#error_msg").hide();
+        //var dateString = $('#dateString').val();
+        //var timestamp = Date.parse(dateString).getTime()/1000;
+        //$scope.disp_date = dateString;
+        //$scope.date = timestamp;
+        $scope.hours.push($scope.hour);
+        //$scope.dates.push($scope.date);
+        //$scope.disp_dates.push($scope.disp_date);
+        $scope.colors.push($scope.color);
+        $scope.color = null;
+        $scope.hour_counter += parseInt($scope.hour);
+        $scope.rem_hours -= parseInt($scope.hour);
+        $scope.hour = null;
+        $scope.date = '';
+        $scope.disp_date = null;
+        $("#error_msg").hide();
     };
+
+    function clearList(){
+        $scope.hours = [];
+        $scope.resources = [];
+        $scope.colors = [];
+    }
 
     $scope.removeTodo = function (index) {
       $scope.rem_hours += parseInt($scope.hours[index]);
@@ -182,14 +201,15 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
       $scope.disp_dates.splice(index, 1);
     };
 
-    $scope.allocation['alloc_hours'] = $scope.hours;
-    $scope.allocation['resource_name'] = $scope.resources;
-    $scope.allocation['alloc_date'] = $scope.dates;
-    $scope.allocation['color'] = $scope.colors;
+
+
 
     $scope.ok = function(){
+        $scope.allocation['alloc_hours'] = $scope.hours;
+        $scope.allocation['resource_name'] = $scope.resources;
+        $scope.allocation['color'] = $scope.colors;
         $('#error_msg').hide();
-    	if($scope.allocation['alloc_hours'].length == 0 || $scope.allocation['resource_name'].length == 0 || $scope.allocation['alloc_date'].length == 0)  {
+    	if($scope.allocation['alloc_hours'].length == 0 || $scope.allocation['resource_name'].length == 0)  {
 
     	    $("#error_msg").show().html("Please Add resource information!");
                 $("#resource_err").focus();
@@ -197,28 +217,25 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     	}else if($scope.selected['project_id'].remaining_hours == 0 || $scope.selected['project_id'].remaining_hours == null)    {
             $("#error_msg").show().html($scope.selected['project_id'].name+": has no remaining hours!");
         }else  {
-    	    //console.log($scope.selected['project_id'].key);
+
     	    $scope.allocation['project_id'] = $scope.selected['project_id'].key;
     	    $scope.allocation['name'] = $scope.selected['project_id'].name;
-
-
-    	    $scope.params['key'] = $scope.allocation['project_id'];
-    	    $scope.params['name'] = $scope.selected['project_id'].name;
-    	    $scope.params['billable_hours'] = $scope.selected['project_id'].billable_hours;
-    	    $scope.params['start_date'] = $scope.selected['project_id'].start_date;
-    	    $scope.params['remaining_hours'] = $scope.selected['project_id'].remaining_hours - $scope.allocation['alloc_hours'];
-    	    BarmService.updateProject($scope.params);
     	    BarmService.addAllocation($scope.allocation)
     		.success(function(data, status)   {
     		    $scope.data = data.name+", "+data.total_hours;
-                $("#ok-btn").addClass("btn-disabled").html("<span id='loading' class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> saving...");
-
+                $("#pool-btn").addClass("btn-disabled").html("<i id='loading' class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i> Adding...");
+                clearList();
                     setTimeout(function()   {
-                        $("#ok-btn").removeClass("btn-disabled").html("Saved!");
+                        $("#pool-btn").removeClass("btn-disabled").html("Saved!");
                     }, 1000);
                     setTimeout(function()   {
-                        $modalInstance.dismiss('cancel');
+                        $("#pool-btn").removeClass("btn-disabled").html("<i id='pool-msg' class='fa fa-level-down fa-lg'></i> Add to Pool");
+                        $scope.getResources();
+                        $("#placeholder-resource").show().html("Please Add/Select a resource");
+                        $scope.refreshAllocations($scope.allocation['project_id'].urlsafe);
+                        $scope.showAddPerson();
                     } , 2000);
+
             })
 
     		.error(function(data, status){
