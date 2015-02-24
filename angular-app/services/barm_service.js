@@ -21,6 +21,9 @@ appServices.service('BarmService', function($http){
     findAllocation: function(key){
     return $http.get('/api/allocations/:'+key);
     },
+    findEvent: function(key){
+    return $http.get('/api/allocations/find/:'+key);
+    },
     deleteAllocation: function(key){
     return $http.delete('/api/allocations/:'+key);
     },

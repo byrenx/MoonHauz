@@ -26,6 +26,7 @@ class Allocation(BasicModel):
         item.put()
         return item
     @classmethod
+
     def updateRemaining(self, data, all_hours):
         data.remaining_hours+=all_hours
         data.total_hours+=all_hours

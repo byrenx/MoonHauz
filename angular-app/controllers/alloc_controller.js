@@ -1,4 +1,4 @@
-appControllers.controller('allocateCtrl', function ($scope, $modalInstance, items, BarmService, $sce){
+appControllers.controller('allocateCtrl', function ($scope, $modalInstance, items, BarmService, $sce, $modal){
     $scope.allocate = {}; //model for project
     $scope.data = {}; //return data fron service to be returned
     $scope.allocation = {};
@@ -33,6 +33,7 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
                 $scope.rem_hours = $scope.selected['project_id'].remaining_hours;
             });
     }
+
     $scope.refreshAllocations = function(key){
         $("#placeholder-project").hide();
         BarmService.findAllocation(key)
@@ -242,6 +243,25 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
     		    $("#error_msg").removeClass().addClass("alert alert-danger").html("Add Project Failed!");
     		});
     	}
+
+    }
+    $scope.hoursModal = function(key){
+            $scope.key = key;
+            var modalInstance = $modal.open(  {
+            templateUrl: 'ng/templates/modal/eventModal.html',
+            controller: 'eventCtrl',
+            size: 'lg',
+            resolve: {
+              items: function () {
+                return $scope.key;
+              }
+            }
+        });
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
 
     }
 
