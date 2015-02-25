@@ -45,6 +45,7 @@ appControllers.controller('ModalDemoCtrl', function ($scope, $modal, $log, BarmS
       	    templateUrl: 'ng/templates/modal/allocateModal.html',
       	    controller: 'allocateCtrl',
       	    size: size,
+            backdrop: true,
       	    resolve:{
       	      items: function (){
       		      return $scope.items;

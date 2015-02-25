@@ -5,9 +5,9 @@ import datetime
 
 class Project(BasicModel):
     name = ndb.StringProperty()
-    billable_hours = ndb.IntegerProperty()
+    billable_hours = ndb.FloatProperty()
     start_date = ndb.DateTimeProperty()
-    remaining_hours = ndb.IntegerProperty()
+    remaining_hours = ndb.FloatProperty()
 
     @classmethod
     def list_all(cls):

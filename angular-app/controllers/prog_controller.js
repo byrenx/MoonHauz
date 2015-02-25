@@ -19,6 +19,7 @@ appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 		BarmService.getAllocation()
 		    .success(function(data,status)	{
 				var fordyn = data.items;
+				console.log(data.items);
 				var myDynamic = 0;
 				for (d = 0; d < fordyn.length; d++)	{
 				     myDynamic += fordyn[d].total_hours;
@@ -26,6 +27,7 @@ appControllers.controller('ProgressDemoCtrl', function ($scope, BarmService) {
 				$scope.dynamic = myDynamic;
 		    })
 		    .error(function(data,status)	{
+		    	$scope.dynamic = 0;
 		    })
 
 		$scope.type = 'success';

@@ -126,6 +126,10 @@ body {
           transition: transform 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
 }
 
+.modal-backdrop {
+  bottom: 0;
+}
+
 .form-control[readonly] { cursor: pointer; }
 
 /* Well */

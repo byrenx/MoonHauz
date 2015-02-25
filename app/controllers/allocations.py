@@ -3,6 +3,7 @@ from ferris.components.pagination import Pagination
 from app.models.allocation import Allocation
 from app.models.project import Project
 from app.models.person import Person
+from app.models.event import Event
 from datetime import timedelta
 
 import json
@@ -12,6 +13,7 @@ import logging
 class Allocations(Controller):
     person = Person()
     project = Project()
+    event = Event()
 
     class Meta:
         components = (messages.Messaging, Pagination,)
@@ -92,12 +94,15 @@ class Allocations(Controller):
     @route_with('/api/allocations/:<key>', methods=['DELETE'])
     def api_delete(self, key):
         items = self.util.decode_key(key).get()
+        alloc_id = self.util.decode_key(key)
         retHour = items.total_hours
         retID = items.project_id
         retData = Project.find_by_proj_key(retID)
         print retData
         Project.retHours(retData, retHour)
         items.delete()
+        self.event.delete_by_alloc_id(alloc_id)
+
         return 200
        # self.context['data'] = Allocation.create(params)
 

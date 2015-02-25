@@ -260,13 +260,13 @@ appControllers.controller('allocateCtrl', function ($scope, $modalInstance, item
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
           }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
+            $scope.refreshAllocations($scope.selected['project_id'].key.urlsafe);
           });
 
     }
 
     $scope.cancel = function () {
-	$modalInstance.dismiss('cancel');
+	   $modalInstance.dismiss('cancel');
     };
 
 

@@ -11,6 +11,44 @@ appDirectives.directive('numberOnly', function() {
     };
 });
 
+appDirectives.directive('validNumber', function() {
+      return {
+        require: '?ngModel',
+        link: function(scope, element, attrs, ngModelCtrl) {
+          if(!ngModelCtrl) {
+            return;
+          }
+
+          ngModelCtrl.$parsers.push(function(val) {
+            if (angular.isUndefined(val)) {
+                var val = '';
+            }
+            var clean = val.replace(/[^0-9\.]/g, '');
+            var decimalCheck = clean.split('.');
+
+            if(!angular.isUndefined(decimalCheck[1])) {
+                decimalCheck[1] = decimalCheck[1].slice(0,2);
+                clean =decimalCheck[0] + '.' + decimalCheck[1];
+            }
+
+            if (val !== clean) {
+              ngModelCtrl.$setViewValue(clean);
+              ngModelCtrl.$render();
+            }
+            return clean;
+          });
+
+          element.bind('keypress', function(event) {
+            if(event.keyCode === 32) {
+              event.preventDefault();
+            }
+          });
+        }
+      };
+    });
+
+
+
 appDirectives.directive('numbersLimit', function() {
     return {
         restrict: 'A',
@@ -40,6 +78,38 @@ appDirectives.directive('numbersLimit', function() {
         }
     };
 });
+
+
+appDirectives.directive('numsLimit', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs){
+            element.on('paste blur mouseenter', function(e)  {
+                var timer;
+                var numonly;
+                var sanitized;
+                function updateField() {
+                    window.clearTimeout(timer);
+                    timer = window.setTimeout(function(){
+                        num = element.val().replace(/\D/g,'');
+
+                        if (num.length > 3) { sanitized = num.substr(num.length - 3); element.val(sanitized); }
+                        else{ element.val(num); }
+                    },100);
+                }
+                updateField();
+            });
+
+           element.keypress(function(event){
+               if(element.val().length >= 3){
+                   event.preventDefault();
+               }
+           });
+
+        }
+    };
+});
+
 
 
 // simplified and bubble message added. -ray 09/28
