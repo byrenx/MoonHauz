@@ -8,7 +8,7 @@
     <meta name="author" content="Joeper Serrano, Eric de Felix, Jofel Bayron, Jose L. Pantaleon III">
     <meta name="copyright" content="MoonHauz Real Properties">
 
-	<title>MoonHauz Real Properties</title>
+	<title>Moon Hauz Real Propertiess</title>
 
 	<base href="/"></base>
 
@@ -22,8 +22,6 @@
 
     <!-- Bootstrap -->
     <link href="ng/public/vendor/css/bootstrap.min.css" rel="stylesheet">
-    <!-- materialize css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
     <!-- App -->
     <link href="ng/public/vendor/css/barm.css" rel="stylesheet">
@@ -37,13 +35,14 @@
 
     <!-- Header -->
     <div class="row header">
-        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-            <img class="site-brand" src="ng/public/vendor/img/logo.svg" alt="Cloud Sherpas">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+         <!-- <img class="site-brand" src="ng/public/vendor/img/logo.svg" alt="Cloud Sherpas"> -->
+	 <h3>MoonHauz Real Properties <small>(Admin Page)</small></h3>
         </div>
         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
             <div class="header-buttons pull-right" ng-controller="ModalDemoCtrl">
-                <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i> Add Project</button>
-                <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i> Allocate Resources</button>
+                <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i> Add Property</button>
+                <!-- <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i> Allocate Resources</button> -->
             </div>
         </div>
     </div>
@@ -53,37 +52,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 progress-controls">
 
-            <!-- Progress bar 1
-            <div class="progress-control-container">
-                <div class="progress-control-values">
-                    <i class="fa fa-clock-o fa-2x"></i>
-                    <span class="unit-hours">
-                        <label ng-bind="max"></label>
-                    </span>
-                </div>
-                <div class="progress-control-gauge">
-                    <label>Billable Bank</label>
-                    <progressbar animate="false" value="max/max*100" type="warning"><strong class="push-left unit-hours" ng-bind="max"></strong></progressbar>
-                </div>
-            </div>
-            Progress bar 1 -->
-            <!-- <hr class="align-border"> -->
-            <!-- Progress bar 2 -->
-            <div class="progress-control-container">
-                <div class="progress-control-values">
-                    <i class="fa fa-clock-o fa-2x"></i>
-                    <span class="unit-hours">
-                        <label ng-bind="dynamic"></label>/<label ng-bind="max"></label>
-                    </span>
-                </div>
-                <div class="progress-control-gauge">
-                    <label>Allocated Resources</label>
-                    <progressbar animate="true" value="dynamic/max *100" type="primary"><strong class="push-left unit-percent" ng-bind="dynamic/max * 100 | number:2"></strong></progressbar>
-                </div>
-            </div>
-            <!-- Progress bar 2 -->
-
-        </div>
+          
 
     </div>
     <!-- Progress Bar Controls -->
@@ -91,44 +60,45 @@
     <!-- Main -->
     <div class="row">
 
-        <!-- Resources -->
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidebar">
+        <!-- Property List -->
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
 
             <div class="row">
-                <div class="col-md-6">
-                    <h3>Resources</h3>
+                <div class="col-md-12">
+                    <h3>Property List</h3>
                 </div>
-                <div class="col-md-6">
-                    <div class="checkbox checkbox-danger" click-checkbox>
-                    <input type="checkbox" ng-checked="allteams" ng-model="allteams" ng-click="selectAll()">
-                    <label><strong>Select All</strong></label>
-                    </div>
-                </div>
+                
             </div>
 
-            <div class="pre-scrollable" style="height: 210px;">
-
-                <div class="checkbox checkbox-primary" ng-repeat="team in teams | orderBy:'name':false" click-checkbox>
-                    <input type="checkbox" ng-model="team.isChecked" ng-checked="team.isChecked" ng-click="getResource()">
-                    <label><strong><span ng-bind="team.name" ng-style="{color : team.color}"></span></strong></label>
-                </div>
-            </div><hr>
-            <h3>Projects</h3>
-            <div class="pre-scrollable" style="height: 210px;">
-
-                <div class="checkbox checkbox-primary" ng-repeat="project in projects | orderBy:'name':false" click-checkbox>
-                    <input type="checkbox" ng-model="project.isChecked" ng-checked="project.isChecked" ng-click="getProjects()">
-                    <label><strong><span ng-bind="project.name"></span></strong></label>
-                </div>
-            </div>
 
         </div>
 
         <!-- Resources -->
 
         <!-- Calendar -->
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 calendar-container">
-            <div id="calendar" ng-controller="calendarCtrl"></div>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 calendar-container">
+            <h3> Property Profile </h3>
+	    <div class="row">
+	      <div class="col-md-4"><strong> Location: </strong>
+		<span>Molino Blvd, Bacoor City, Cavite</span>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-4"><strong> Area: </strong>
+		<span>123 SQ M.</span>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-4"><strong> Price: </strong>
+		<span>P 1M</span>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-4"><strong> Description: </strong>
+		<span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+	      </div>
+	    </div>
+
         </div>
         <!-- Calendar -->
 
@@ -171,9 +141,6 @@
 
 <!-- Angular UI / Angular Bootstrap -->
 <script src="ng/public/angular-bootstrap/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
-
-<!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
 <!-- App -->
 <script src="ng/app.js"></script>

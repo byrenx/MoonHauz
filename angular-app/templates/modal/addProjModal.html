@@ -1,28 +1,35 @@
 <div class="modal-header">
-    <h3 class="modal-title">Add a Project</h3>
+    <h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
 </div>
 
 <form>
 <div class="modal-body">
     <div class="row">
-        
-        <div class="col-xs-12"><label>Project Name</label></div>
+        <!-- TODO: We could add a ui-select2 for google places query -->
+        <div class="col-xs-12"><label>Location</label></div>
         <div class="col-xs-12 form-group">
-            <input id="name_err" ng-model="project.name" mandatory type="text" class="input-sm form-control" placeholder="Project Name" ng-required="true">
+            <input id="name_err" ng-model="project.name" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
         </div>
     
-        <div class="col-xs-12"><label>Total Billable Hours</label></div>
+        <div class="col-xs-12"><label>Area</label></div>
         <div class="col-xs-12 form-group">
-            <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Total Billable Hours" ng-required="true">
+            <input id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Area" ng-required="true">
+        </div>
+
+	<div class="col-xs-12"><label>Price</label></div>
+        <div class="col-xs-12 form-group">
+          <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
         </div>
     
-        <div class="col-xs-12"><label> Start Date </label></div>
+	<div class="col-xs-12"><label>Description</label></div>
+        <div class="col-xs-12 form-group">
+            <textarea id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
+        </div>
+
+        <div class="col-xs-12"><label> Additional Documents </label></div>
         <div class="col-xs-5 form-group">
     		<div class="input-group input-group-sm dropdown-menu-datepicker">
-                <input id="dateString" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="project.start_date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" required readonly ng-click="open($event)" />
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-                </span>
+                
     		</div>
         </div>
 
