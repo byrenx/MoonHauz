@@ -5,6 +5,16 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
     $scope.teams = [];
     $scope.projects = [];
     $scope.selector = [];
+    // var mapOptions = {
+    //        zoom: $scope.LOCAL_STORE.zoomLevels.zoom,
+    //        minZoom: $scope.LOCAL_STORE.zoomLevels.minZoom,
+    //        maxZoom: $scope.LOCAL_STORE.zoomLevels.maxZoom,
+    //        center: $scope.LOCAL_STORE.location.dublin_airport,
+    //        disableDefaultUI: true
+    // };
+    //GOOGLE MAP API
+
+
     function SearchString (str,arr) {
         for (var i=0; i<arr.length; i++) {
             if (arr[i] == str){
@@ -17,6 +27,7 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
     $scope.setEvents = function()   {
             $scope.events = [];//clear events model array
             $scope.teams = [];//clear teams/resources model array
+            $scope.map = new google.maps.Map(document.getElementById('map-canvas'));
 
             BarmService.getCalendar()//get events from calendar service
             .success(function(data,status)  {
@@ -254,4 +265,6 @@ appControllers.controller('calendarCtrl', function($scope, BarmService, $modal){
             $scope.projects[i].isChecked = false;
         };
     }
+    google.maps.event.addDomListener(window, 'map-canvas', $scope.setEvents());
+    
 });

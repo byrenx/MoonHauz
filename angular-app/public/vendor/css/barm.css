@@ -294,3 +294,10 @@ body {
     to { transform: scale(1) rotate(360deg);}
 }
 
+#rightColumn {
+	border-radius: 3px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4);
+	padding: 15px 15px 15px 15px;
+}

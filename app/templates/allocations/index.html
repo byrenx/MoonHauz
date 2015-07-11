@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Joeper Serrano, Eric de Felix, Jofel Bayron, Jose L. Pantaleon III">
+    <meta name="author" content="Joeper Serrano, Eric de Felix, Jofel Bayron, Jose Pantaleon III">
     <meta name="copyright" content="MoonHauz Real Properties">
 
 	<title>Moon Hauz Real Propertiess</title>
@@ -44,6 +44,10 @@
                 <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i> Add Property</button>
                 <!-- <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i> Allocate Resources</button> -->
             </div>
+            <div class="header-buttons pull-left">
+              <button class="btn btn-default btn-sm ui-button ui-state-active"><i class="fa fa-info"></i> Information</button>
+              <button class="btn btn-default btn-sm ui-button ui-state-active"><i class="fa fa-phone"></i> Contacts</button>
+            </div>
         </div>
     </div>
     <!-- Header -->
@@ -52,7 +56,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 progress-controls">
 
-          
+
 
     </div>
     <!-- Progress Bar Controls -->
@@ -61,13 +65,13 @@
     <div class="row">
 
         <!-- Property List -->
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
 
             <div class="row">
                 <div class="col-md-12">
                     <h3>Property List</h3>
                 </div>
-                
+
             </div>
 
 
@@ -76,29 +80,39 @@
         <!-- Resources -->
 
         <!-- Calendar -->
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 calendar-container">
-            <h3> Property Profile </h3>
-	    <div class="row">
-	      <div class="col-md-4"><strong> Location: </strong>
-		<span>Molino Blvd, Bacoor City, Cavite</span>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-md-4"><strong> Area: </strong>
-		<span>123 SQ M.</span>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-md-4"><strong> Price: </strong>
-		<span>P 1M</span>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-md-4"><strong> Description: </strong>
-		<span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
-	      </div>
-	    </div>
-
+        <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
+            <h3> Property Profile <a><i class="fa fa-pencil-square-o"></i></a></h3>
+          	    <div class="row">
+          	      <div class="col-md-12"><strong> Location: </strong>
+          		      <span>Molino Blvd, Bacoor City, Cavite</span>
+          	      </div>
+          	    </div>
+          	    <div class="row">
+          	      <div class="col-md-12"><strong> Area: </strong>
+          		        <span>123 SQ M.</span>
+          	      </div>
+          	    </div>
+          	    <div class="row">
+          	      <div class="col-md-12"><strong> Price: </strong>
+          		        <span>P 1M</span>
+          	      </div>
+          	    </div>
+          	    <div class="row">
+          	      <div class="col-md-12"><strong> Description: </strong>
+          		        <span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+          	      </div>
+                  <div class="col-md-12"><strong> Additional Documents: </strong></br>
+          		        <i class="fa fa-file-excel-o"> file.xls</i>
+          		        <i class="fa fa-file-pdf-o"> file.pdf</i>
+          		        <i class="fa fa-file-word-o"> file.doc</i>
+          	      </div>
+          	    </div>
+      </div>
+        <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
+           <h3> Map </h3>
+           <div class="row">
+             <div id="map-canvas" class="col-md-12"></div>
+           </div>
         </div>
         <!-- Calendar -->
 
@@ -141,6 +155,9 @@
 
 <!-- Angular UI / Angular Bootstrap -->
 <script src="ng/public/angular-bootstrap/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+<!-- Google APIs -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+
 
 <!-- App -->
 <script src="ng/app.js"></script>
