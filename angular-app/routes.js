@@ -1,17 +1,24 @@
-appRoutes.config(['$routeProvider',
-		function($routeProvider){
-		    $routeProvider.
-			when('/compose', {
-			    templateUrl: '/ngtemplate/compose.html'
-			}).
-			when('/sentmails', {
-			    templateUrl: '/ngtemplate/sentmails.html',
-			    controller : 'getEmailsController'
-			}).
-			when('/inbox', {
-			    templateUrl: '/ngtemplate/inbox.html',
-			}).
-			otherwise({
-			    redirectTo: '/inbox'
-			});
-		}]);
+(function(angular){
+	angular.module('app')
+		.config(routes);
+
+		routes.$inject = ['$routeProvider', '$locationProvider'];
+
+		function routes(routeProvider, locationProvider){
+			routeProvider
+				.when('/',{
+					templateUrl : 'ng/templates/app-index.html'
+					controller  : '',
+					controllerAs: '',
+				})
+				.when('/admin',{
+					templateUrl : 'ng/templates/admin-index.html'
+					controller  : '',
+					controllerAs: '',
+				})
+				.otherwise(
+						redirectTo: '/index'
+				)
+		}
+
+})(window.angular);

@@ -1,0 +1,165 @@
+<div class="modal-header">
+    <h3 class="modal-title">Allocate Resources</h3>
+</div>
+
+<form name="form" validate>
+
+<!-- Modal Body -->
+<div class=" modal-body">
+
+    <div class="row">
+        <div class="col-xs-3" style="padding-right: 0;">
+            <div class="well well-billable">
+                <div class="form-group">
+                    <label class="btn-block">Total Billable Hours</label>
+                    <span ng-bind-html="selected.project_id.billable_hours"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="btn-block">Remaining Hours</label>
+                    <span ng-bind-html="rem_hours"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="btn-block">Start Date</label>
+                    <span ng-required="true" ng-bind-html="selected.project_id.start_date | date:'medium'"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-9" style="padding-left: 15px;">
+            <div class="form-group">
+                <label>Project Name</label>
+                <select id="ui-select-project" placeholder="please select a project" ng-init="selected.project_id = option[2]" ng-change="ProjectAllocations(selected.project_id.key.urlsafe)" ng-model="selected.project_id" ng-options="item.name for item in projects track by item.key.urlsafe" class="input-sm form-control"></select>
+                <i id="placeholder-project" style="display: none; color : red"></i>
+                <!--- ui select 2 testing -->
+                <!-- <ui-select model="project" theme="bootstrap" ng-disabled="disabled">
+                    <ui-select-match placeholder="Select or search a project in the list"><i ng-bind-html="$select.selected.name"></i></ui-select-match>
+                        <ui-select-choices repeat="project in projects | filter: $select.search">
+                            <span ng-bind-html="project.name | highlight: $select.search"></span>
+                            <small ng-bind-html="project.remaining_hours"></small>
+                        </ui-select-choices>
+                </ui-select> -->
+            </div>
+            <hr>
+            <label>Add Resource Information</label>
+            <div class="row">
+                <div id="div-resource-name" class="col-md-6" style="padding-right: 0;">
+                    <div class="input-group input-group-sm">
+                        <select ng-change="placeholder()" id="person_list" ng-model="selected_person" ng-options="person.name for person in persons track by person.key.urlsafe" class="input-sm form-control"></select>
+                        <input  ng-change="placeholder()" id="resource_err" type="text" mandatory ng-model="resource" class="input-sm form-control" placeholder="Name" style="display:none;">
+                    <span class="input-group-btn">
+                        <button ng-click="showAddPerson()" id="add-person-btn" class="btn btn-default btn-sm btn-block"><i id="user-icon" class="fa fa-user-plus"></i></button>
+                    </span>
+                    </div>
+                    <i id="placeholder-resource" style="display: none; color : red"></i>
+                </div>
+                <div class="col-md-2" style="padding-right: 0;">
+                    <input id="hour_err" type="text" number-only numbers-limit mandatory ng-model="hour" placeholder="Hours" class="input-sm form-control">
+                </div>
+                <!---
+                <div class="col-md-3" style="padding-right: 0;">
+                    <div class="input-group input-group-sm dropdown-menu-datepicker">
+                        <input id="dateString" ng-model="disp_date" datepicker-popup="{{format}}" type="text"  class="form-control" placeholder="Date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" readonly date-disabled="disabled(date, mode)" close-text="Close" ng-click="open($event)">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                -->
+                <div class="col-md-3">
+                    <button id="pool-btn" class="btn btn-warning btn-sm btn-block" ng-click="addTodo()"><i id="pool-msg" class="fa fa-level-down fa-lg"></i> Add to Pool</button>
+                </div>
+
+                <div class="col-xs-12">
+                    <hr>
+                    <table class="table table-condendsed">
+                        <thead>
+                            <tr>
+                                <th width="35%">Resource Name</th>
+                                <th width="25%">Total Hrs.</th>
+                                <th width="20%">Remaining Hrs.</th>
+                                <th width="10%"></th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <!--<tbody>
+                        <tr>
+                            <td>
+                                <div ng-repeat="resource in resources track by $index">
+                                    <span ng-bind-html="resource"></span>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div ng-repeat="hour in hours track by $index">
+                                    <span ng-bind-html="hour"></span> <- comment this
+                                    <input type="text" numbers-limit number-only ng-model="hour" class="input-sm form-control">
+                                </div>
+                            </td>
+
+                            <td>
+                                <div ng-repeat="disp in disp_dates track by $index">
+                                    <span ng-bind-html="disp"></span>
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                            <td width="1%">
+                                <div ng-repeat="hour in hours track by $index">
+                                    <a class="btn btn-danger btn-xs" ng-click="removeTodo($index)" aria-label="Remove">
+                                        <span class="fa fa-times"></span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>-->
+                        <tbody>
+                        <tr ng-repeat="items in selected.project_id.allocations track by $index">
+                            <td>
+                                    <span ng-bind-html="items.resource_name"></span>
+                            </td>
+                            <td>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-6" style="padding-right: 0;">
+                                    <!--<span ng-bind-html="items.alloc_hours"></span>-->
+                                    <input type="text" numbers-limit number-only ng-value="items.total_hours" class="input-sm form-control">
+                                </div>
+                            </td>
+                            <td>
+                                    <span ng-bind-html="items.remaining_hours">
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-xs" ng-click="hoursModal(items.key.urlsafe)">
+                                    <span class="fa fa-clock-o"></span> Allocate Hours
+                                </a>
+                            </td>
+                            <td width="1%">
+                                    <a class="btn btn-danger btn-xs" ng-click="removeResource(items.key.urlsafe, $index, items.total_hours)" aria-label="Remove">
+                                        <span class="fa fa-times"></span>
+                                    </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <span class="alert alert-danger" style="display:none;" id="error_msg"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+<!-- Modal Body -->
+
+<div class="modal-footer">
+    <button class="btn btn-link btn-sm" ng-click="cancel()">Close</button>
+</div>
+</form>
+
+
