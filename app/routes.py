@@ -8,5 +8,6 @@ routing.default_root()
 
 
 # Plugins
+plugins.enable('angular')
 #plugins.enable('settings')
 #plugins.enable('oauth_manager')
