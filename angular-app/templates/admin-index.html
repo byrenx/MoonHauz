@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mailApp" ng-controller="ProgressDemoCtrl">
+<html lang="en" ng-app="admin">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 
     <!-- Fonts -->
     <link href="ng/public/vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet'> -->
 
     <!-- UI -->
     <!-- <link href="ng/public/jquery-ui.custom/jquery-ui.css" rel="stylesheet"> -->
@@ -25,11 +25,12 @@
 
     <!-- App -->
     <link href="ng/public/vendor/css/barm.css" rel="stylesheet">
+    <link href="ng/components/cs-angular-utilities/passive-messenger.css" rel="stylesheet">
     <!-- <link href="ng/public/vendor/css/fullcalendar-bootstrap.css" rel="stylesheet"> -->
 
   </head>
 
-  <body style="min-width: 1100px;" ng-controller="calendarCtrl">
+  <body style="min-width: 1100px;">
 
     <div class="container-fluid">
 
@@ -40,7 +41,7 @@
 	  <h3>MoonHauz Real Properties <small>(Admin Page)</small></h3>
         </div>
         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-          <div class="header-buttons pull-right" ng-controller="ModalDemoCtrl">
+          <div class="header-buttons pull-right">
             <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="openproj('md')" type="button"><i class="fa fa-plus-circle"></i> Add Property</button>
             <!-- <button class="btn btn-primary btn-sm ui-button ui-state-active" ng-click="allocate('lg')" type="button"><i class="fa fa-plus-circle"></i> Allocate Resources</button> -->
           </div>
@@ -149,6 +150,8 @@
       <script src="ng/components/angular/angular-route.js"></script>
       <script src="ng/components/cs-angular-utilities/pubsub.js"></script>
       <script src="ng/components/cs-angular-utilities/modal.js"></script>
+      <script src="ng/components/cs-angular-utilities/passive-messenger.js"></script>
+      <script src="ng/components/cs-angular-utilities/loading.js"></script>
 
       <!-- date js  -->
       <script src="ng/public/vendor/js/date.js"></script>
@@ -162,25 +165,13 @@
       <!-- App -->
       <script src="ng/admin/app.js"></script>
       <script src="ng/admin/routes.js"></script>
-      <script src="ng/directives.js"></script>
-
       <!-- services here -->
-      <script src="ng/services/mail_service.js"></script>
-      <script src="ng/services/barm_service.js"></script>
+
 
       <!-- controllers here-->
-      <script src="ng/controllers/modal_controller.js"></script>
-      <script src="ng/controllers/proj_controller.js"></script>
-      <script src="ng/controllers/alloc_controller.js"></script>
-      <script src="ng/controllers/prog_controller.js"></script>
-      <script src="ng/controllers/resource_controller.js"></script>
-      <script src="ng/controllers/calendar_controller.js"></script>
-      <script src="ng/controllers/task_controller.js"></script>
-      <script src="ng/controllers/event_controller.js"></script>
+
 
       <!-- Directives -->
-      <script src="ng/directives/select2/directive.js"></script>
-      <script src="ng/directives/select.js"></script>
 
 
   </body>

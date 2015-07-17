@@ -10,29 +10,33 @@
     ]);
 
   angular
-    .module('app.services', ['cs.utilities']);
-
-  angular
-    .module('app.controllers', [
-      'app.services',
+    .module('admin.services', [
+      'cs.utilities'
     ]);
 
   angular
-    .module('app.directives', ['cs.utilities']);
+    .module('admin.controllers', [
+      'admin.services',
+    ]);
 
   angular
-    .module('app', [
-      'app.services',
-      'app.directives',
-      'app.controllers',
+    .module('admin.directives', [
+      'cs.utilities'
+    ]);
+
+  angular
+    .module('admin', [
+      'admin.services',
+      'admin.directives',
+      'admin.controllers',
       'ngRoute',
       'ngSanitize',
     ])
-    .run(app);
+    .run(admin);
 
-  app.$inject = ['$log', '$timeout', '$rootScope'];
+  admin.$inject = ['$log', '$timeout', '$rootScope'];
 
-  function app($log, $timeout, $rootScope) {
+  function admin($log, $timeout, $rootScope) {
     $log.info('Angular App Loaded');
     // $timeout(function() { passive_messenger.success('Loaded'); });
     $rootScope.ngLoadingFinished = true;
