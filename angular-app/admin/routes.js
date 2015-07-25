@@ -9,14 +9,14 @@
 
   function routes(routeProvider, locationProvider){
 	   routeProvider
-	     .when('/admin',{
-    		  templateUrl : 'ng/templates/admin-index.html',
-    		  controller  : '',
-    		  controllerAs: '',
+	     .when('/properties',{
+    		  templateUrl : 'ng/templates/admin-manage-properties.html',
+    		  controller  : 'Properties',
+    		  controllerAs: 'property',
 	     })
 	     .otherwise({
-         redirectTo : '/admin',
-       });
+	        redirectTo : '/properties',
+	     });
   }
 
 })(window.angular);

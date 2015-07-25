@@ -47,6 +47,7 @@ angular.module('cs.modal', ['ng']).
 
         scope.modal = {
           show: function(){
+	    console.log($elm);
             $elm.modal('show');
           },
           hide: function(){
