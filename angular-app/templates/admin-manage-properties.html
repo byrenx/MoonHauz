@@ -1,0 +1,105 @@
+
+<!-- Property List -->
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Property List 
+	<small>
+	  <button class="btn btn-link" ng-click="property.modal()">
+	    <i class="fa fa-pencil-square-o"></i>add property
+	  </a>
+	</small>
+      </h3>
+    </div>
+  </div>
+</div>
+
+<!-- Resources -->
+
+<!-- Calendar -->
+<div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
+  <h3> Property Profile <a><i class="fa fa-pencil-square-o"></i></a></h3>
+  <div class="row">
+    <div class="col-md-12"><strong> Location: </strong>
+      <span>Molino Blvd, Bacoor City, Cavite</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><strong> Area: </strong>
+      <span>123 SQ M.</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><strong> Price: </strong>
+      <span>P 1M</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><strong> Description: </strong>
+      <span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+    </div>
+    <div class="col-md-12"><strong> Additional Documents: </strong></br>
+      <i class="fa fa-file-excel-o"> file.xls</i>
+      <i class="fa fa-file-pdf-o"> file.pdf</i>
+      <i class="fa fa-file-word-o"> file.doc</i>
+    </div>
+  </div>
+</div>
+<div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
+  <h3> Map </h3>
+  <div class="row">
+    <div id="map-canvas" class="col-md-12" style="height: 500px;"></div>
+  </div>
+</div>
+<!-- Calendar -->
+
+
+<!--create property modal-->
+<div id="propertyModal" class="modal" x-modal="propertModal">
+  <div class="modal-header">
+    <h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <!-- TODO: We could add a ui-select2 for google places query -->
+      <div class="col-xs-12"><label>Location</label></div>
+      <div class="col-xs-12 form-group">
+        <input id="name_err" ng-model="project.name" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
+      </div>
+
+      <div class="col-xs-12"><label>Area</label></div>
+      <div class="col-xs-12 form-group">
+        <input id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Area" ng-required="true">
+      </div>
+
+      <div class="col-xs-12"><label>Price</label></div>
+      <div class="col-xs-12 form-group">
+        <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      </div>
+
+      <div class="col-xs-12"><label>Description</label></div>
+      <div class="col-xs-12 form-group">
+        <textarea id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
+      </div>
+
+      <div class="col-xs-12"><label> Additional Documents </label></div>
+      <div class="col-xs-5 form-group">
+      	<div class="input-group input-group-sm dropdown-menu-datepicker">
+
+      	</div>
+      </div>
+
+      <span id="error_msg"></span>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button id="ok-btn" class="btn btn-sm btn-primary" ng-click="ok()">Confirm</button>
+    <button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
+  </div>
+
+</div>
+<!--/ end of modal --> 
+
+
