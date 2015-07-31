@@ -6,11 +6,10 @@ from ferris import BasicModel, ndb
 class Property(BasicModel, polymodel.PolyModel):
     name = ndb.StringProperty(required=True, indexed=True)
     location = ndb.StringProperty(required=True, indexed=True)
-    area_in_sqm = ndb.FloatProperty()
     sold = ndb.BooleanProperty(default=False)
     price = ndb.FloatProperty(required=True)
     #profile_image = ndb.BlobKeyProperty(required=False)
-    freatures = ndb.TextProperty(required=False, indexed=False)
+    features = ndb.TextProperty(required=False, indexed=False)
 
 
     @classmethod

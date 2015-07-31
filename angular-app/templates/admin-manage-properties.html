@@ -7,7 +7,7 @@
 	<small>
 	  <button class="btn btn-link" ng-click="property.modal()">
 	    <i class="fa fa-pencil-square-o"></i>add property
-	  </a>
+	  </button>
 	</small>
       </h3>
     </div>
@@ -55,50 +55,66 @@
 
 
 <!--create property modal-->
-<div id="propertyModal" class="modal" x-modal="propertModal">
-  <div class="modal-header">
-    <h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
-  </div>
-
-  <div class="modal-body">
-    <div class="row">
-      <!-- TODO: We could add a ui-select2 for google places query -->
-      <div class="col-xs-12"><label>Location</label></div>
-      <div class="col-xs-12 form-group">
-        <input id="name_err" ng-model="project.name" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
+<div id="propertyModal" class="modal" x-modal="propertModal" ng-controller="PropertyModal as pm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
       </div>
 
-      <div class="col-xs-12"><label>Area</label></div>
-      <div class="col-xs-12 form-group">
-        <input id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Area" ng-required="true">
+      <div class="modal-body">
+	<div class="row">
+	  <!-- TODO: We could add a ui-select2 for google places query -->
+	  <div class="col-xs-12"><label>Type</label></div>
+	  <div class="col-xs-12 form-group">
+            <select id="name_err">
+	      <option ng-repeat="type in pm.types" ng-value="type" ng-bind="type"></option>
+	    </select>
+	  </div>
+
+	  <div class="col-xs-12"><label>Name</label></div>
+	  <div class="col-xs-12 form-group">
+            <input id="name_err" ng-model="property.name" mandatory type="text" class="input-sm form-control" placeholder="Name" ng-required="true">
+	  </div>
+
+	  <div class="col-xs-12"><label>Location</label></div>
+	  <div class="col-xs-12 form-group">
+            <input id="name_err" ng-model="property.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
+	  </div>
+
+	  <div class="col-xs-12"><label>Area</label></div>
+	  <div class="col-xs-12 form-group">
+            <input id="hour_err" ng-model="project.area" mandatory type="text" class="input-sm form-control" placeholder="Area" ng-required="true">
+	  </div>
+
+	  <div class="col-xs-12"><label>Price</label></div>
+	  <div class="col-xs-12 form-group">
+            <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+	  </div>
+
+	  <div class="col-xs-12"><label>Description</label></div>
+	  <div class="col-xs-12 form-group">
+            <textarea id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
+	  </div>
+
+	  <div class="col-xs-12"><label> Additional Documents </label></div>
+	  <div class="col-xs-5 form-group">
+      	    <div class="input-group input-group-sm dropdown-menu-datepicker">
+
+      	    </div>
+	  </div>
+
+	  <span id="error_msg"></span>
+	</div>
       </div>
 
-      <div class="col-xs-12"><label>Price</label></div>
-      <div class="col-xs-12 form-group">
-        <input id="hour_err" ng-model="project.billable_hours" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      <div class="modal-footer">
+	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="ok()">Confirm</button>
+	<button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
       </div>
 
-      <div class="col-xs-12"><label>Description</label></div>
-      <div class="col-xs-12 form-group">
-        <textarea id="hour_err" ng-model="project.billable_hours" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
-      </div>
-
-      <div class="col-xs-12"><label> Additional Documents </label></div>
-      <div class="col-xs-5 form-group">
-      	<div class="input-group input-group-sm dropdown-menu-datepicker">
-
-      	</div>
-      </div>
-
-      <span id="error_msg"></span>
     </div>
   </div>
-
-  <div class="modal-footer">
-    <button id="ok-btn" class="btn btn-sm btn-primary" ng-click="ok()">Confirm</button>
-    <button class="btn btn-sm btn-link" ng-click="cancel()">Cancel</button>
-  </div>
-
 </div>
 <!--/ end of modal --> 
 

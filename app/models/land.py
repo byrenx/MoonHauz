@@ -8,4 +8,4 @@ from app.models.property import Property
 class Land(Property):
     # RESIDENTIAL ,COMMERCIAL, AGRICULTURE
     type = ndb.StringProperty(required=True)
-
+    land_area = ndb.FloatProperty()
