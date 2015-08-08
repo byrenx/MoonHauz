@@ -26,7 +26,7 @@ class Property(BasicModel, polymodel.PolyModel):
     #profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
 
-    
+
     @classmethod
     def create(cls, params):
         item = cls(**params)
@@ -59,6 +59,7 @@ class Property(BasicModel, polymodel.PolyModel):
         return cls.query(cls.sold == False)
 
     '''messages configs'''
+
     @classmethod
     def message_props(cls, only=None, exclude=None, converters=None):
         props = cls._properties
@@ -92,6 +93,4 @@ class Property(BasicModel, polymodel.PolyModel):
     @staticmethod
     def car_message(entity, message):
         ret = messages.to_message(entity, message)
-        return ret    
-
-    
+        return ret
