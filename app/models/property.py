@@ -25,6 +25,8 @@ class Property(BasicModel, polymodel.PolyModel):
     transaction_type = ndb.IntegerProperty(required=True)
     #profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
+    images = ndb.BlobKeyProperty(repeated=True, required=False)
+    documents = ndb.BlobKeyProperty(repeated=True, required=False)
 
 
     @classmethod
