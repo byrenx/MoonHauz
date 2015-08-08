@@ -5,14 +5,21 @@
      .controller('Properties', properties);
 
     properties.$inject = [
-	'pubsub',
-	'Property',
+	    'pubsub',
+	    'Property',
     ];
 
     function properties(pubsub, Property){
 
       this.modal = modal;
       this.types = Property.types;
+      this.land_types = Property.land_types;
+      this.list = Property.list;
+
+      activate();
+
+      function activate(){
+      }
 
       function modal(){
         pubsub.publish('modal:propertModal:show');

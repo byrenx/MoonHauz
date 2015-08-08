@@ -33,7 +33,7 @@ class Properties(MoonHauzController):
     def api_create_house_and_lot(self):
         self.meta.Model = HouseAndLot
         h_and_l = HouseAndLot.create(json_loads(self.request.body, self.meta.keys))
-        self.context['data'] = l
+        self.context['data'] = h_and_l
 
     @route_with("/api/property/condo_unit/create", methods=['POST'])
     def api_create_condo_unit(self):
