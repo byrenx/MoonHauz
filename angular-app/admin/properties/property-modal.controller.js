@@ -20,7 +20,7 @@
       this.model = Property;
 
       function save(){
-        Property.create();
+        Property.create(scope);
       }
 
       function cancel(){

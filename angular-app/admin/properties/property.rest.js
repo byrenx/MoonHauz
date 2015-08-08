@@ -20,7 +20,7 @@
          return http.post(base_url + '/house_and_lot/create', params);
        }
 
-       this.create_condo_unit = function(params){
+       this.create_condo = function(params){
          return http.post(base_url + '/condo_unit/create', params);
        }
 

@@ -35,9 +35,73 @@
       };
 
       /*static function*/
-      function create(){
-        console.log(Property.entity);
+      function create(scope){
+        var type = Property.entity.type;
+        delete Property.entity.type;
+        switch(type){
+          case 'Land':
+            create_land(Property.entity, scope);
+            break;
+          case 'House and Lot':
+            create_house_and_lot(Property.entity, scope);
+            break;
+          case 'Condo':
+            create_condo(Property.entity, scope);
+            break;
+          case 'Apartment':
+            create_apartment(Property.entity, scope);
+            break;
+        }
       }
+
+      function create_land(params, scope){
+        var call = PropertyREST.create_land(params);
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.entity = {};
+            scope.callback(d);
+          }).
+          error(function(d){
+
+          });
+      }
+
+      function create_house_and_lot(params, scope){
+        var call = PropertyREST.create_house_and_lot(params);
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.entity = {};
+            scope.callback(d);
+          }).
+          error(function(d){
+
+          });
+      }
+
+      function create_condo(params, scope){
+        var call = PropertyREST.create_condo(params);
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.entity = {};
+            scope.callback(d);
+          }).
+          error(function(d){
+
+          });
+      }
+
+      function create_apartment(params, scope){
+        var call = PropertyREST.create_apartment(params);
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.entity = {};
+            scope.callback(d);
+          }).
+          error(function(d){
+
+          });
+      }
+
       /*end of static function*/
 
       function setData(data) {
