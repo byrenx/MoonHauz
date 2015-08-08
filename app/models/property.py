@@ -92,4 +92,6 @@ class Property(BasicModel, polymodel.PolyModel):
     @staticmethod
     def car_message(entity, message):
         ret = messages.to_message(entity, message)
-        return ret
+        return ret    
+
+    

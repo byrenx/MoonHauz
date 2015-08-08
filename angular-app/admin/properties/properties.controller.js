@@ -10,14 +10,18 @@
     ];
 
     function properties(pubsub, Property){
-	
+
       this.modal = modal;
       this.types = Property.types;
 
       function modal(){
         pubsub.publish('modal:propertModal:show');
       }
-	
+
+      function cancel(){
+        pubsub.publish('modal:propertModal:cancel');
+      }
+
     }
 
 })(window.angular);
