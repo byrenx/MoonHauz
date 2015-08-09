@@ -32,6 +32,7 @@ class Property(BasicModel, polymodel.PolyModel):
 
     @classmethod
     def create(cls, params):
+        params['geo_point'] = ndb.GeoPt(params['geo_point'])
         item = cls(**params)
         item.put()
         return item

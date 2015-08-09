@@ -17,6 +17,7 @@ var GoogleMap = (function(){
   Map.setMarker = setMarker;
   Map.initPlacesSearchbox = initPlacesSearchbox;
   Map.location_searched = null;
+  Map.location_address = '';
   Map.marker = null;
   
   
@@ -39,6 +40,7 @@ var GoogleMap = (function(){
   	google.maps.event.addListener(Map.search_box, 'place_changed', function() {
 		var place = Map.search_box.getPlace();
 		Map.location_searched = place.geometry.location;
+		Map.location_address = place.formatted_address;
     });
   }
 

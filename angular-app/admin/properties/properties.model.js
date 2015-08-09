@@ -37,6 +37,8 @@
       /*static function*/
       function create(scope){
         var type = Property.entity.type;
+        Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lat();
+        Property.entity['location'] = GoogleMap.location_address;
         delete Property.entity.type;
         switch(type){
           case 'Land':
@@ -60,6 +62,7 @@
           .success(function(d){
             Property.entity = {};
             scope.callback(d);
+            passive_messenger.info('New Land Property is successfully added!');
           }).
           error(function(d){
 
@@ -72,6 +75,7 @@
           .success(function(d){
             Property.entity = {};
             scope.callback(d);
+            passive_messenger.info('New House and Lot Property is successfully added!');
           }).
           error(function(d){
 
@@ -84,6 +88,7 @@
           .success(function(d){
             Property.entity = {};
             scope.callback(d);
+            passive_messenger.info('New Condo is successfully added!');
           }).
           error(function(d){
 
@@ -96,6 +101,7 @@
           .success(function(d){
             Property.entity = {};
             scope.callback(d);
+            passive_messenger.info('New Apartment is successfully added!');
           }).
           error(function(d){
 

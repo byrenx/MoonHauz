@@ -32,8 +32,7 @@
       }
 
       function save(){
-        //Property.create(scope);
-        console.log(GoogleMap.location_searched.lat(), GoogleMap.location_searched.lng());
+        Property.create(scope);
       }
 
       function cancel(){
