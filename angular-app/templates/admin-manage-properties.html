@@ -13,7 +13,7 @@
     </div>
 
     <table>
-        <tr ng-repeat="item in property.list">
+      <tr ng-repeat="item in property.list">
     </table>
   </div>
 </div>
@@ -103,9 +103,9 @@
       <input id="name" ng-model="pm.entity.name" mandatory type="text" class="input-sm form-control" placeholder="Name" ng-required="true">
 	  </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.entity.type">
+	  <div class="col-xs-12 form-group" ng-if="pm.entity.type" style="z-index: 1051;">
       <label for="location">Location</label>
-      <input id="location" ng-model="pm.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
+      <input id="location" ng-model="pm.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true" ng-init="pm.setLocationSearch(this)" >
 	  </div>
 
     <!--Land  and House and Lot Property field-->
@@ -151,10 +151,10 @@
 	</div>
       </div>
 
-      <div class="modal-footer">
-	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Confirm</button>
-	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
-      </div>
+    <div class="modal-footer">
+    	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Confirm</button>
+    	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
+    </div>
 
     </div>
   </div>

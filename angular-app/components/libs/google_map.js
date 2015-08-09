@@ -9,10 +9,16 @@ var GoogleMap = (function(){
 
   }
 
-  Map.initialize = initialize;
   Map.map = null;
   Map.default_option = {zoom: 13};
+  Map.search_box = null;
 
+  Map.initialize = initialize;
+  Map.setMarker = setMarker;
+  Map.initPlacesSearchbox = initPlacesSearchbox;
+  Map.location_searched = null;
+  Map.marker = null;
+  
   
   function initialize($canvas, $map_options, $center){
   	var position = new google.maps.LatLng($center.x, $center.y);
@@ -24,8 +30,16 @@ var GoogleMap = (function(){
   }
 
   function setMarker(position){
-    var marker = new google.maps.Marker({position: position, map: Map.map});
+    Map.marker = new google.maps.Marker({position: position, map: Map.map});
   	Map.map.panTo(position);
+  }
+
+  function initPlacesSearchbox(search_input){
+  	Map.search_box = new google.maps.places.Autocomplete(search_input);
+  	google.maps.event.addListener(Map.search_box, 'place_changed', function() {
+		var place = Map.search_box.getPlace();
+		Map.location_searched = place.geometry.location;
+    });
   }
 
   return Map;

@@ -7,7 +7,7 @@
     propertyModal.$inject = [
 	    'pubsub',
 	    'Property',
-      '$scope'
+      '$scope',
     ];
 
     function propertyModal(pubsub, Property, scope){
@@ -18,9 +18,22 @@
       this.save = save;
       this.cancel = cancel;
       this.model = Property;
+      this.setLocationSearch = setLocationSearch;
+
+      init();
+
+      function init(){
+
+      }
+
+      function setLocationSearch(elm){
+        $('.pac-container').css('z-index', 1052);
+        GoogleMap.initPlacesSearchbox(document.getElementById('location'));
+      }
 
       function save(){
-        Property.create(scope);
+        //Property.create(scope);
+        console.log(GoogleMap.location_searched.lat(), GoogleMap.location_searched.lng());
       }
 
       function cancel(){

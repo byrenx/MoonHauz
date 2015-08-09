@@ -14,7 +14,6 @@
 
     <!-- Fonts -->
     <link href="ng/public/vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet'> -->
 
     <!-- UI -->
     <!-- <link href="ng/public/jquery-ui.custom/jquery-ui.css" rel="stylesheet"> -->
@@ -27,7 +26,16 @@
     <link href="ng/public/vendor/css/barm.css" rel="stylesheet">
     <link href="ng/components/cs-angular-utilities/passive-messenger.css" rel="stylesheet">
     <!-- <link href="ng/public/vendor/css/fullcalendar-bootstrap.css" rel="stylesheet"> -->
-
+    <style type="text/css">
+      /*enabling searchbox in modal*/
+      .pac-container{
+        background-color: #FFF;
+        z-index: 1051;
+        position: fixed;
+        display: inline-block;
+        float: left;
+      }
+    </style>
   </head>
 
   <body>
@@ -91,7 +99,7 @@
       <!-- Angular UI / Angular Bootstrap -->
       <script src="ng/public/angular-bootstrap/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
       <!-- Google APIs -->
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB9kZ-cv8SKOrVK19N-hqOkgYDUWkeuFZs"></script>
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB9kZ-cv8SKOrVK19N-hqOkgYDUWkeuFZs&libraries=places"></script>
       <script type="text/javascript" src="ng/components/libs/google_map.js"></script>>
 
 
