@@ -23,14 +23,14 @@ var GoogleMap = (function(){
   
   function initialize($canvas, $map_options, $center){
   	var position = new google.maps.LatLng($center.x, $center.y);
-
     Map.map = new google.maps.Map($canvas, ($map_options !== null? $map_options: Map.default_option));
     Map.map.setCenter(position);
     //set Marker
-    Map.setMarker(position);
+    Map.setMarker($center.x, $center.y);
   }
 
-  function setMarker(position){
+  function setMarker(x, y){
+  	var position = new google.maps.LatLng(x, y);
     Map.marker = new google.maps.Marker({position: position, map: Map.map});
   	Map.map.panTo(position);
   }

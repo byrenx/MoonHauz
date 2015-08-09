@@ -25,8 +25,10 @@
       Property.loading = loading.new();
       Property.entity = {};
       Property.list = [];
+      Property.info = {};
 
       Property.create = create;
+      Property.list_all = list_all;
 
       Property.prototype = {
         setData: setData,
@@ -34,7 +36,18 @@
         isBusy: isBusy,
       };
 
+
       /*static function*/
+      function list_all(){
+        var call = PropertyREST.list_all();
+        Property.loading.watch(call)
+          .success(function(d){
+            console.log(d);
+            Property.list.push.apply(Property.list, d.items || []);
+          });
+      }
+
+
       function create(scope){
         var type = Property.entity.type;
         Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lat();
@@ -109,6 +122,10 @@
       }
 
       /*end of static function*/
+
+      /**
+        *@desc prototype functions
+      */
 
       function setData(data) {
         angular.extend(this, data);

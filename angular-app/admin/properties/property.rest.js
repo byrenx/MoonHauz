@@ -12,6 +12,10 @@
     function propertyREST(http){
        var base_url = '/api/property';
 
+       this.list_all = function(){
+        return http.get('/api/properties');
+       }
+
        this.create_land = function(params){
          return http.post(base_url + '/land/create', params);
        }
