@@ -27,7 +27,7 @@
 
       function show_info(property_info){
         this.info = property_info;
-        GoogleMap.setMarker(this.info.geo_point.lon, this.info.geo_point.lat);
+        GoogleMap.setMarker(this.info.geo_point.lat, this.info.geo_point.lon);
       }
 
       function modal(){

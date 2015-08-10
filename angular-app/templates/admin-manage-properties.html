@@ -2,13 +2,21 @@
 <!-- Property List -->
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
   <div class="row">
+    <div class="col-md-12 form-inline">
+      <button class="btn btn-success btn-sm" ng-click="property.modal()">
+        <i class="fa fa-plus"></i>&nbsp;property
+      </button>
+      <div class="form-group has-feedback pull-right">
+       <input type="text" class="form-control input-sm">
+       <i class="fa fa-search form-control-feedback"></i>
+      </div>
+    </div>
     <div class="col-md-12">
+     
       <h3>Property List
       	<small>
-      	  <button class="btn btn-link" ng-click="property.modal()">
-      	    <i class="fa fa-pencil-square-o"></i>add property
-      	  </button>
-      	</small>
+      	 
+      	</small> 
       </h3>
 
       <table class="table table-condensed table-hover">
