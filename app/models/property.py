@@ -21,14 +21,18 @@ class Property(BasicModel, polymodel.PolyModel):
     location = ndb.StringProperty(required=True, indexed=True)
     sold = ndb.BooleanProperty(default=False)
     price = ndb.FloatProperty(required=True)
-    # 1- SALE, 0 - RENT
-    transaction_type = ndb.IntegerProperty(required=True)
+    # SALE, RENT
+    transaction_type = ndb.StringProperty(required=True)
     #profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
+    geo_point = ndb.GeoPtProperty(required=False)
+    images = ndb.BlobKeyProperty(repeated=True, required=False)
+    documents = ndb.BlobKeyProperty(repeated=True, required=False)
 
 
     @classmethod
     def create(cls, params):
+        params['geo_point'] = ndb.GeoPt(params['geo_point'])
         item = cls(**params)
         item.put()
         return item

@@ -1,20 +1,33 @@
 
 <!-- Property List -->
-<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar">
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
   <div class="row">
-    <div class="col-md-12">
-      <h3>Property List
-	<small>
-	  <button class="btn btn-link" ng-click="property.modal()">
-	    <i class="fa fa-pencil-square-o"></i>add property
-	  </button>
-	</small>
-      </h3>
+    <div class="col-md-12 form-inline">
+      <button class="btn btn-success btn-sm" ng-click="property.modal()">
+        <i class="fa fa-plus"></i>&nbsp;property
+      </button>
+      <div class="form-group has-feedback pull-right">
+       <input type="text" class="form-control input-sm">
+       <i class="fa fa-search form-control-feedback"></i>
+      </div>
     </div>
+    <div class="col-md-12">
+     
+      <h3>Property List
+      	<small>
+      	 
+      	</small> 
+      </h3>
 
-    <table>
-        <tr ng-repeat="item in property.list">
-    </table>
+      <table class="table table-condensed table-hover">
+        <tr ng-repeat="item in property.list" ng-click="property.show_info(item)">
+          <td>
+            <span ng-bind="item.name"></span>
+            <span ng-bind="item.location"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 
@@ -22,10 +35,13 @@
 
 <!-- Calendar -->
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
-  <h3> Property Profile <a><i class="fa fa-pencil-square-o"></i></a></h3>
+  <div class="pull-right">
+    <button class="btn btn-link btn-sm"><i class="fa fa-pencil-square-o"></i>Edit Profile</button>
+  </div>
+  <h3> Property Profile</h3>
   <div class="row">
     <div class="col-md-12"><strong> Location: </strong>
-      <span>Molino Blvd, Bacoor City, Cavite</span>
+      <span ng-bind="property.info.location"></span>
     </div>
   </div>
   <div class="row">
@@ -35,12 +51,12 @@
   </div>
   <div class="row">
     <div class="col-md-12"><strong> Price: </strong>
-      <span>P 1M</span>
+      <span ng-bind="property.info.price"></span>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12"><strong> Description: </strong>
-      <span> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+    <div class="col-md-12"><strong> Other Features: </strong>
+      <span ng-bind="property.info.features"></span>
     </div>
     <div class="col-md-12"><strong> Additional Documents: </strong></br>
       <i class="fa fa-file-excel-o"> file.xls</i>
@@ -51,8 +67,8 @@
 </div>
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
   <h3> Map </h3>
-  <div class="row">
-    <div id="map-canvas" class="col-md-12" style="height: 500px;"></div>
+  <div class="col-sm-12">
+    <div id="map-canvas" class="col-md-12" style="height: 450px;"></div>
   </div>
 </div>
 <!-- Calendar -->
@@ -63,13 +79,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	<h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
+	       <h3 class="modal-title">Property <small>(Property Profile)</small></h3>
       </div>
 
       <div class="modal-body">
 	<div class="row">
 	  <!-- TODO: We could add a ui-select2 for google places query -->
-
 	  <div class="col-xs-12 form-group">
       <label for="type">Select Property Type</label>
       <select id="type" ng-model="pm.entity.type" class="input-sm form-control">
@@ -77,6 +92,21 @@
 	    </select>
 	  </div>
 
+    <div class="col-xs-12 form-group form-inline" ng-if="pm.entity.type">
+      <div class="radio">
+        <label>
+          <input type="radio" value="SALE" ng-model="pm.entity.transaction_type">
+          For Sale
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" value="RENT" ng-model="pm.entity.transaction_type">
+          For Rent
+        </label>
+      </div>
+    </div>
+    <div class="divider"></div>
     <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'Land'">
       <label for="land_types">Land Types</label>
       <select id="land_types" ng-model="pm.entity.land_type" class="input-sm form-control">
@@ -89,44 +119,44 @@
       <input id="name" ng-model="pm.entity.name" mandatory type="text" class="input-sm form-control" placeholder="Name" ng-required="true">
 	  </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.entity.type">
+	  <div class="col-xs-12 form-group" ng-if="pm.entity.type" style="z-index: 1051;">
       <label for="location">Location</label>
-      <input id="location" ng-model="pm.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true">
+      <input id="location" ng-model="pm.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true" ng-init="pm.setLocationSearch(this)" >
 	  </div>
 
     <!--Land  and House and Lot Property field-->
 	  <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'Land' || pm.entity.type == 'House and Lot'">
       <label for="land_area">Land Area</label>
-      <input id="land_area" ng-model="pm.entity.area" mandatory type="text" class="input-sm form-control" placeholder="Area" ng-required="true">
+      <input id="land_area" ng-model="pm.entity.land_area" mandatory type="number" class="input-sm form-control" placeholder="Area" ng-required="true">
 	  </div>
 
 	  <div class="col-xs-12 form-group" ng-if="pm.entity.type">
         <label for="price">Price</label>
-        <input id="price" ng-model="pm.entity.price" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+        <input id="price" ng-model="pm.entity.price" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
 	  </div>
     <!--/end Land  and House and Lot Property field-->
 
     <!--Condo property fields-->
     <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'Condo'">
       <label for="capacity">Capacity</label>
-      <input id="capacity" ng-model="pm.entity.capacity" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      <input id="capacity" ng-model="pm.entity.capacity" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
     </div>
     <!--/end of condo property fields-->
 
     <!-- house and lot proerties-->
-    <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'House and Lot' || pm.entity.type == 'Condo'">
+    <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'House and Lot'">
       <label for="floors">No. of Floors</label>
-      <input id="floors" ng-model="pm.entity.floors" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      <input id="floors" ng-model="pm.entity.floors" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
     </div>
 
-    <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'House and Lot'">
+    <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'House and Lot' || pm.entity.type == 'Condo'">
       <label for="floor_area">Floor Area</label>
-      <input id="hour_err" ng-model="pm.entity.floor_area" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      <input id="hour_err" ng-model="pm.entity.floor_area" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
     </div>
 
     <div class="col-xs-12 form-group" ng-if="pm.entity.type == 'House and Lot'">
-      <label for="bedrooms">Bedrooms</label>
-      <input id="bedrooms" ng-model="pm.entity.bedrooms" mandatory numbers-limit number-only type="text" class="input-sm form-control" placeholder="Price" ng-required="true">
+      <label for="bedrooms">No. Bedrooms</label>
+      <input id="bedrooms" ng-model="pm.entity.bedrooms" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
     </div>
     <!--/end of house and lot proerty fields-->
 	  <div class="col-xs-12 form-group" ng-if="pm.entity.type">
@@ -137,10 +167,10 @@
 	</div>
       </div>
 
-      <div class="modal-footer">
-	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Confirm</button>
-	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
-      </div>
+    <div class="modal-footer">
+    	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Save</button>
+    	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
+    </div>
 
     </div>
   </div>
