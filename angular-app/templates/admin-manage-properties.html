@@ -34,8 +34,11 @@
 <!-- Resources -->
 
 <!-- Calendar -->
-<div id="rightColumn" class="col-xs-5 col-sm-5 col-md-5 col-lg-5 calendar-container">
-  <h3> Property Profile <a><i class="fa fa-pencil-square-o"></i></a></h3>
+<div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
+  <div class="pull-right">
+    <button class="btn btn-link btn-sm"><i class="fa fa-pencil-square-o"></i>Edit Profile</button>
+  </div>
+  <h3> Property Profile</h3>
   <div class="row">
     <div class="col-md-12"><strong> Location: </strong>
       <span ng-bind="property.info.location"></span>
@@ -62,10 +65,10 @@
     </div>
   </div>
 </div>
-<div id="rightColumn" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 calendar-container">
+<div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
   <h3> Map </h3>
-  <div class="row">
-    <div id="map-canvas" class="col-md-12" style="height: 500px;"></div>
+  <div class="col-sm-12">
+    <div id="map-canvas" class="col-md-12" style="height: 450px;"></div>
   </div>
 </div>
 <!-- Calendar -->
@@ -76,7 +79,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	<h3 class="modal-title">Add a Property <small>(Property Profile)</small></h3>
+	       <h3 class="modal-title">Property <small>(Property Profile)</small></h3>
       </div>
 
       <div class="modal-body">
@@ -165,7 +168,7 @@
       </div>
 
     <div class="modal-footer">
-    	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Confirm</button>
+    	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.entity.type === undefined">Save</button>
     	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
     </div>
 

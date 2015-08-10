@@ -21,7 +21,7 @@
       }
 
       Property.types = ["Land", "House and Lot", "Condo", "Apartment"];
-      Property.land_types = ["COMMERCIAL", "AGRICULTURE", "RESIDENTIAL"];
+      Property.land_types = ["INDUSTRIAL", "COMMERCIAL", "AGRICULTURE", "RESIDENTIAL", "RESORT"];
       Property.loading = loading.new();
       Property.entity = {};
       Property.list = [];
