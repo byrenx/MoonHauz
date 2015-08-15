@@ -44,7 +44,12 @@ class Property(BasicModel, polymodel.PolyModel):
 
     @classmethod
     def list_all(cls):
-        return cls.query()
+        properties = [cls.buildProperty(p) for p in cls.query().fetch()]
+        return PropertiesMessage(properties = properties)
+        
+    @classmethod
+    def buildProperty(cls, property):
+        return PropertyMessage(type =  property._class_name())
 
     @classmethod
     def list_by_for_sale(cls):
@@ -98,3 +103,9 @@ class Property(BasicModel, polymodel.PolyModel):
     def car_message(entity, message):
         ret = messages.to_message(entity, message)
         return ret
+
+class PropertyMessage(messages.Message):
+    type = messages.StringField(1)
+
+class PropertiesMessage(messages.Message):
+    properties = messages.MessageField(PropertyMessage, 1, repeated=True)

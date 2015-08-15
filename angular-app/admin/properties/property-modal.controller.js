@@ -11,7 +11,7 @@
     ];
 
     function propertyModal(pubsub, Property, scope){
-  
+
       this.types = Property.types;
       this.land_types = Property.land_types;
       this.entity = Property.entity;
@@ -23,7 +23,7 @@
       init();
 
       function init(){
-
+        this.entity = Property.entity;
       }
 
       function setLocationSearch(elm){

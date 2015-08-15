@@ -20,7 +20,6 @@ class Properties(MoonHauzController):
 
     @route_with("/api/properties", methods=['GET'])
     def api_list_all(self):
-        self.meta.Message = messages.model_message(Property)
         self.context['data'] = Property.list_all()
 
     @route_with("/api/property/land/create", methods=['POST'])
@@ -52,3 +51,5 @@ class Properties(MoonHauzController):
     def api_get_property(self, property_key):
         property = self.util.decode_key(property_key)
         self.context['data'] = property
+
+
