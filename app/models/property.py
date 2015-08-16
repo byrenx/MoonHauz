@@ -57,7 +57,9 @@ class Property(BasicModel, polymodel.PolyModel):
                                features = property.features,
                                transaction_type = property.transaction_type,
                                sold = property.sold,
-                               geo_point = GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon)
+                               geo_point = GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon),
+                               land_area = property.land_area if property._class_name() == 'Land' else None,
+                               land_type = property.land_type if property._class_name() == 'Land' else None
                            )
 
     @classmethod
@@ -129,6 +131,8 @@ class PropertyMessage(messages.Message):
     transaction_type = messages.StringField(7)
     sold = messages.BooleanField(8)
     geo_point = messages.MessageField(GeoPtMessage, 9)
+    land_area = messages.FloatField(10)
+    land_type = messages.StringField(11)
 
 
 

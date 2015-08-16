@@ -31,8 +31,8 @@
       Property.list_all = list_all;
 
       Property.prototype = {
-        setData: setData,
         destroy: destroy,
+        setData: setData,
         isBusy: isBusy,
       };
 
@@ -42,8 +42,8 @@
         var call = PropertyREST.list_all();
         Property.loading.watch(call)
           .success(function(d){
-            console.log(d);
-            Property.list.push.apply(Property.list, d.items || []);
+            Property.list.push.apply(Property.list, d.properties || []);
+            console.log(Property.list);
           });
       }
 

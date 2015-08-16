@@ -37,6 +37,7 @@
 
       function editModal(){
         Property.entity = this.info;
+        console.log(Property.entity);
         pubsub.publish('modal:propertModal:show');
       }
 

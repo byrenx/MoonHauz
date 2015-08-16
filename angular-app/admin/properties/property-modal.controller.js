@@ -20,12 +20,6 @@
       this.model = Property;
       this.setLocationSearch = setLocationSearch;
 
-      init();
-
-      function init(){
-        this.entity = Property.entity;
-      }
-
       function setLocationSearch(elm){
         $('.pac-container').css('z-index', 1052);
         GoogleMap.initPlacesSearchbox(document.getElementById('location'));
