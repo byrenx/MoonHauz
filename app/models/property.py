@@ -49,7 +49,7 @@ class Property(BasicModel, polymodel.PolyModel):
         
     @classmethod
     def buildProperty(cls, property):
-        return PropertyMessage(type =  property._class_name(),
+        return PropertyMessage(type =  cls.identify_type(property._class_name()),
                                key = property.key.urlsafe(),
                                name = property.name,
                                location = property.location,
@@ -58,9 +58,21 @@ class Property(BasicModel, polymodel.PolyModel):
                                transaction_type = property.transaction_type,
                                sold = property.sold,
                                geo_point = GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon),
-                               land_area = property.land_area if property._class_name() == 'Land' else None,
-                               land_type = property.land_type if property._class_name() == 'Land' else None
+                               land_area = property.land_area if property._class_name() == 'Land' or property._class_name() == 'HouseAndLot' else None,
+                               land_type = property.land_type if property._class_name() == 'Land' else None,
+                               floors = property.floors if property._class_name() == 'HouseAndLot' else None,
+                               bedrooms = property.bedrooms if property._class_name() == 'HouseAndLot' else None,
+                               floor_area = property.floor_area if property._class_name() == 'HouseAndLot' else None                               
                            )
+
+    @classmethod
+    def identify_type(cls, type):
+        if type == 'Land':
+            return 'Land'
+        elif type == 'HouseAndLot':
+            return 'House and Lot'
+        elif type == 'CondoUnit':
+            return 'Condo'
 
     @classmethod
     def list_by_for_sale(cls):
@@ -133,6 +145,9 @@ class PropertyMessage(messages.Message):
     geo_point = messages.MessageField(GeoPtMessage, 9)
     land_area = messages.FloatField(10)
     land_type = messages.StringField(11)
+    floors = messages.IntegerField(12)
+    bedrooms = messages.IntegerField(13)
+    floor_area = messages.FloatField(14)
 
 
 

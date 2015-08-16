@@ -27,17 +27,17 @@
       }
 
       function show_info(property_info){
+        Property.entity = property_info;
         this.info = property_info;
         GoogleMap.setMarker(this.info.geo_point.lat, this.info.geo_point.lon);
       }
 
       function modal(){
+        Property.entity = {};
         pubsub.publish('modal:propertModal:show');
       }
 
       function editModal(){
-        Property.entity = this.info;
-        console.log(Property.entity);
         pubsub.publish('modal:propertModal:show');
       }
 

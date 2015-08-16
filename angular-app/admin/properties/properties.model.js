@@ -20,7 +20,7 @@
         }
       }
 
-      Property.types = ["Land", "House and Lot", "Condo", "Apartment"];
+      Property.types = ["Land", "House and Lot", "Condo"];
       Property.land_types = ["INDUSTRIAL", "COMMERCIAL", "AGRICULTURE", "RESIDENTIAL", "RESORT"];
       Property.loading = loading.new();
       Property.entity = {};
@@ -75,7 +75,8 @@
           .success(function(d){
             Property.entity = {};
             scope.callback(d);
-            passive_messenger.info('New Land Property is successfully added!');
+            passive_messenger.info('New Land Property is successfully added!' );
+            window.location.reload();
           }).
           error(function(d){
 
@@ -89,6 +90,7 @@
             Property.entity = {};
             scope.callback(d);
             passive_messenger.info('New House and Lot Property is successfully added!');
+            window.location.reload();
           }).
           error(function(d){
 
@@ -102,6 +104,7 @@
             Property.entity = {};
             scope.callback(d);
             passive_messenger.info('New Condo is successfully added!');
+            window.location.reload();
           }).
           error(function(d){
 
@@ -115,6 +118,7 @@
             Property.entity = {};
             scope.callback(d);
             passive_messenger.info('New Apartment is successfully added!');
+            window.location.reload();
           }).
           error(function(d){
 
