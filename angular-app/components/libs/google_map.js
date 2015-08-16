@@ -19,8 +19,8 @@ var GoogleMap = (function(){
   Map.location_searched = null;
   Map.location_address = '';
   Map.marker = null;
-  
-  
+
+
   function initialize($canvas, $map_options, $center){
   	var position = new google.maps.LatLng($center.x, $center.y);
     Map.map = new google.maps.Map($canvas, ($map_options !== null? $map_options: Map.default_option));
@@ -30,17 +30,19 @@ var GoogleMap = (function(){
   }
 
   function setMarker(x, y){
+    if (Map.marker !== null) Map.marker.setMap(null);
   	var position = new google.maps.LatLng(x, y);
-    Map.marker = new google.maps.Marker({position: position, map: Map.map});
+    Map.marker = new google.maps.Marker({position: position});
+    Map.marker.setMap(Map.map);
   	Map.map.panTo(position);
   }
 
   function initPlacesSearchbox(search_input){
   	Map.search_box = new google.maps.places.Autocomplete(search_input);
   	google.maps.event.addListener(Map.search_box, 'place_changed', function() {
-		var place = Map.search_box.getPlace();
-		Map.location_searched = place.geometry.location;
-		Map.location_address = place.formatted_address;
+  		var place = Map.search_box.getPlace();
+  		Map.location_searched = place.geometry.location;
+  		Map.location_address = place.formatted_address;
     });
   }
 
