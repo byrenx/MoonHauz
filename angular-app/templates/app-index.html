@@ -1,8 +1,74 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="app" ng-init="properties=[1, 2, 3]">
   <head>
+    <title>Moon Hauz Real Properties</title>
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="ng/public/css/moonhauz.css">
+    <link rel="stylesheet" href="ng/components/owl-carousel/owl.carousel.css">
+    
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="ng/components/owl-carousel/owl.theme.css">
+    <link href="ng/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
+
   <body>
-    <h3>Sorry for the Inconvenience</h3>
-    Hi, this is the index page for the site visitor, and this under contruction
+    <!--navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">MoonHauz</a>
+	</div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <form class="navbar-form navbar-right" role="search">
+            <div class="form-group has-success has-feedback">
+	      <label class="control-label" for="inputSuccess4"></label>
+	      <input type="text" class="form-control input-sm" id="inputSuccess4" placeholder="Name or Address">
+	      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+	    </div>
+	  </form>
+	</div><!-- /.navbar-collapse -->
+    </nav>
+    <!--/end of nav bar-->
+
+    <!--Carousel-->
+    <div class="container-fluid" ng-view>
+    </div>
+
+    <nav class="navbar navbar-default navbar-bottom" role="navigation">
+      <div class="container">
+	<h1>Hello World</h1>
+      </div>
+    </nav>
   </body>
+
+  <script src="ng/components/angular/angular.js"></script>
+  
+  <script src="ng/public/vendor/js/jquery.min.js"></script>
+  <script src="ng/components/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Include js plugin -->
+  <script src="ng/components/owl-carousel/owl.carousel.js"></script>
+  <script src="ng/public/bower_components/moment/min/moment.min.js"></script>
+
+  <!-- Angular Utils -->
+  <script src="ng/components/angular/angular-resource.js"></script>
+  <script src="ng/components/angular/angular-cookies.js"></script>
+  <script src="ng/components/angular/angular-sanitize.js"></script>
+  <script src="ng/components/angular/angular-animate.js"></script>
+  <script src="ng/components/angular/angular-touch.js"></script>
+  <script src="ng/components/angular/angular-route.js"></script>
+  <script src="ng/components/cs-angular-utilities/pubsub.js"></script>
+  <script src="ng/components/cs-angular-utilities/loading.js"></script>
+  <script src="ng/components/cs-angular-utilities/modal.js"></script>
+  <script src="ng/components/cs-angular-utilities/passive-messenger.js"></script>
+
+  <script src="ng/app/app.js"></script>
+  <script src="ng/app/routes.js"></script>
+  <script src="ng/directives/owl.directive.js"></script>
 </html>

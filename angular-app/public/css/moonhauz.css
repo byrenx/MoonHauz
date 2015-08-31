@@ -1,0 +1,17 @@
+#owl-carousel .item img{
+    display: block;
+    width: 100%;
+    height: 400px;
+}
+
+.margin-top-sm{
+    margin-top: 20px;
+}
+
+.margin-bottom-sm{
+    margin-bottom: 20px;
+}
+
+.fixed{
+    position: fixed;
+}
