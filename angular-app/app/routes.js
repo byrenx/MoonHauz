@@ -19,6 +19,12 @@
     		controller  : '',
     		controllerAs: '',
 	    })
+	    .when('/details', {
+		templateUrl : 'ng/templates/app-property-details.html',
+    		controller  : '',
+    		controllerAs: '',
+	    })
+	
 	    .otherwise({
 	        redirectTo : '/home',
 	    });
