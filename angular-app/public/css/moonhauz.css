@@ -15,3 +15,7 @@
 .fixed{
     position: fixed;
 }
+
+.property-search{
+  position: absolute;
+}
