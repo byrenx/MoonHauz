@@ -20,7 +20,6 @@ class Properties(MoonHauzController):
 
     @route_with("/api/properties", methods=['GET'])
     def api_list_all(self):
-        self.meta.Message = messages.model_message(Property)
         self.context['data'] = Property.list_all()
 
     @route_with("/api/property/land/create", methods=['POST'])
@@ -42,13 +41,35 @@ class Properties(MoonHauzController):
         condo_unit = CondoUnit.create(json_loads(self.request.body, self.meta.keys))
         self.context['data'] = condo_unit
 
-    @route_with("/api/property/update/:<property_key>", methods=['POST'])
-    def api_update(self, property_key):
-        property = self.util.decode_key(property_key)
-        property.update(json_loads(self.request.body, self.meta.keys))
-        self.context['data'] = property
+
+    '''
+    update properties
+    '''
+    @route_with("/api/property/land/update/:<p_key>", methods=['POST'])
+    def api_update_land(self, p_key):
+        self.meta.Model = Land
+        land = self.util.decode_key(p_key).get()
+        land.update(json_loads(self.request.body, self.meta.keys))
+        self.meta.Message = messages.model_message(Land)
+        self.context['data'] = land
+
+    @route_with("/api/property/house_and_lot/update/:<p_key>", methods=['POST'])
+    def api_update_house_and_lot(self, p_key):
+        self.meta.Model = HouseAndLot
+        h_and_l = self.util.decode_key(p_key).get()
+        h_and_l.update(json_loads(self.request.body, self.meta.keys))
+        self.context['data'] = h_and_l
+
+    @route_with("/api/property/condo_unit/update/:<p_key>", methods=['POST'])
+    def api_update_condo_unit(self, p_key):
+        self.meta.Model = CondoUnit
+        condo_unit = self.util.decode_key(p_key).get()
+        condo_unit.update(json_loads(self.request.body, self.meta.keys))
+        self.context['data'] = condo_unit
 
     @route_with("/api/property/:<property_key>", methods=['GET'])
     def api_get_property(self, property_key):
         property = self.util.decode_key(property_key)
         self.context['data'] = property
+
+

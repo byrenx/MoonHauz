@@ -44,7 +44,35 @@ class Property(BasicModel, polymodel.PolyModel):
 
     @classmethod
     def list_all(cls):
-        return cls.query()
+        properties = [cls.buildProperty(p) for p in cls.query().fetch()]
+        return PropertiesMessage(properties = properties)
+        
+    @classmethod
+    def buildProperty(cls, property):
+        return PropertyMessage(type =  cls.identify_type(property._class_name()),
+                               key = property.key.urlsafe(),
+                               name = property.name,
+                               location = property.location,
+                               price = property.price,
+                               features = property.features,
+                               transaction_type = property.transaction_type,
+                               sold = property.sold,
+                               geo_point = GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon),
+                               land_area = property.land_area if property._class_name() == 'Land' or property._class_name() == 'HouseAndLot' else None,
+                               land_type = property.land_type if property._class_name() == 'Land' else None,
+                               floors = property.floors if property._class_name() == 'HouseAndLot' else None,
+                               bedrooms = property.bedrooms if property._class_name() == 'HouseAndLot' else None,
+                               floor_area = property.floor_area if property._class_name() == 'HouseAndLot' else None                               
+                           )
+
+    @classmethod
+    def identify_type(cls, type):
+        if type == 'Land':
+            return 'Land'
+        elif type == 'HouseAndLot':
+            return 'House and Lot'
+        elif type == 'CondoUnit':
+            return 'Condo'
 
     @classmethod
     def list_by_for_sale(cls):
@@ -98,3 +126,30 @@ class Property(BasicModel, polymodel.PolyModel):
     def car_message(entity, message):
         ret = messages.to_message(entity, message)
         return ret
+
+
+class GeoPtMessage(messages.Message):
+    lat = messages.FloatField(1)
+    lon = messages.FloatField(2)
+
+
+class PropertyMessage(messages.Message):
+    type = messages.StringField(1)
+    key = messages.StringField(2)
+    name = messages.StringField(3)
+    location = messages.StringField(4)
+    price = messages.FloatField(5)
+    features = messages.StringField(6)
+    transaction_type = messages.StringField(7)
+    sold = messages.BooleanField(8)
+    geo_point = messages.MessageField(GeoPtMessage, 9)
+    land_area = messages.FloatField(10)
+    land_type = messages.StringField(11)
+    floors = messages.IntegerField(12)
+    bedrooms = messages.IntegerField(13)
+    floor_area = messages.FloatField(14)
+
+
+
+class PropertiesMessage(messages.Message):
+    properties = messages.MessageField(PropertyMessage, 1, repeated=True)
