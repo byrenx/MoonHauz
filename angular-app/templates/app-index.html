@@ -5,7 +5,8 @@
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet" href="ng/public/css/moonhauz.css">
     <link rel="stylesheet" href="ng/components/owl-carousel/owl.carousel.css">
-    
+    <link href="ng/public/vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Default Theme -->
     <link rel="stylesheet" href="ng/components/owl-carousel/owl.theme.css">
     <link href="ng/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,21 +51,20 @@
       <div class="container-fluid" ng-view>
       </div>
 
-      <footer style="background-color: black; bottom: 0; position: relative; width:100%">
-	<div class="col-sm-4">
-	  <img src="/ng/components/moonhauz.png" class="img-responsive">
-	</div>
-	</nav>
+      <footer>
+        <div class="row">
+        </div>
       </footer>
   </body>
 
   <script src="ng/components/angular/angular.js"></script>
-  
+
   <script src="ng/public/vendor/js/jquery.min.js"></script>
   <script src="ng/components/bootstrap/js/bootstrap.min.js"></script>
   <!-- Include js plugin -->
   <script src="ng/components/owl-carousel/owl.carousel.js"></script>
   <script src="ng/public/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="ng/public/js/moonhauz.js"></script>
 
   <!-- Angular Utils -->
   <script src="ng/components/angular/angular-resource.js"></script>
@@ -78,7 +78,12 @@
   <script src="ng/components/cs-angular-utilities/modal.js"></script>
   <script src="ng/components/cs-angular-utilities/passive-messenger.js"></script>
 
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB9kZ-cv8SKOrVK19N-hqOkgYDUWkeuFZs&libraries=places"></script>
+  <script type="text/javascript" src="ng/components/libs/google_map.js"></script>
+
   <script src="ng/app/app.js"></script>
+  <script type="text/javascript" src="ng/app/property_details/property-details.controller.js"></script>
   <script src="ng/app/routes.js"></script>
   <script src="ng/directives/owl.directive.js"></script>
+
 </html>

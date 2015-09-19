@@ -21,10 +21,10 @@
 	    })
 	    .when('/details', {
 		templateUrl : 'ng/templates/app-property-details.html',
-    		controller  : '',
-    		controllerAs: '',
+    		controller  : 'PropertyDetails',
+    		controllerAs: 'propertydetails',
 	    })
-	
+
 	    .otherwise({
 	        redirectTo : '/home',
 	    });

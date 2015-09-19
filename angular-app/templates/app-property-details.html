@@ -39,7 +39,7 @@
       </a>
     </div>
   </div><!--/ end of carousel container-->
-  
+
   <!--menus-->
   <div class="col-sm-offset-2 col-sm-8 margin-top-md" >
     <ul class="nav nav-pills">
@@ -59,7 +59,7 @@
     </div>
     <div class="col-sm-6">
       <p>
-	<strong>Price :&nbsp;&nbsp;<span>Php. 2.5 M</span> </strong> 
+	<strong>Price :&nbsp;&nbsp;<span>Php. 2.5 M</span> </strong>
       </p>
     </div>
 
@@ -68,7 +68,7 @@
 	<strong>Land Area :</strong> <span> 120 sqm.</span>
       </p>
     </div>
-    
+
     <div class="col-sm-6">
       <p>
 	<strong>Floor Area :</strong> <span> 120 sqm.</span>
@@ -101,13 +101,27 @@
   <!--documents information-->
   <div class="col-sm-8 col-sm-offset-2">
     <h3>Documents Information</h3>
+    <table class="table">
+      <thead>
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in [1,2,3,4]">
+          <td><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Land Title</td>
+          <td style="text-align: right">
+            <button class="btn btn-primary btn-sm">Preview</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <!--geographic location information-->
   <div class="col-sm-8 col-sm-offset-2">
     <h3>Geographic Location Information</h3>
+    <hr>
+    <div id="map-canvas" class="col-sm-12" style="height: 350px">
+
+    </div>
   </div>
-  
+
 </div>
-
-
