@@ -1,0 +1,32 @@
+<<<<<<< HEAD
+<div class="bg"></div>
+<div id="jumbotron" class="jumbotron">
+
+  <div class="col-sm-4" style="background-color: black; opacity: 0.7;height: 350px;">
+    <h2>MoonHauz Real Estate</h2>
+    <ul>
+        <li>Lot</li>
+        <li>
+          House And Lot
+        </li>
+        <li>
+          Condo Units
+        </li>
+        <li>
+          Apartments
+        </li>
+    </ul>
+=======
+<div class="row margin-top-sm" style="background-image: url('ng/components/real-estate.png');">
+  <!-- <img src="ng/components/real-estate.png" class="img-responsive" width="100%" height="50"/> -->
+  <div class="col-sm-5 panel-default">
+    <form class="form">
+      <div class="form-group">
+        <select class="form-control">
+
+        </select>
+      </div>
+    </form>
+>>>>>>> 3bde146622839f3a8deb48e320a9489c24e7fecf
+  </div>
+</div>

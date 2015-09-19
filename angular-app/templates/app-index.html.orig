@@ -5,7 +5,10 @@
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet" href="ng/public/css/moonhauz.css">
     <link rel="stylesheet" href="ng/components/owl-carousel/owl.carousel.css">
+<<<<<<< HEAD
     <link href="ng/public/vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
+=======
+>>>>>>> 3bde146622839f3a8deb48e320a9489c24e7fecf
 
     <!-- Default Theme -->
     <link rel="stylesheet" href="ng/components/owl-carousel/owl.theme.css">
@@ -58,7 +61,7 @@
   </body>
 
   <script src="ng/components/angular/angular.js"></script>
-  
+
   <script src="ng/public/vendor/js/jquery.min.js"></script>
   <script src="ng/components/bootstrap/js/bootstrap.min.js"></script>
   <!-- Include js plugin -->
