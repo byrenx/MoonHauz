@@ -26,7 +26,7 @@
 }
 
 .bg {
-  background: url('/ng/components/interior-real-estate-photography.jpg') no-repeat center center;
+  background: url('/ng/components/house.jpg') no-repeat center center;
   /*background: url('/ng/components/1.jpg') no-repeat center center;*/
   position: fixed;
   width: 100%;
@@ -45,7 +45,7 @@
 }
 
 #jumbotron {
-  height: 510px;
+  height: 515px;
   color: white;
   text-shadow: #444 0 1px 1px;
   background: transparent;
