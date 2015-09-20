@@ -1,0 +1,63 @@
+#owl-carousel .item img{
+    display: block;
+    width: 100%;
+    height: 400px;
+}
+
+.margin-top-sm{
+    margin-top: 25px;
+}
+
+.margin-top-md{
+    margin-top: 60px;
+}
+
+
+.margin-top-lg{
+    margin-top: 100px;
+}
+
+.margin-bottom-sm{
+    margin-bottom: 20px;
+}
+
+.fixed{
+    position: fixed;
+}
+
+.bg {
+  background: url('/ng/components/house.jpg') no-repeat center center;
+  /*background: url('/ng/components/1.jpg') no-repeat center center;*/
+  position: fixed;
+  width: 100%;
+  height: 510px; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+.headline-left{
+    background-color: black; opacity: 0.7;height: 450px;
+}
+
+.headline-right{
+    
+}
+
+#jumbotron {
+  height: 515px;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background: transparent;
+}
+
+.footer {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: auto;
+  background-color: #f5f5f5;
+}
