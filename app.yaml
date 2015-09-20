@@ -45,6 +45,12 @@ skip_files:
 handlers:
 
 # Main script
-- url: .*
+
+- url: /
   script: main.main_app
   login: optional
+
+- url: /admin
+  script: main.main_app
+  login: admin
+
