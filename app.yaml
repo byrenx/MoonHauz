@@ -46,11 +46,22 @@ handlers:
 
 # Main script
 
-- url: /
-  script: main.main_app
-  login: optional
-
 - url: /admin
   script: main.main_app
   login: admin
+
+- url: /api/app/.*
+  script: main.main_app
+  login: optional
+
+- url: /api/.*
+  script: main.main_app
+  login: optional
+
+- url: /.*
+  script: main.main_app
+  login: optional
+
+
+
 
