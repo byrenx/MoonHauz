@@ -10,4 +10,6 @@ class Land(Property):
     land_type = ndb.StringProperty(required=False)
     land_area = ndb.FloatProperty(required=False)
 
-        
+    @classmethod
+    def list_all(cls):
+        return cls.query()

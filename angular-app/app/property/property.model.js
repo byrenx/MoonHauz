@@ -28,6 +28,7 @@
       Property.info = {};
 
       Property.list_all = list_all;
+      Property.lands = lands;
 
       Property.prototype = {
         destroy: destroy,
@@ -38,13 +39,50 @@
 
       /*static function*/
       function list_all(){
+        Property.list = [];
         var call = PropertyRest.list_all();
         Property.loading.watch(call)
           .success(function(d){
             Property.list.push.apply(Property.list, d.properties || []);
-            console.log(Property.list);
           });
       }
+
+      function lands(){
+        Property.list = [];
+        var call = PropertyRest.lands();
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.list.push.apply(Property.list, d || []);
+          });
+      }
+
+      function houseAndLots(){
+        Property.list = [];
+        var call = PropertyRest.house_and_lots();
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.list.push.apply(Property.list, d || []);
+          });
+      }
+
+      function condos(){
+        Property.list = [];
+        var call = PropertyRest.condos();
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.list.push.apply(Property.list, d || []);
+          });
+      }
+
+      function apartments(){
+        Property.list = [];
+        var call = PropertyRest.apartments();
+        Property.loading.watch(call)
+          .success(function(d){
+            Property.list.push.apply(Property.list, d || []);
+          });
+      }
+
 
 
       /*end of static function*/

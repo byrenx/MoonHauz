@@ -15,7 +15,17 @@
     this.list_all = function(){
       return http.get('/api/properties');
     }
-
+    this.lands = function(){
+      return http.get('/api/lands');
+    }
+    this.house_and_lots = function(){
+      return http.get('/api/house_and_lots');
+    }
+    this.condos = function(){
+      return http.get('/api/condos');
+    }
+    this.apartments = function(){
+      return http.get('/api/apartments');
+    }
   }
-
 })(window.angular);
