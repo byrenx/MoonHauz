@@ -1,21 +1,21 @@
 (function(){
   'use srtrict';
 
-   angular
+  angular
     .module('app.services')
-    .service('PropertyREST', PropertyREST);
+    .service('PropertyREST', propertyREST);
 
-    PropertyREST.$inject = [
-      '$http'
-    ];
+  propertyREST.$inject = [
+    '$http'
+  ];
 
-    function PropertyREST(http){
-       var base_url = '/api/property';
+  function propertyREST(http){
+    var base_url = '/api/property';
 
-       this.list_all = function(){
-        return http.get('/api/properties');
-       }
-
+    this.list_all = function(){
+      return http.get('/api/properties');
     }
+
+  }
 
 })(window.angular);

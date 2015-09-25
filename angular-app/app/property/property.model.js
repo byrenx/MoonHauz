@@ -5,7 +5,7 @@
      .factory('Property', property);
 
     property.$inject = [
-       'PropertyRest',
+       'PropertyREST',
        'loading',
        'passive_messenger',
     ];
@@ -27,7 +27,6 @@
       Property.list = [];
       Property.info = {};
 
-      Property.create = create;
       Property.list_all = list_all;
 
       Property.prototype = {
@@ -39,7 +38,7 @@
 
       /*static function*/
       function list_all(){
-        var call = PropertyREST.list_all();
+        var call = PropertyRest.list_all();
         Property.loading.watch(call)
           .success(function(d){
             Property.list.push.apply(Property.list, d.properties || []);
