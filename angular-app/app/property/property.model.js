@@ -29,6 +29,9 @@
 
       Property.list_all = list_all;
       Property.lands = lands;
+      Property.houseAndLots = houseAndLots;
+      Property.condoUnits = condoUnits;
+      Property.apartments = apartments;
 
       Property.prototype = {
         destroy: destroy,
@@ -42,8 +45,8 @@
         Property.list = [];
         var call = PropertyRest.list_all();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d.properties || []);
+          .success(function(data){
+            Property.list.push.apply(Property.list, data.properties || []);
           });
       }
 
@@ -51,8 +54,9 @@
         Property.list = [];
         var call = PropertyRest.lands();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d || []);
+          .success(function(data){
+            console.log(data);
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 
@@ -60,17 +64,17 @@
         Property.list = [];
         var call = PropertyRest.house_and_lots();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d || []);
+          .success(function(data){
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 
-      function condos(){
+      function condoUnits(){
         Property.list = [];
-        var call = PropertyRest.condos();
+        var call = PropertyRest.condo_units();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d || []);
+          .success(function(data){
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 
@@ -78,8 +82,8 @@
         Property.list = [];
         var call = PropertyRest.apartments();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d || []);
+          .success(function(data){
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 

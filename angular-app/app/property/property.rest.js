@@ -21,8 +21,8 @@
     this.house_and_lots = function(){
       return http.get('/api/house_and_lots');
     }
-    this.condos = function(){
-      return http.get('/api/condos');
+    this.condo_units = function(){
+      return http.get('/api/condo_units');
     }
     this.apartments = function(){
       return http.get('/api/apartments');

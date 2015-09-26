@@ -18,7 +18,9 @@
     //functions
     vm.list_all = list_all;
     vm.lands = lands;
-    
+    vm.houseAndLots = houseAndLots;
+    vm.condoUnits = condoUnits;
+    vm.apartments = apartments;
     
     function init(){
       vm.list_all();
@@ -31,6 +33,21 @@
 
     function lands(){
       Property.lands();
+      vm.list = Property.list;
+    }
+
+    function houseAndLots(){
+      Property.houseAndLots();
+      vm.list = Property.list;
+    }
+
+    function condoUnits(){
+      Property.condoUnits();
+      vm.list = Property.list;
+    }
+
+    function apartments(){
+      Property.apartments();
       vm.list = Property.list;
     }
 
