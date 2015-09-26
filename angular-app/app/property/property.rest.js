@@ -27,5 +27,8 @@
     this.apartments = function(){
       return http.get('/api/apartments');
     }
+    this.paginate = function(url){
+      return http.get(url);
+    }
   }
 })(window.angular);

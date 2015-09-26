@@ -13,7 +13,9 @@
 
     var vm = this;
     //variables
+    vm.model = Property;
     vm.list = [];
+    vm.data = null;
 
     //functions
     vm.list_all = list_all;
@@ -21,6 +23,9 @@
     vm.houseAndLots = houseAndLots;
     vm.condoUnits = condoUnits;
     vm.apartments = apartments;
+
+    vm.next = next;
+    vm.previous = previous;
     
     function init(){
       vm.list_all();
@@ -28,27 +33,38 @@
 
 	  function list_all(){
       Property.list_all();
-      vm.list = Property.list;
+      vm.model = Property;
     }
 
     function lands(){
       Property.lands();
-      vm.list = Property.list;
+      vm.data = Property.data;
     }
 
     function houseAndLots(){
       Property.houseAndLots();
-      vm.list = Property.list;
+      vm.data = Property.data;
     }
 
     function condoUnits(){
       Property.condoUnits();
-      vm.list = Property.list;
+      vm.data = Property.data;
     }
 
     function apartments(){
       Property.apartments();
-      vm.list = Property.list;
+      vm.data = Property.data;
+    }
+
+    function next(){
+      Property.next();
+      //vm.model = Property;
+      //console.log(vm.model.next_page);
+    }
+
+    function previous(){
+      Property.previous();
+      //vm.model = Property;
     }
 
     init();

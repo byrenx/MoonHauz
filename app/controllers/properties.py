@@ -9,7 +9,6 @@ from app.services.utils import gather_keys, json_loads
 import json
 
 class Properties(MoonHauzController):
-
     class Meta:
         prefixes = ('api',)
         components = (messages.Messaging, Pagination,)
@@ -20,7 +19,8 @@ class Properties(MoonHauzController):
 
     @route_with("/api/properties", methods=['GET'])
     def api_list_all(self):
-        self.context['data'] = Property.list_all()
+        self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=6)
+        #self.context['data'] = Property.list_all()
 
     @route_with("/api/property/land/create", methods=['POST'])
     def api_create_land(self):

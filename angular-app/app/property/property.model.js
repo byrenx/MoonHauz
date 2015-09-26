@@ -24,7 +24,10 @@
       Property.land_types = ["INDUSTRIAL", "COMMERCIAL", "AGRICULTURE", "RESIDENTIAL", "RESORT"];
       Property.loading = loading.new();
       Property.entity = {};
-      Property.list = [];
+      Property.list = {};
+      //pagination cursor pages
+      Property.next_page = undefined; 
+      Property.previous_page = undefined; 
       Property.info = {};
 
       Property.list_all = list_all;
@@ -32,6 +35,8 @@
       Property.houseAndLots = houseAndLots;
       Property.condoUnits = condoUnits;
       Property.apartments = apartments;
+      Property.next = next;
+      Property.previous = previous;
 
       Property.prototype = {
         destroy: destroy,
@@ -46,7 +51,9 @@
         var call = PropertyRest.list_all();
         Property.loading.watch(call)
           .success(function(data){
-            Property.list.push.apply(Property.list, data.properties || []);
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 
@@ -55,7 +62,8 @@
         var call = PropertyRest.lands();
         Property.loading.watch(call)
           .success(function(data){
-            console.log(data);
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
             Property.list.push.apply(Property.list, data.items || []);
           });
       }
@@ -65,6 +73,8 @@
         var call = PropertyRest.house_and_lots();
         Property.loading.watch(call)
           .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
             Property.list.push.apply(Property.list, data.items || []);
           });
       }
@@ -74,6 +84,8 @@
         var call = PropertyRest.condo_units();
         Property.loading.watch(call)
           .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
             Property.list.push.apply(Property.list, data.items || []);
           });
       }
@@ -83,12 +95,35 @@
         var call = PropertyRest.apartments();
         Property.loading.watch(call)
           .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
             Property.list.push.apply(Property.list, data.items || []);
           });
       }
 
+      function next(){
+        Property.list = [];
+        var call = PropertyRest.paginate(Property.next_page);
+        Property.loading.watch(call)
+          .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
+            Property.list.push.apply(Property.list, data.items || []);
+          });
+      }
 
+      function previous(){
+        Property.list = [];
+        var call = PropertyRest.paginate(Property.previous_page);
+        Property.loading.watch(call)
+          .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
+            Property.list.push.apply(Property.list, data.items || []);
+          });
+      }
 
+      
       /*end of static function*/
 
       /**
