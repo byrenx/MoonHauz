@@ -72,4 +72,8 @@ class Properties(MoonHauzController):
         property = self.util.decode_key(property_key)
         self.context['data'] = property
 
-
+    @route_with("/api/property/search_by_location/:<location>")
+    def api_search_by_location(self, location):
+        properties = self.components.pagination.paginate(query=Property.list_by_location(location), limit=6)
+        self.context['data'] = properties
+        

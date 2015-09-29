@@ -11,8 +11,13 @@
 	  routeProvider
 	    .when('/home',{
     		templateUrl : 'ng/templates/guest-home.html',
-    		controller  : '',
-    		controllerAs: '',
+    		controller  : 'Home',
+    		controllerAs: 'home',
+	    })
+	    .when('/properties/:location',{
+		    templateUrl : 'ng/templates/app-properties-list.html',
+    		controller  : 'Properties',
+    		controllerAs: 'properties',
 	    })
 	    .when('/properties', {
 		    templateUrl : 'ng/templates/app-properties-list.html',

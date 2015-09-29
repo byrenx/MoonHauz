@@ -30,5 +30,8 @@
     this.paginate = function(url){
       return http.get(url);
     }
+    this.search_by_location = function(location){
+      return http.get(base_url + '/search_by_location/:' + location);
+    }
   }
 })(window.angular);

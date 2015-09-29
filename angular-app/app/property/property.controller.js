@@ -7,9 +7,10 @@
   properties.$inject = [
 	  'pubsub',
 	  'Property',
+    '$routeParams'
   ];
 
-  function properties(pubsub, Property){
+  function properties(pubsub, Property, routeParam){
 
     var vm = this;
     //variables
@@ -23,48 +24,54 @@
     vm.houseAndLots = houseAndLots;
     vm.condoUnits = condoUnits;
     vm.apartments = apartments;
+    vm.searchByLocation = searchByLocation;
+    vm.isListEmpty = isListEmpty;
 
     vm.next = next;
     vm.previous = previous;
     
     function init(){
-      vm.list_all();
+      if (routeParam.location){
+        vm.searchByLocation(routeParam.location);
+      }else{
+        vm.list_all();
+      }
     }
 
 	  function list_all(){
       Property.list_all();
-      vm.model = Property;
+    }
+
+    function searchByLocation(location){
+      Property.searchByLocation(location);
     }
 
     function lands(){
       Property.lands();
-      vm.data = Property.data;
     }
 
     function houseAndLots(){
       Property.houseAndLots();
-      vm.data = Property.data;
     }
 
     function condoUnits(){
       Property.condoUnits();
-      vm.data = Property.data;
     }
 
     function apartments(){
       Property.apartments();
-      vm.data = Property.data;
     }
 
     function next(){
       Property.next();
-      //vm.model = Property;
-      //console.log(vm.model.next_page);
     }
 
     function previous(){
       Property.previous();
-      //vm.model = Property;
+    }
+
+    function isListEmpty(){
+      return vm.model.list.length == 0;
     }
 
     init();

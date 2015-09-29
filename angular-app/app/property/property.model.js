@@ -31,6 +31,7 @@
       Property.info = {};
 
       Property.list_all = list_all;
+      Property.searchByLocation = searchByLocation;
       Property.lands = lands;
       Property.houseAndLots = houseAndLots;
       Property.condoUnits = condoUnits;
@@ -49,6 +50,17 @@
       function list_all(){
         Property.list = [];
         var call = PropertyRest.list_all();
+        Property.loading.watch(call)
+          .success(function(data){
+            Property.previous_page = data.previous_page;
+            Property.next_page = data.next_page;
+            Property.list.push.apply(Property.list, data.items || []);
+          });
+      }
+
+      function searchByLocation(location){
+        Property.list = [];
+        var call = PropertyRest.search_by_location(location);
         Property.loading.watch(call)
           .success(function(data){
             Property.previous_page = data.previous_page;

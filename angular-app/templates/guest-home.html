@@ -15,10 +15,10 @@
   <div class="col-sm-8" style="text-align: center">
     <h2>MoonHauz Real Estate</h2>
     <div class="col-sm-12 margin-top-lg">
-      <form class="form">
+      <form ng-submit="home.submitSearchByLocation()" class="form">
         <div class="input-group">
 	  <label class="control-label" for="inputSuccess4"></label>
-	  <input type="text" class="form-control input-lg" id="inputSuccess4" placeholder="Name or Address">
+	  <input type="text" class="form-control input-lg" id="inputSuccess4" placeholder="Name or Address" ng-model="home.location_input">
 	  <span class="input-group-btn">
 	    <button class="btn btn-primary btn-lg">Search</button>
 	  </span>

@@ -28,10 +28,10 @@
 	  </p>
 	</div>
       </div>
-    </div> <!--/ end of listing -->
-  </div>
+    </div>
+  </div> <!--/ end of listing -->
   
-  <div class="col-sm-offset-2 col-sm-8">
+  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === false">
     <nav>
       <ul class="pager">
 	<li>
@@ -45,5 +45,9 @@
 	</li>
       </ul>
     </nav>
+  </div><!--/ end of pagination buttons -->
+
+  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === true"><!--/ notice -->
+    <div class="alert alert-warning" role="alert">No Properties Found!</div>
   </div>
 </div>

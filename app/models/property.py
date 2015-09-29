@@ -46,7 +46,11 @@ class Property(BasicModel, polymodel.PolyModel):
     def list_all(cls):
         properties = [cls.buildProperty(p) for p in cls.query().fetch()]
         return PropertiesMessage(properties = properties)
-        
+
+    @classmethod
+    def list_by_location(cls, location):
+        return cls.query(cls.location >= location).order(cls.location)
+    
     @classmethod
     def buildProperty(cls, property):
         return PropertyMessage(type =  cls.identify_type(property._class_name()),
