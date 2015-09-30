@@ -41,9 +41,8 @@
       function list_all(){
         var call = PropertyREST.list_all();
         Property.loading.watch(call)
-          .success(function(d){
-            Property.list.push.apply(Property.list, d.properties || []);
-            console.log(Property.list);
+          .success(function(data){
+            Property.list.push.apply(Property.list, data.items || []);
           });
       }
 

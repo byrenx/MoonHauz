@@ -1,33 +1,38 @@
 (function(angular){
 
-    "use restrict";
+  "use restrict";
 
-    angular.module('app')
-	.config(routes);
+  angular.module('app')
+	  .config(routes);
 
-    routes.$inject = ['$routeProvider', '$locationProvider'];
+  routes.$inject = ['$routeProvider', '$locationProvider'];
 
-    function routes(routeProvider, locationProvider){
-	routeProvider
+  function routes(routeProvider, locationProvider){
+	  routeProvider
 	    .when('/home',{
     		templateUrl : 'ng/templates/guest-home.html',
-    		controller  : '',
-    		controllerAs: '',
+    		controller  : 'Home',
+    		controllerAs: 'home',
+	    })
+	    .when('/properties/:location',{
+		    templateUrl : 'ng/templates/app-properties-list.html',
+    		controller  : 'Properties',
+    		controllerAs: 'properties',
 	    })
 	    .when('/properties', {
-		templateUrl : 'ng/templates/app-properties-list.html',
-    		controller  : '',
-    		controllerAs: '',
+		    templateUrl : 'ng/templates/app-properties-list.html',
+    		controller  : 'Properties',
+    		controllerAs: 'properties',
 	    })
 	    .when('/details', {
-		templateUrl : 'ng/templates/app-property-details.html',
+		    templateUrl : 'ng/templates/app-property-details.html',
     		controller  : 'PropertyDetails',
     		controllerAs: 'propertydetails',
 	    })
 
 	    .otherwise({
-	        redirectTo : '/home',
+	      redirectTo : '/home',
 	    });
-    }
+  }
 
 })(window.angular);

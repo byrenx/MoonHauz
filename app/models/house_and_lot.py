@@ -10,3 +10,8 @@ class HouseAndLot(Property):
     bedrooms = ndb.IntegerProperty(required=True)
     floor_area = ndb.FloatProperty()
     land_area = ndb.FloatProperty()
+
+
+    @classmethod
+    def list_all(cls):
+        return cls.query()

@@ -1,16 +1,16 @@
 <div class="row">
   <div class="col-sm-offset-2 col-sm-8 margin-top-md" >
     <ul class="nav nav-pills">
-      <li role="presentation" class="active"><a href="#">All</a></li>
-      <li role="presentation"><a href="#!">Land</a></li>
-      <li role="presentation"><a href="#!">House And Lot</a></li>
-      <li role="presentation"><a href="#!">Condo</a></li>
-      <li role="presentation"><a href="#!">Apartment</a></li>
+      <li role="presentation" class="active"><a href="" ng-click="properties.list_all()">All</a></li>
+      <li role="presentation"><a href="" ng-click="properties.lands()">Land</a></li>
+      <li role="presentation"><a href="" ng-click="properties.houseAndLots()">House And Lot</a></li>
+      <li role="presentation"><a href="" ng-click="properties.condoUnits()">Condo</a></li>
+      <li role="presentation"><a href="" ng-click="properties.apartments()">Apartment</a></li>
     </ul>
   </div>
   <div class="col-sm-offset-2 col-sm-8">
     <h3>Properties</h3>
-    <div class="col-sm-6 margin-top-sm margin-bottom-sm" ng-repeat="x in [1, 2, 3, 4, 5]">
+    <div class="col-sm-6 margin-top-sm margin-bottom-sm" ng-repeat="property in properties.model.list">
       <div class="media">
 	<div class="media-left">
 	  <a href="#">
@@ -19,14 +19,35 @@
 	</div>
 	<div class="media-body">
 	  <h4 class="media-heading">
-	    <a href="#details">AAA Residence, Bacoor Cavite</a>
+	    <a href="#details">{{property.name}}</a>
 	  </h4>
 	  <p>
-      <strong> <i class="fa fa-usd fa-2x"></i> 2 Million</strong>
-    </p>
+	    <span ng-bind="property.location"></span>
+	    <br>
+	    <strong>Php.&nbsp;</strong><span ng-bind="property.price"></span>
+	  </p>
 	</div>
       </div>
     </div>
-  </div>
+  </div> <!--/ end of listing -->
+  
+  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === false">
+    <nav>
+      <ul class="pager">
+	<li>
+	  <button href="" ng-click="properties.previous()" ng-disabled="properties.model.previous_page === undefined" class="btn btn-primary">
+	    <i class="fa fa-chevron-left"></i>
+	  </button>
+	</li>
+	<li><button href="" ng-click="properties.next()" ng-disabled="properties.model.next_page === undefined" class="btn btn-primary">
+	    <i class="fa fa-chevron-right"></i>
+	  </button>
+	</li>
+      </ul>
+    </nav>
+  </div><!--/ end of pagination buttons -->
 
+  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === true"><!--/ notice -->
+    <div class="alert alert-warning" role="alert">No Properties Found!</div>
+  </div>
 </div>
