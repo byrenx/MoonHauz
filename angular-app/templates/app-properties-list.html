@@ -19,7 +19,7 @@
 	</div>
 	<div class="media-body">
 	  <h4 class="media-heading">
-	    <a href="#details">{{property.name}}</a>
+	    <a href="#details/:{{property.key.urlsafe}}">{{property.name}}</a>
 	  </h4>
 	  <p>
 	    <span ng-bind="property.location"></span>
@@ -29,9 +29,12 @@
 	</div>
       </div>
     </div>
+    <!-- <div loading="properties.loading"> -->
+    <!--   <i class="fa fa-circle-o-notch fa-spin">Loading..</i> -->
+    <!-- </div> -->
   </div> <!--/ end of listing -->
   
-  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === false">
+  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === false && !proerties.loading">
     <nav>
       <ul class="pager">
 	<li>

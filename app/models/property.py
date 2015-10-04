@@ -38,10 +38,20 @@ class Property(BasicModel, polymodel.PolyModel):
         return item
 
     @classmethod
+    def to_message(cls, property):
+        """
+        (Property) --> PropertyMessage
+        
+        Retuns a Transformed Message of the Property to include
+        all fields available based on Property type
+        """
+        return cls.buildProperty(property)
+
+    @classmethod
     def update(cls, params):
         cls.populate(**params)
         cls.put()
-
+      
     @classmethod
     def list_all(cls):
         properties = [cls.buildProperty(p) for p in cls.query().fetch()]

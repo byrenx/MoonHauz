@@ -50,49 +50,68 @@
   </div>
   <!--property information-->
   <div class="col-sm-8 col-sm-offset-2">
-    <h3>Basic Information</h3>
-    <hr>
     <div class="col-sm-12">
-      <p>
-	<strong>Midas Hotel Pasay Road Metro Manila, Ph</strong>
-      </p>
+      <h2>
+	<span ng-bind="details.model.name"></span>
+      </h2>
+      <h4><span ng-bind="details.model.location"></span></h4>
+      <hr>
     </div>
     <div class="col-sm-6">
       <p>
-	<strong>Price :&nbsp;&nbsp;<span>Php. 2.5 M</span> </strong>
+	<span class="detail-label">Price :</span>
+	&nbsp;&nbsp;<span class="detail-label" ng-bind="details.model.price | currency:'PHP '"></span>
       </p>
     </div>
 
     <div class="col-sm-6">
       <p>
-	<strong>Land Area :</strong> <span> 120 sqm.</span>
+	<span class="detail-label">Land Area :</span>&nbsp;&nbsp;
+	<span>{{details.model.land_area | number}} m<sup>2</sup></span>
       </p>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" ng-if="details.model.land_type">
       <p>
-	<strong>Floor Area :</strong> <span> 120 sqm.</span>
+	<span class="detail-label">Land Type :</span>&nbsp;&nbsp;
+	<span ng-bind="details.model.land_type"></span>
       </p>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" ng-if="details.detail.floor_area">
       <p>
-	<strong># FlOORS :</strong> <span> 4</span>
+	<span class="detail-label">Floor Area :</span> 
+	&nbsp;&nbsp;
+	<span ng-bind="details.detail.floor_area"></span>
       </p>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" ng-if="details.detail.floors">
       <p>
-	<strong>Rooms :</strong> <span> 10</span>
+	<span class="detail-label"># Floors :</span>
+	&nbsp;&nbsp;<span ng-bind="details.model.floors"></span>
       </p>
     </div>
+
+    <div class="col-sm-6" ng-if="details.detail.rooms">
+      <p>
+	<span class="detail-label"># Rooms :</span>&nbsp;&nbsp;
+	<span ng-bind="details.model.rooms"></span>
+      </p>
+    </div>
+
+    <div class="col-sm-6" ng-if="details.model.bedrooms">
+      <p>
+	<span class="detail-label">BedRooms :</span>&nbsp;&nbsp;
+	<span ng-bind="details.model.bedrooms"></span>
+      </p>
+    </div>
+
 
     <div class="col-sm-12">
+      <h3>Other Features</h3>
       <p>
-	<strong>Features:</strong> <br>
-	<span>
-	  Palazzo di Amore represents the ultimate lifestyle on a one-of-a kind 25 acre promontory. It can easily accommodate parking for approx. 150 cars, and its proximity to world class cultural opportunities is virtually unbeatable. The prestigious residence, with its perfectly-conceived architecture, represents both majesty and family. Outstanding amenities include: Privacy and Security up a Ã?Â¼ mile driveway, guard house, private drivers quarters, guest house, state-of-the-art theatre, discotheque, bowling alley, wine cellar, wine producing vineyard, pool, spa, formal gardens, tennis court and city to ocean views. With all the lush beauty of the Mediterranean, and all the cosmopolitan grandeur of a Beverly Hills address, Palazzo di Amore is indisputably without rival
-	</span>
+	<span ng-bind="details.model.features"></span>
       </p>
     </div>
 
@@ -120,7 +139,7 @@
     <h3>Geographic Location Information</h3>
     <hr>
     <div id="map-canvas" class="col-sm-12" style="height: 350px">
-
+      
     </div>
   </div>
 

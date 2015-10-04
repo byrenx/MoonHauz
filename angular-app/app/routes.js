@@ -24,10 +24,10 @@
     		controller  : 'Properties',
     		controllerAs: 'properties',
 	    })
-	    .when('/details', {
+	    .when('/details/:key', {
 		    templateUrl : 'ng/templates/app-property-details.html',
-    		controller  : 'PropertyDetails',
-    		controllerAs: 'propertydetails',
+    		controller  : 'Details',
+    		controllerAs: 'details',
 	    })
 
 	    .otherwise({

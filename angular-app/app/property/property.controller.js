@@ -15,6 +15,7 @@
     var vm = this;
     //variables
     vm.model = Property;
+    vm.loading = Property.loading;
     vm.list = [];
     vm.data = null;
 

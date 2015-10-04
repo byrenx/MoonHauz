@@ -20,7 +20,17 @@ class Properties(MoonHauzController):
     @route_with("/api/properties", methods=['GET'])
     def api_list_all(self):
         self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=6)
+
         #self.context['data'] = Property.list_all()
+    @route_with("/api/property/:<key>", methods=['GET'])
+    def api_get_property(self, key):
+        """
+        (Properties, key) --> Property Message
+        
+        Return a Property Message based from urlsafe key
+        """
+        prop = self.util.decode_key(key).get()
+        self.context['data'] = Property.to_message(prop)
 
     @route_with("/api/property/land/create", methods=['POST'])
     def api_create_land(self):
@@ -67,10 +77,6 @@ class Properties(MoonHauzController):
         condo_unit.update(json_loads(self.request.body, self.meta.keys))
         self.context['data'] = condo_unit
 
-    @route_with("/api/property/:<property_key>", methods=['GET'])
-    def api_get_property(self, property_key):
-        property = self.util.decode_key(property_key)
-        self.context['data'] = property
 
     @route_with("/api/property/search_by_location/:<location>")
     def api_search_by_location(self, location):
