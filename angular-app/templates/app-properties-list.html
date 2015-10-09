@@ -8,7 +8,7 @@
       <li role="presentation"><a href="" ng-click="properties.apartments()">Apartment</a></li>
     </ul>
   </div>
-  <div class="col-sm-offset-2 col-sm-8">
+  <div class="col-sm-offset-2 col-sm-8" style="height: 500px;">
     <h3>Properties</h3>
     <div class="col-sm-6 margin-top-sm margin-bottom-sm" ng-repeat="property in properties.model.list">
       <div class="media">
@@ -22,9 +22,10 @@
 	    <a href="#details/:{{property.key.urlsafe}}">{{property.name}}</a>
 	  </h4>
 	  <p>
-	    <span ng-bind="property.location"></span>
+	    <i class="fa fa-map-marker"></i>&nbsp;<span ng-bind="property.location"></span>
 	    <br>
-	    <strong>Php.&nbsp;</strong><span ng-bind="property.price"></span>
+	    <i class="fa fa-money"></i>
+	    <span ng-bind="property.price | currency:'PHP '"></span>
 	  </p>
 	</div>
       </div>

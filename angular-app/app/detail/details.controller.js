@@ -20,7 +20,6 @@
 
       function activate(){
         vm.getDetail();
-        GoogleMap.initialize(document.getElementById('map-canvas'), null, {x: 40.7711329, y:-73.9741874});
       }
       
       function getDetail(){
