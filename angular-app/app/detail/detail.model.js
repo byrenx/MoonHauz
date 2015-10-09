@@ -38,6 +38,11 @@
       detail.isLoading.watch(call)
         .success(function(data){
           detail.setData(data);
+          console.log(data);
+          GoogleMap.initialize(document.getElementById('map-canvas'),
+                               null,
+                               {x: data.geo_point.lat,
+                                y: data.geo_point.lon});
         });
       return detail;
     }
