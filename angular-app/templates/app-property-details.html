@@ -50,13 +50,11 @@
   </div>
   <!--property information-->
   <div class="col-sm-8 col-sm-offset-2">
-    <div class="col-sm-12">
-      <h2>
-	<span ng-bind="details.model.name"></span>
-      </h2>
-      <h4><span ng-bind="details.model.location"></span></h4>
+    <h2>
+      <span ng-bind="details.model.name"></span>
+    </h2>
+    <h4><i class="fa fa-map-marker"></i>&nbsp;<span ng-bind="details.model.location"></span></h4>
       <hr>
-    </div>
     <div class="col-sm-6">
       <p>
 	<span class="detail-label">Price :</span>
@@ -64,7 +62,7 @@
       </p>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" ng-if="details.model.land_area">
       <p>
 	<span class="detail-label">Land Area :</span>&nbsp;&nbsp;
 	<span>{{details.model.land_area | number}} m<sup>2</sup></span>
@@ -78,11 +76,11 @@
       </p>
     </div>
 
-    <div class="col-sm-6" ng-if="details.detail.floor_area">
+    <div class="col-sm-6" ng-if="details.model.floor_area">
       <p>
 	<span class="detail-label">Floor Area :</span> 
 	&nbsp;&nbsp;
-	<span ng-bind="details.detail.floor_area"></span>
+	<span>{{details.model.floor_area | number}}&nbsp;m<sup>2</sup></span>
       </p>
     </div>
 
@@ -93,7 +91,7 @@
       </p>
     </div>
 
-    <div class="col-sm-6" ng-if="details.detail.rooms">
+    <div class="col-sm-6" ng-if="details.model.rooms">
       <p>
 	<span class="detail-label"># Rooms :</span>&nbsp;&nbsp;
 	<span ng-bind="details.model.rooms"></span>
@@ -102,8 +100,15 @@
 
     <div class="col-sm-6" ng-if="details.model.bedrooms">
       <p>
-	<span class="detail-label">BedRooms :</span>&nbsp;&nbsp;
+	<span class="detail-label">Bedrooms :</span>&nbsp;&nbsp;
 	<span ng-bind="details.model.bedrooms"></span>
+      </p>
+    </div>
+
+    <div class="col-sm-6" ng-if="details.model.capacity">
+      <p>
+	<span class="detail-label">Capacity :</span>&nbsp;&nbsp;
+	<span ng-bind="details.model.capacity"></span>
       </p>
     </div>
 

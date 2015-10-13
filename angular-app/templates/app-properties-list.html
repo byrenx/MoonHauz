@@ -8,8 +8,14 @@
       <li role="presentation"><a href="" ng-click="properties.apartments()">Apartment</a></li>
     </ul>
   </div>
-  <div class="col-sm-offset-2 col-sm-8" style="height: 500px;">
+
+  <div class="col-sm-offset-2 col-sm-8" style="min-height: 450px;">
     <h3>Properties</h3>
+
+    <div class="col-sm-12" ng-show="properties.isListEmpty() === true"><!--/ notice -->
+      <div class="alert alert-warning" role="alert">No Properties Found!</div>
+    </div>
+
     <div class="col-sm-6 margin-top-sm margin-bottom-sm" ng-repeat="property in properties.model.list">
       <div class="media">
 	<div class="media-left">
@@ -50,8 +56,4 @@
       </ul>
     </nav>
   </div><!--/ end of pagination buttons -->
-
-  <div class="col-sm-offset-2 col-sm-8" ng-show="properties.isListEmpty() === true"><!--/ notice -->
-    <div class="alert alert-warning" role="alert">No Properties Found!</div>
-  </div>
 </div>

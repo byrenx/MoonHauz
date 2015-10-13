@@ -75,8 +75,9 @@ class Property(BasicModel, polymodel.PolyModel):
                                land_area = property.land_area if property._class_name() == 'Land' or property._class_name() == 'HouseAndLot' else None,
                                land_type = property.land_type if property._class_name() == 'Land' else None,
                                floors = property.floors if property._class_name() == 'HouseAndLot' else None,
-                               bedrooms = property.bedrooms if property._class_name() == 'HouseAndLot' else None,
-                               floor_area = property.floor_area if property._class_name() == 'HouseAndLot' else None                               
+                               bedrooms = property.bedrooms if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
+                               floor_area = property.floor_area if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
+                               capacity = property.capacity if property._class_name() == 'CondoUnit' else None
                            )
 
     @classmethod
@@ -162,6 +163,7 @@ class PropertyMessage(messages.Message):
     floors = messages.IntegerField(12)
     bedrooms = messages.IntegerField(13)
     floor_area = messages.FloatField(14)
+    capacity = messages.IntegerField(15)
 
 
 

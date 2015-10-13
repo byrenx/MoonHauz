@@ -10,7 +10,6 @@ class CondoUnit(Property):
     bedrooms = ndb.IntegerProperty(required=False)
     floor_area = ndb.FloatProperty(required=False)
 
-
     @classmethod
     def list_all(cls):
         return cls.query()

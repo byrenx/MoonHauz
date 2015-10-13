@@ -11,10 +11,11 @@ class HouseAndLots(MoonHauzController):
         prefixes = ('api',)
         components = (messages.Messaging, Pagination,)
         Model = HouseAndLot
-        pagination_limit = 25
+        pagination_limit = 8
         keys = gather_keys(Model)
 
     @route_with("/api/house_and_lots", methods=['GET'])
     def api_list_all(self):
-        self.context['data'] = HouseAndLot.list_all().fetch()
+        self.context['data'] = self.components.pagination.paginate(query=HouseAndLot.query(), limit=self.Meta.pagination_limit)
+   
 

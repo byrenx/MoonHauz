@@ -14,12 +14,12 @@ class Properties(MoonHauzController):
         components = (messages.Messaging, Pagination,)
         Model = Property
         Message = Property.message()
-        pagination_limit = 25
+        pagination_limit = 8
         keys = gather_keys(Model)
 
     @route_with("/api/properties", methods=['GET'])
     def api_list_all(self):
-        self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=6)
+        self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=self.Meta.pagination_limit)
 
         #self.context['data'] = Property.list_all()
     @route_with("/api/property/:<key>", methods=['GET'])

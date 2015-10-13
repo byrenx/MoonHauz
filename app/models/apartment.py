@@ -2,7 +2,7 @@ from ferris import BasicModel, ndb
 from app.models.property import Property
 
 class Apartment(Property):
-    rooms = ndb.IntegerProperty()
+    bedrooms = ndb.IntegerProperty()
     floor_area = ndb.FloatProperty()
 
     @classmethod

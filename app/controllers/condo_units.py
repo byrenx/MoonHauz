@@ -12,10 +12,10 @@ class CondoUnits(MoonHauzController):
         prefixes = ('api',)
         components = (messages.Messaging, Pagination,)
         Model = CondoUnit
-        pagination_limit = 6,
+        pagination_limit = 8
         keys = gather_keys(Model)
         
     @route_with("/api/condo_units")
     def api_list_all(self):
-        self.context['data'] = CondoUnit.list_all().fetch()
+        self.context['data'] = self.components.pagination.paginate(query=CondoUnit.query(), limit=self.Meta.pagination_limit)
 
