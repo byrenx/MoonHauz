@@ -41,45 +41,57 @@
   <h3> Property Profile</h3>
   <div class="row" ng-if="property.info.name">
     <div class="col-md-12">
-      <strong> Property Name </strong>
+      <h4> Property Name </h4>
       <p ng-bind="property.info.name"></p>
     </div>
     </br>
   </div>
   <div class="row" ng-if="property.info.location">
     <div class="col-md-12">
-      <strong> Location </strong>
+      <h4> Location </h4>
       <p ng-bind="property.info.location"></p>
     </div>
   </div>
 
   <div class="row" ng-if="property.info.transaction_type">
     <div class="col-md-12">
-      <strong> For </strong>
+      <h4> For </h4>
       <span ng-bind="property.info.transaction_type"></span>
     </div>
   </div>
 
   <div class="row" ng-if="property.info.land_area">
-    <div class="col-md-12"><strong> Area </strong>
+    <div class="col-md-12">
+      <h4> Area </h4>
       <span ng-bind="property.info.land_area"></span>
     </div>
   </div>
 
   <div class="row" ng-if="property.info.price">
-    <div class="col-md-12"><strong> Price: </strong>
+    <div class="col-md-12">
+      <h4> Price: </h4>
       <span ng-bind="property.info.price"></span>
     </div>
   </div>
   <div class="row" ng-if="property.info.features">
-    <div class="col-md-12"><strong> Other Features: </strong>
+    <div class="col-md-12">
+      <h4>Other Features: </h4>
       <p ng-bind="property.info.features"></p>
     </div>
-    <div class="col-md-12"><strong> Additional Documents: </strong></br>
-      <i class="fa fa-file-excel-o"> file.xls</i>
-      <i class="fa fa-file-pdf-o"> file.pdf</i>
-      <i class="fa fa-file-word-o"> file.doc</i>
+    <div class="col-md-12"><h4> Pictures: </h4>
+      <form>
+	<input type="file">
+      </form>
+      <hr>
     </div>
+
+    <div class="col-md-12"><h4> Supporting Documents </h4>
+      <form>
+	<input type="file">
+      </form>
+      <hr>
+    </div>
+    
   </div>
 </div>
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
