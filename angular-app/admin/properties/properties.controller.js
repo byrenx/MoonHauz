@@ -16,8 +16,10 @@
 	  this.types = Property.types;
 	  this.land_types = Property.land_types;
 	  this.list = Property.list;
+    this.uploadPhoto = uploadPhoto;
 
 	  this.show_info = show_info;
+    this.photo = Property.photo;
 
 	  activate();
 
@@ -40,6 +42,15 @@
 	  function editModal(){
       pubsub.publish('modal:propertModal:show');
 	  }
+
+    function uploadPhoto(){
+      console.log(this.photo);
+      Property.uploadPhoto();
+    }
+
+    // function uploadDocs(){
+    //   Property.uploadDocs();
+    // }
 
   }
 

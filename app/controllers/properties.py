@@ -82,4 +82,8 @@ class Properties(MoonHauzController):
     def api_search_by_location(self, location):
         properties = self.components.pagination.paginate(query=Property.list_by_location(location), limit=6)
         self.context['data'] = properties
-        
+
+    @route_with("")
+    def upload_photo(self):
+        request = self.request.body
+        self.context['data'] = request.file_name

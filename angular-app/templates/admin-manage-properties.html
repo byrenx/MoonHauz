@@ -1,4 +1,3 @@
-
 <!-- Property List -->
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
   <div class="row">
@@ -80,13 +79,15 @@
     </div>
     <div class="col-md-12"><h4> Pictures: </h4>
       <form>
-	<input type="file">
+	<input type="hidden" ng-model="property.info.key.urlsafe">
+	<input type="file" ng-model="property.photo.filename">
+	<button class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()">Upload</button>
       </form>
       <hr>
     </div>
 
     <div class="col-md-12"><h4> Supporting Documents </h4>
-      <form>
+      <form ng-submit="">
 	<input type="file">
       </form>
       <hr>

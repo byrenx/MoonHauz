@@ -26,8 +26,10 @@
       Property.entity = {};
       Property.list = [];
       Property.info = {};
-
+      Property.photo = {};
+      
       Property.create = create;
+      Property.uploadPhoto = uploadPhoto;
       Property.list_all = list_all;
 
       Property.prototype = {
@@ -122,6 +124,10 @@
           error(function(d){
 
           });
+      }
+
+      function uploadPhoto(){
+        console.log(Property.photo);
       }
 
       /*end of static function*/
