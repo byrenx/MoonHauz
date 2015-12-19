@@ -6,7 +6,7 @@ from app.models.house_and_lot import HouseAndLot
 from app.models.land import Land
 from app.models.condo_unit import CondoUnit
 from app.services.utils import gather_keys, json_loads
-import json
+
 
 class Properties(MoonHauzController):
     class Meta:
@@ -21,7 +21,7 @@ class Properties(MoonHauzController):
     def api_list_all(self):
         self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=self.Meta.pagination_limit)
 
-        #self.context['data'] = Property.list_all()
+    #self.context['data'] = Property.list_all()
     @route_with("/api/property/:<key>", methods=['GET'])
     def api_get_property(self, key):
         """
@@ -83,7 +83,21 @@ class Properties(MoonHauzController):
         properties = self.components.pagination.paginate(query=Property.list_by_location(location), limit=6)
         self.context['data'] = properties
 
-    @route_with("")
+    @route_with("/api/upload_photo")
     def upload_photo(self):
-        request = self.request.body
-        self.context['data'] = request.file_name
+        import os
+        from app.lib import cloudstorage as gcs
+        file_name = "sample.txt"
+        gcs_filepath = "/bucket/sample.txt"
+
+        with gcs.open(gcs_filepath, 'w') as f:
+            file_path = os.path.abspath(file_name)
+            try:
+                input_file = open(file_path)
+                try:
+                    for line in input_file:
+                        f.write(line)
+                finally:
+                    input_file.close()
+            except:
+                pass
