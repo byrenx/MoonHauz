@@ -5,12 +5,13 @@
      .factory('Property', property);
 
     property.$inject = [
-       'PropertyREST',
-       'loading',
-       'passive_messenger',
+      'PropertyREST',
+      'loading',
+      'passive_messenger',
+      'Upload'
     ];
 
-    function property(PropertyREST, loading, passive_messenger){
+  function property(PropertyREST, loading, passive_messenger, Upload){
 
       function Property(){
         this._dbSaved = null;
@@ -128,6 +129,14 @@
 
       function uploadPhoto(){
         console.log("Model ===> ", Property.photo);
+        Property.photo.x = "xxxxxxxx";
+      
+        var upload = Upload.upload(
+          {
+            url: '/api/upload_photo',
+            data: Property.photo
+          }
+        );
       }
 
       /*end of static function*/
