@@ -43,7 +43,12 @@
       pubsub.publish('modal:propertModal:show');
 	  }
 
+    function getFile(event){
+      //console.log(event.target.files[0]);
+    }
+
     function uploadPhoto(){
+      //console.log(event.target.files[0])
       console.log(this.photo);
       Property.uploadPhoto();
     }

@@ -127,7 +127,7 @@
       }
 
       function uploadPhoto(){
-        console.log(Property.photo);
+        console.log("Model ===> ", Property.photo);
       }
 
       /*end of static function*/
