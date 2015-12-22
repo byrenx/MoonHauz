@@ -19,6 +19,7 @@
     this.uploadPhoto = uploadPhoto;
 
 	  this.show_info = show_info;
+    this.isLoading = Property.loading;
     this.photo = Property.photo;
 
 	  activate();

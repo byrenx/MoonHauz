@@ -8,6 +8,7 @@ from app.models.condo_unit import CondoUnit
 from app.services.utils import gather_keys, json_loads
 from app.lib import cloudstorage as gcs
 
+
 class Properties(MoonHauzController):
     class Meta:
         prefixes = ('api',)
@@ -85,7 +86,14 @@ class Properties(MoonHauzController):
 
     @route_with("/api/upload_photo")
     def api_upload_photo(self):
+        """
+        upload photo to cloud storage and
+        mutate the photo_urls list of the Property entity
+        identified by property_key
+        """
         input_file = self.request.params['file']
+        p_key = self.request.params['property_key']
+
         gcs_filepath = "/bucket/%s" % input_file.filename
         with gcs.open(gcs_filepath, 'w') as f:
             try:
@@ -93,5 +101,13 @@ class Properties(MoonHauzController):
                 while line:
                     f.write(line)
                     line = input_file.file.readline()
-            finally:
-                input_file.close()
+                
+                # Get Property entity
+                self.Meta.Model = Land
+                prop = self.util.decode_key(p_key).get()
+                # mutate Property photo urls list
+                prop.images_urls = prop.images_urls + [gcs_filepath]
+                prop.put()
+                return 200
+            except:
+                return 404

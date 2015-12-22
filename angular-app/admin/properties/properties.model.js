@@ -8,10 +8,11 @@
     'PropertyREST',
     'loading',
     'passive_messenger',
-    'Upload'
+    'Upload',
+    '$timeout'
   ];
 
-  function property(PropertyREST, loading, passive_messenger, Upload){
+  function property(PropertyREST, loading, passive_messenger, Upload, timeout){
 
     function Property(){
       this._dbSaved = null;
@@ -128,18 +129,27 @@
     }
 
     function uploadPhoto(){
-      Property.progress = 10;
-      var upload = Upload.upload(
+      Property.photo.progress = 1;
+      Property.photo.file.upload = Upload.upload(
         {
           url: '/api/upload_photo',
-          data: Property.photo
+          data: {
+            file: Property.photo.file,
+            property_key: Property.entity.key.urlsafe
+          }
         }
       );
-      
-      upload.then(function(resp){
-      },function(evt){
-        Property.photo.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-      });
+
+      Property.photo.file.upload
+        .then(function(resp){
+          timeout(function () {
+            Property.photo.result = resp.data;
+            Property.photo.progress = 0;
+          });
+        }, function(evt){
+          console.log("Event logging");
+          Property.photo.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
     }
 
     /*end of static function*/
