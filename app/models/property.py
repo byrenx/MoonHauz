@@ -26,8 +26,8 @@ class Property(BasicModel, polymodel.PolyModel):
     #profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
     geo_point = ndb.GeoPtProperty(required=False)
-    images = ndb.BlobKeyProperty(repeated=True, required=False)
-    documents = ndb.BlobKeyProperty(repeated=True, required=False)
+    images_urls = ndb.StringProperty(repeated=True, required=False)
+    documents_urls = ndb.StringProperty(repeated=True, required=False)
 
 
     @classmethod
