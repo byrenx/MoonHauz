@@ -26,8 +26,9 @@ class Property(BasicModel, polymodel.PolyModel):
     #profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
     geo_point = ndb.GeoPtProperty(required=False)
-    images_urls = ndb.StringProperty(repeated=True, required=False)
-    documents_urls = ndb.StringProperty(repeated=True, required=False)
+    profile_photo = ndb.StringProperty(required=False)  # holds the public gcs url of the image
+    images_urls = ndb.StringProperty(repeated=True, required=False)  # holds the lists public gcs url of the image
+    documents_urls = ndb.StringProperty(repeated=True, required=False)  # holds the lists public gcs url of the pdf's
 
 
     @classmethod

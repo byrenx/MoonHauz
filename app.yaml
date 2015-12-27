@@ -1,5 +1,5 @@
-application: cs-ferris    #.appspot.com
-version: baseline
+application: moonhauz-dev    #.appspot.com
+version: 0-0-1
 
 runtime: python27
 api_version: 1

@@ -94,14 +94,13 @@ class Properties(MoonHauzController):
         input_file = self.request.params['file']
         p_key = self.request.params['property_key']
 
-        gcs_filepath = "/bucket/%s" % input_file.filename
+        gcs_filepath = "/moonhauz/images/%s" % input_file.filename
         with gcs.open(gcs_filepath, 'w') as f:
             try:
                 line = input_file.file.readline()
                 while line:
                     f.write(line)
                     line = input_file.file.readline()
-                
                 # Get Property entity
                 self.Meta.Model = Land
                 prop = self.util.decode_key(p_key).get()
