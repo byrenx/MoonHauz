@@ -6,7 +6,8 @@ from app.models.house_and_lot import HouseAndLot
 from app.models.land import Land
 from app.models.condo_unit import CondoUnit
 from app.services.utils import gather_keys, json_loads
-import json
+from app.lib import cloudstorage as gcs
+
 
 class Properties(MoonHauzController):
     class Meta:
@@ -21,7 +22,6 @@ class Properties(MoonHauzController):
     def api_list_all(self):
         self.context['data'] = self.components.pagination.paginate(query=Property.query(), limit=self.Meta.pagination_limit)
 
-        #self.context['data'] = Property.list_all()
     @route_with("/api/property/:<key>", methods=['GET'])
     def api_get_property(self, key):
         """
@@ -51,7 +51,6 @@ class Properties(MoonHauzController):
         condo_unit = CondoUnit.create(json_loads(self.request.body, self.meta.keys))
         self.context['data'] = condo_unit
 
-
     '''
     update properties
     '''
@@ -77,9 +76,34 @@ class Properties(MoonHauzController):
         condo_unit.update(json_loads(self.request.body, self.meta.keys))
         self.context['data'] = condo_unit
 
-
     @route_with("/api/property/search_by_location/:<location>")
     def api_search_by_location(self, location):
         properties = self.components.pagination.paginate(query=Property.list_by_location(location), limit=6)
         self.context['data'] = properties
-        
+
+    @route_with("/api/upload_photo")
+    def api_upload_photo(self):
+        """
+        upload photo to cloud storage and
+        mutate the photo_urls list of the Property entity
+        identified by property_key
+        """
+        input_file = self.request.params['file']
+        p_key = self.request.params['property_key']
+
+        gcs_filepath = "/moonhauz/images/%s" % input_file.filename
+        with gcs.open(gcs_filepath, 'w') as f:
+            try:
+                line = input_file.file.readline()
+                while line:
+                    f.write(line)
+                    line = input_file.file.readline()
+                # Get Property entity
+                self.Meta.Model = Land
+                prop = self.util.decode_key(p_key).get()
+                # mutate Property photo urls list
+                prop.images_urls = prop.images_urls + [gcs_filepath]
+                prop.put()
+                return 200
+            except:
+                return 404

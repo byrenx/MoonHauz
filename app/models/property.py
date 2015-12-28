@@ -1,8 +1,6 @@
 from google.appengine.ext.ndb import polymodel
-from datetime import datetime, timedelta
 from ferris import BasicModel, ndb, messages
-from protopigeon.converters import Converter, KeyConverter, converters as default_converters
-from protopigeon import to_message
+from protopigeon.converters import Converter, converters as default_converters
 
 
 class ReferenceToValueConverter(Converter):
@@ -16,6 +14,7 @@ class ReferenceToValueConverter(Converter):
 
 key_converter = {'KeyProperty': ReferenceToValueConverter}
 
+
 class Property(BasicModel, polymodel.PolyModel):
     name = ndb.StringProperty(required=True, indexed=True)
     location = ndb.StringProperty(required=True, indexed=True)
@@ -23,11 +22,12 @@ class Property(BasicModel, polymodel.PolyModel):
     price = ndb.FloatProperty(required=True)
     # SALE, RENT
     transaction_type = ndb.StringProperty(required=True)
-    #profile_image = ndb.BlobKeyProperty(required=False)
+    # profile_image = ndb.BlobKeyProperty(required=False)
     features = ndb.TextProperty(required=False, indexed=False)
     geo_point = ndb.GeoPtProperty(required=False)
-    images = ndb.BlobKeyProperty(repeated=True, required=False)
-    documents = ndb.BlobKeyProperty(repeated=True, required=False)
+    profile_photo = ndb.StringProperty(required=False)  # holds the public gcs url of the image
+    images_urls = ndb.StringProperty(repeated=True, required=False)  # holds the lists public gcs url of the image
+    documents_urls = ndb.StringProperty(repeated=True, required=False)  # holds the lists public gcs url of the pdf's
 
 
     @classmethod
@@ -51,34 +51,34 @@ class Property(BasicModel, polymodel.PolyModel):
     def update(cls, params):
         cls.populate(**params)
         cls.put()
-      
+
     @classmethod
     def list_all(cls):
         properties = [cls.buildProperty(p) for p in cls.query().fetch()]
-        return PropertiesMessage(properties = properties)
+        return PropertiesMessage(properties=properties)
 
     @classmethod
     def list_by_location(cls, location):
         return cls.query(cls.location >= location).order(cls.location)
-    
+
     @classmethod
     def buildProperty(cls, property):
-        return PropertyMessage(type =  cls.identify_type(property._class_name()),
-                               key = property.key.urlsafe(),
-                               name = property.name,
-                               location = property.location,
-                               price = property.price,
-                               features = property.features,
-                               transaction_type = property.transaction_type,
-                               sold = property.sold,
-                               geo_point = GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon),
-                               land_area = property.land_area if property._class_name() == 'Land' or property._class_name() == 'HouseAndLot' else None,
-                               land_type = property.land_type if property._class_name() == 'Land' else None,
-                               floors = property.floors if property._class_name() == 'HouseAndLot' else None,
-                               bedrooms = property.bedrooms if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
-                               floor_area = property.floor_area if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
-                               capacity = property.capacity if property._class_name() == 'CondoUnit' else None
-                           )
+        return PropertyMessage(type=cls.identify_type(property._class_name()),
+                               key=property.key.urlsafe(),
+                               name=property.name,
+                               location=property.location,
+                               price=property.price,
+                               features=property.features,
+                               transaction_type=property.transaction_type,
+                               sold=property.sold,
+                               geo_point=GeoPtMessage(lat=property.geo_point.lat, lon = property.geo_point.lon),
+                               land_area=property.land_area if property._class_name() == 'Land' or property._class_name() == 'HouseAndLot' else None,
+                               land_type=property.land_type if property._class_name() == 'Land' else None,
+                               floors=property.floors if property._class_name() == 'HouseAndLot' else None,
+                               bedrooms=property.bedrooms if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
+                               floor_area=property.floor_area if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
+                               capacity=property.capacity if property._class_name() == 'CondoUnit' else None,
+                               images_urls=[image for image in property.images_urls])
 
     @classmethod
     def identify_type(cls, type):
@@ -164,7 +164,7 @@ class PropertyMessage(messages.Message):
     bedrooms = messages.IntegerField(13)
     floor_area = messages.FloatField(14)
     capacity = messages.IntegerField(15)
-
+    images_urls = messages.StringField(16, repeated=True)
 
 
 class PropertiesMessage(messages.Message):

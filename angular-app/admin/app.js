@@ -31,6 +31,7 @@
       'admin.controllers',
       'ngRoute',
       'ngSanitize',
+      'ngFileUpload'
     ])
     .run(admin);
 

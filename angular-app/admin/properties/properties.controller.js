@@ -6,7 +6,7 @@
 
   properties.$inject = [
 	  'pubsub',
-	  'Property',
+	  'Property'
   ];
 
   function properties(pubsub, Property){
@@ -16,8 +16,11 @@
 	  this.types = Property.types;
 	  this.land_types = Property.land_types;
 	  this.list = Property.list;
+    this.uploadPhoto = uploadPhoto;
 
 	  this.show_info = show_info;
+    this.isLoading = Property.loading;
+    this.photo = Property.photo;
 
 	  activate();
 
@@ -40,6 +43,18 @@
 	  function editModal(){
       pubsub.publish('modal:propertModal:show');
 	  }
+
+    function getFile(event){
+      //console.log(event.target.files[0]);
+    }
+
+    function uploadPhoto(){
+      Property.uploadPhoto();
+    }
+
+    // function uploadDocs(){
+    //   Property.uploadDocs();
+    // }
 
   }
 
