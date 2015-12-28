@@ -91,9 +91,18 @@
 	  </span>
 	</div>
       </form>
-      <div class="media">
-	
-      </div>
+      <div class="row">
+	<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.info.images_urls">
+	  <div class="thumbnail">
+	    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
+	    <div class="caption">
+              <p>
+		<a href="#" class="btn btn-primary btn-xs" role="button">...</a>
+	      </p>
+	    </div>
+	  </div>
+	</div>
+      </div> <!--/end of row-->
     </div>
 
     <div class="col-md-12"><h4> Supporting Documents </h4>
