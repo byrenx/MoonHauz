@@ -26,6 +26,22 @@
           </td>
         </tr>
       </table>
+      <!--/ pagination -->
+      <div class="col-sm-offset-2 col-sm-8" ng-show="property.list === false">
+	<nav>
+	  <ul class="pager">
+	    <li>
+	      <button href="" ng-click="properties.previous()" ng-disabled="properties.model.previous_page === undefined" class="btn btn-primary">
+		<i class="fa fa-chevron-left"></i>
+	      </button>
+	    </li>
+	    <li><button href="" ng-click="properties.next()" ng-disabled="properties.model.next_page === undefined" class="btn btn-primary">
+		<i class="fa fa-chevron-right"></i>
+	      </button>
+	    </li>
+	  </ul>
+	</nav>
+      </div><!--/ end of pagination buttons -->
     </div>
   </div>
 </div>

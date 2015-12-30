@@ -15,7 +15,7 @@ class Properties(MoonHauzController):
         components = (messages.Messaging, Pagination,)
         Model = Property
         Message = Property.message()
-        pagination_limit = 8
+        pagination_limit = 10
         keys = gather_keys(Model)
 
     @route_with("/api/properties", methods=['GET'])
