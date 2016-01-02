@@ -72,7 +72,7 @@
     }
 
     function isListEmpty(){
-      return vm.model.list.length == 0;
+      return vm.model.list.length === 0;
     }
 
     init();

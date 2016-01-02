@@ -28,13 +28,16 @@
     Property.next_page = undefined; 
     Property.previous_page = undefined; 
     Property.entity = {};
-    Property.list = {};
+    Property.list = [];
     Property.info = {};
     Property.photo = {};
     
     Property.create = create;
     Property.uploadPhoto = uploadPhoto;
     Property.list_all = list_all;
+
+    Property.previous = previous;
+    Property.next = next;
 
     Property.prototype = {
       destroy: destroy,
@@ -55,6 +58,28 @@
         });
     }
 
+
+    function previous(){
+      Property.list = [];
+      var call = PropertyREST.paginate(Property.previous_page);
+      Property.loading.watch(call)
+        .success(function(data){
+          Property.previous_page = data.previous_page;
+          Property.next_page = data.next_page;
+          Property.list.push.apply(Property.list, data.items || []);
+        });
+    }
+
+    function next(){
+      Property.list = [];
+      var call = PropertyREST.paginate(Property.next_page);
+      Property.loading.watch(call)
+        .success(function(data){
+          Property.previous_page = data.previous_page;
+          Property.next_page = data.next_page;
+          Property.list.push.apply(Property.list, data.items || []);
+        });
+    }
 
     function create(scope){
       var type = Property.entity.type;

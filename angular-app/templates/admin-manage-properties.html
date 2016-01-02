@@ -19,7 +19,7 @@
       </h3>
 
       <table class="table table-condensed table-hover">
-        <tr ng-repeat="item in property.list" ng-click="property.show_info(item)">
+        <tr ng-repeat="item in property.model.list" ng-click="property.show_info(item)">
           <td>
             <span ng-bind="::item.name"></span>
             <span ng-bind="::item.location"></span>
@@ -27,15 +27,15 @@
         </tr>
       </table>
       <!--/ pagination -->
-      <div class="col-sm-offset-2 col-sm-8" ng-show="property.list === false">
+      <div class="col-sm-offset-2 col-sm-8" ng-show="property.model.list.length > 0">
 	<nav>
 	  <ul class="pager">
 	    <li>
-	      <button href="" ng-click="properties.previous()" ng-disabled="properties.model.previous_page === undefined" class="btn btn-primary">
+	      <button href="" ng-click="property.previous()" ng-disabled="property.model.previous_page === undefined" class="btn btn-primary">
 		<i class="fa fa-chevron-left"></i>
 	      </button>
 	    </li>
-	    <li><button href="" ng-click="properties.next()" ng-disabled="properties.model.next_page === undefined" class="btn btn-primary">
+	    <li><button href="" ng-click="property.next()" ng-disabled="property.model.next_page === undefined" class="btn btn-primary">
 		<i class="fa fa-chevron-right"></i>
 	      </button>
 	    </li>

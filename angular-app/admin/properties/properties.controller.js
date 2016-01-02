@@ -11,16 +11,21 @@
 
   function properties(pubsub, Property){
 
-	  this.modal = modal;
-	  this.editModal = editModal;
-	  this.types = Property.types;
-	  this.land_types = Property.land_types;
-	  this.list = Property.list;
-    this.uploadPhoto = uploadPhoto;
+    var vm = this;
+	  vm.modal = modal;
+	  vm.editModal = editModal;
+	  vm.types = Property.types;
+	  vm.land_types = Property.land_types;
+	  vm.model = Property;
+    vm.uploadPhoto = uploadPhoto;
 
-	  this.show_info = show_info;
-    this.isLoading = Property.loading;
-    this.photo = Property.photo;
+	  vm.show_info = show_info;
+    vm.isLoading = Property.loading;
+    vm.photo = Property.photo;
+    vm.isListEmpty = isListEmpty;
+    
+    vm.next = next;
+    vm.previous = previous;
 
 	  activate();
 
@@ -31,8 +36,8 @@
 
 	  function show_info(property_info){
       Property.entity = property_info;
-      this.info = property_info;
-      GoogleMap.setMarker(this.info.geo_point.lat, this.info.geo_point.lon);
+      vm.info = property_info;
+      GoogleMap.setMarker(vm.info.geo_point.lat, vm.info.geo_point.lon);
 	  }
 
 	  function modal(){
@@ -50,6 +55,18 @@
 
     function uploadPhoto(){
       Property.uploadPhoto();
+    }
+
+    function next(){
+      Property.next();
+    }
+
+    function previous(){
+      Property.previous();
+    }
+
+    function isListEmpty(){
+      return vm.model.list.length === 0;
     }
 
     // function uploadDocs(){
