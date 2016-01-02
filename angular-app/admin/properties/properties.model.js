@@ -25,8 +25,10 @@
     Property.types = ["Land", "House and Lot", "Condo"];
     Property.land_types = ["INDUSTRIAL", "COMMERCIAL", "AGRICULTURE", "RESIDENTIAL", "RESORT"];
     Property.loading = loading.new();
+    Property.next_page = undefined; 
+    Property.previous_page = undefined; 
     Property.entity = {};
-    Property.list = [];
+    Property.list = {};
     Property.info = {};
     Property.photo = {};
     
@@ -43,9 +45,12 @@
 
     /*static function*/
     function list_all(){
+      Property.list = [];
       var call = PropertyREST.list_all();
       Property.loading.watch(call)
         .success(function(data){
+          Property.previous_page = data.previous_page;
+          Property.next_page = data.next_page;
           Property.list.push.apply(Property.list, data.items || []);
         });
     }
