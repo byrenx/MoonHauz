@@ -95,11 +95,17 @@
 
     function update(scope){
       var type = Property.entity.type;
-      Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
-      Property.entity['location'] = GoogleMap.location_address;
+      try{
+        Property.entity.geo_point = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
+        Property.entity.location = GoogleMap.location_address;
+      }catch(error){
+        delete Property.entity.geo_point;
+        delete Property.entity.location;
+      }
       delete Property.entity.type;
       key = Property.entity.key;
       delete Property.entity.key;
+      
       switch(type){
       case 'Land':
         update_land(key, Property.entity, scope);

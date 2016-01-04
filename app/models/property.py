@@ -48,7 +48,8 @@ class Property(BasicModel, polymodel.PolyModel):
         return cls.buildProperty(property)
 
     def update(self, params):
-        params['geo_point'] = ndb.GeoPt(params['geo_point'])
+        if 'geo_point' in params:
+            params['geo_point'] = ndb.GeoPt(params['geo_point'])
         self.populate(**params)
         self.put()
 
