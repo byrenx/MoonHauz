@@ -36,9 +36,8 @@
 	  }
 
 	  function show_info(property_info){
-      Property.entity = property_info;
-      vm.info = property_info;
-      GoogleMap.setMarker(vm.info.geo_point.lat, vm.info.geo_point.lon);
+      Property.getProperty(property_info.key.urlsafe);
+      GoogleMap.setMarker(property_info.geo_point.lat, property_info.geo_point.lon);
 	  }
 
 	  function modal(){

@@ -35,6 +35,7 @@
     Property.create = create;
     Property.uploadPhoto = uploadPhoto;
     Property.list_all = list_all;
+    Property.getProperty = getProperty;
 
     Property.previous = previous;
     Property.next = next;
@@ -81,6 +82,15 @@
         });
     }
 
+    function getProperty(key){
+      var call = PropertyREST.get(key);
+      Property.loading.watch(call)
+        .success(function(data){
+          angular.extend(Property.entity, data);
+          Property.info = data;
+        });
+    }
+
     function create(scope){
       var type = Property.entity.type;
       Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
@@ -103,7 +113,6 @@
     }
 
     function create_land(params, scope){
-      params['prop_type'] = 'Land';
       var call = PropertyREST.create_land(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -118,7 +127,6 @@
     }
 
     function create_house_and_lot(params, scope){
-      params['prop_type'] = 'HouseAndLot';
       var call = PropertyREST.create_house_and_lot(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -133,7 +141,6 @@
     }
 
     function create_condo(params, scope){
-      params['prop_type'] = 'Condo';
       var call = PropertyREST.create_condo(params);
       Property.loading.watch(call)
         .success(function(d){

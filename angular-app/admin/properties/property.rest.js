@@ -15,6 +15,10 @@
       this.list_all = function(){
         return http.get('/api/properties');
       };
+
+      this.get = function(key){
+        return http.get('/api/property/:' + key);
+      };
       
       this.paginate = function(url){
         return http.get(url);

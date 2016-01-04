@@ -16,7 +16,6 @@ key_converter = {'KeyProperty': ReferenceToValueConverter}
 
 
 class Property(BasicModel, polymodel.PolyModel):
-    prop_type = ndb.StringProperty(required=True, indexed=True)
     name = ndb.StringProperty(required=True, indexed=True)
     location = ndb.StringProperty(required=True, indexed=True)
     sold = ndb.BooleanProperty(default=False)
