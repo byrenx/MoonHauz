@@ -91,6 +91,11 @@
         });
     }
 
+    function update(){
+      var type = Property.entity.type;
+      
+    }
+
     function create(scope){
       var type = Property.entity.type;
       Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
