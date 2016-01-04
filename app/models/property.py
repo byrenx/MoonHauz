@@ -41,16 +41,16 @@ class Property(BasicModel, polymodel.PolyModel):
     def to_message(cls, property):
         """
         (Property) --> PropertyMessage
-        
+
         Retuns a Transformed Message of the Property to include
         all fields available based on Property type
         """
         return cls.buildProperty(property)
 
-    @classmethod
-    def update(cls, params):
-        cls.populate(**params)
-        cls.put()
+    def update(self, params):
+        params['geo_point'] = ndb.GeoPt(params['geo_point'])
+        self.populate(**params)
+        self.put()
 
     @classmethod
     def list_all(cls):

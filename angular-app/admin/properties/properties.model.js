@@ -84,6 +84,7 @@
     }
 
     function getProperty(key){
+      Property.entity = {};
       var call = PropertyREST.get(key);
       Property.loading.watch(call)
         .success(function(data){
@@ -92,23 +93,25 @@
         });
     }
 
-    function update(){
+    function update(scope){
       var type = Property.entity.type;
       Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
       Property.entity['location'] = GoogleMap.location_address;
       delete Property.entity.type;
+      key = Property.entity.key;
+      delete Property.entity.key;
       switch(type){
       case 'Land':
-        update_land(Property.entity, scope);
+        update_land(key, Property.entity, scope);
         break;
       case 'House and Lot':
-        update_house_and_lot(Property.entity, scope);
+        update_house_and_lot(key, Property.entity, scope);
         break;
       case 'Condo':
-        update_condo(Property.entity, scope);
+        update_condo(key, Property.entity, scope);
         break;
       case 'Apartment':
-        update_apartment(Property.entity, scope);
+        update_apartment(key, Property.entity, scope);
         break;
       }
     }
@@ -193,8 +196,8 @@
     /**
     Update Properties
     */
-    function update_land(params, scope){
-      var call = PropertyREST.update_land(params);
+    function update_land(key, params, scope){
+      var call = PropertyREST.update_land(key, params);
       Property.loading.watch(call)
         .success(function(d){
           Property.entity = d;
@@ -204,8 +207,8 @@
         });
     }
 
-    function update_house_and_lot(params, scope){
-      var call = PropertyREST.update_house_and_lot(params);
+    function update_house_and_lot(key, params, scope){
+      var call = PropertyREST.update_house_and_lot(key, params);
       Property.loading.watch(call)
         .success(function(d){
           Property.entity = d;
@@ -215,8 +218,8 @@
         });
     }
 
-    function update_condo(scope, params){
-      var call = PropertyREST.update_condo(params);
+    function update_condo(key, params, scope){
+      var call = PropertyREST.update_condo(key, params);
       Property.loading.watch(call)
         .success(function(d){
           Property.entity = d;
@@ -226,8 +229,8 @@
         });
     }
 
-    function update_apartment(scope, params){
-      var call = PropertyREST.update_apartment(params);
+    function update_apartment(key, params, scope){
+      var call = PropertyREST.update_apartment(key, params);
       Property.loading.watch(call)
         .success(function(d){
           Property.entity = d;

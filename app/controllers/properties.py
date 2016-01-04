@@ -60,26 +60,26 @@ class Properties(MoonHauzController):
     '''
     update properties
     '''
-    @route_with("/api/property/land/update/:<p_key>", methods=['POST'])
+    @route_with("/api/property/land/update/:<p_key>", methods=['PUT'])
     def api_update_land(self, p_key):
-        self.meta.Model = Land
+        self.Meta.Model = Land
         land = self.util.decode_key(p_key).get()
-        land.update(json_loads(self.request.body, self.meta.keys))
+        land.update(json_loads(self.request.body, self.Meta.keys))
         self.meta.Message = messages.model_message(Land)
         self.context['data'] = land
 
-    @route_with("/api/property/house_and_lot/update/:<p_key>", methods=['POST'])
+    @route_with("/api/property/house_and_lot/update/:<p_key>", methods=['PUT'])
     def api_update_house_and_lot(self, p_key):
-        self.meta.Model = HouseAndLot
+        self.Meta.Model = HouseAndLot
         h_and_l = self.util.decode_key(p_key).get()
-        h_and_l.update(json_loads(self.request.body, self.meta.keys))
+        h_and_l.update(json_loads(self.request.body, self.Meta.keys))
         self.context['data'] = h_and_l
 
-    @route_with("/api/property/condo_unit/update/:<p_key>", methods=['POST'])
+    @route_with("/api/property/condo_unit/update/:<p_key>", methods=['PUT'])
     def api_update_condo_unit(self, p_key):
-        self.meta.Model = CondoUnit
+        self.Meta.Model = CondoUnit
         condo_unit = self.util.decode_key(p_key).get()
-        condo_unit.update(json_loads(self.request.body, self.meta.keys))
+        condo_unit.update(json_loads(self.request.body, self.Meta.keys))
         self.context['data'] = condo_unit
 
     @route_with("/api/property/search_by_location/:<location>")
