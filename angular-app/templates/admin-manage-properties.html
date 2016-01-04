@@ -54,107 +54,88 @@
     <button class="btn btn-link btn-sm" ng-click="property.editModal()"><i class="fa fa-pencil-square-o"></i>Edit Profile</button>
   </div>
   <h3> Property Profile</h3>
-  <div class="row" ng-if="property.model.info.name">
-    <div class="col-md-12">
-      <h4> Property Name </h4>
-      <p ng-bind="property.model.info.name"></p>
-    </div>
-    </br>
-  </div>
-  <div class="row" ng-if="property.model.info.location">
-    <div class="col-md-12">
-      <h4> Location </h4>
-      <p ng-bind="property.model.info.location"></p>
-    </div>
-  </div>
+  <table class="table">
+  	<tr ng-if="property.model.info.name">
+  		<th>Property Name<th>
+  		<td ng-bind="property.model.info.name"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.price">
-    <div class="col-md-12">
-      <h4> Price: </h4>
-      <span ng-bind="property.model.info.price"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.location">
+  		<th>Location<th>
+  		<td ng-bind="property.model.info.location"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.transaction_type">
-    <div class="col-md-12">
-      <h4> For </h4>
-      <span ng-bind="property.model.info.transaction_type"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.price">
+  		<th>Price<th>
+  		<td ng-bind="property.model.info.price"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.land_type">
-    <div class="col-md-12">
-      <h4> Land Type: </h4>
-      <span ng-bind="property.model.info.land_type"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.transaction_type">
+  		<th>Rent/Sale<th>
+  		<td ng-bind="property.model.info.transaction_type"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.land_area">
-    <div class="col-md-12">
-      <h4> Land Area </h4>
-      <span ng-bind="property.model.info.land_area"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.land_type">
+  		<th>Land Type<th>
+  		<td ng-bind="property.model.info.land_type"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.floor_area">
-    <div class="col-md-12">
-      <h4> Floor Area </h4>
-      <span ng-bind="property.model.info.floor_area"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.land_area">
+  		<th>Land Area<th>
+  		<td ng-bind="property.model.info.land_area"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.floors">
-    <div class="col-md-12">
-      <h4> Floors: </h4>
-      <span ng-bind="property.model.info.floors"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.floor_area">
+  		<th>Floor Area<th>
+  		<td ng-bind="property.model.info.floor_area"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.bedrooms">
-    <div class="col-md-12">
-      <h4> Bedrooms: </h4>
-      <span ng-bind="property.model.info.bedrooms"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.floors">
+  		<th>Floors<th>
+  		<td ng-bind="property.model.info.floors"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.capacity">
-    <div class="col-md-12">
-      <h4> Capacity: </h4>
-      <span ng-bind="property.model.info.capacity"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.bedrooms">
+  		<th>Bedrooms<th>
+  		<td ng-bind="property.model.info.bedrooms"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.model.info.features">
-    <div class="col-md-12">
-      <h4>Other Features: </h4>
-      <p ng-bind="property.model.info.features"></p>
-    </div>
-    <div class="col-md-12"><h4> Pictures: </h4>
+  	<tr ng-if="property.model.info.capacity">
+  		<th>Capacity<th>
+  		<td ng-bind="property.model.info.capacity"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.features">
+  		<th>Other Features<th>
+  		<td ng-bind="property.model.info.features"></td>
+  	</tr>
+  </table>
+  <div class="col-md-12">
+  <h4> Pictures: </h4>
       <form>
-	<div class="form-group">
-	  <input type="hidden" ng-model="property.model.info.key.urlsafe">
-	  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
-		 accept="image/*" ngf-max-size="10MB" required>
-	</div>
-	<div class="form-group">
-	  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
-	  <span ng-show="property.photo.progress > 0">
-	    <i class="fa fa-spinner fa-pulse"></i> Uploading...
-	  </span>
-	</div>
-      </form>
-      <div class="row">
-	<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
-	  <div class="thumbnail">
-	    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
-	    <div class="caption">
-              <p>
-		<a href="#" class="btn btn-primary btn-xs" role="button">...</a>
-	      </p>
-	    </div>
-	  </div>
-	</div>
-      </div> <!--/end of row-->
+		<div class="form-group">
+		  <input type="hidden" ng-model="property.model.info.key.urlsafe">
+		  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
+			 accept="image/*" ngf-max-size="10MB" required>
+		</div>
+		<div class="form-group">
+		  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
+		  <span ng-show="property.photo.progress > 0">
+		    <i class="fa fa-spinner fa-pulse"></i> Uploading...
+		  </span>
+		</div>
+	      </form>
+	      <div class="row">
+		<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
+		  <div class="thumbnail">
+		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
+		    <div class="caption">
+	              <p>
+			<a href="#" class="btn btn-primary btn-xs" role="button">...</a>
+		      </p>
+		    </div>
+		  </div>
+		</div>
     </div>
 
     <div class="col-md-12"><h4> Supporting Documents </h4>
