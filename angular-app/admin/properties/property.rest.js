@@ -39,7 +39,22 @@
       this.create_apartment = function(params){
         return http.post(base_url + '/apartment/create', params);
       };
-      
+
+      this.update_land = function(key, params){
+        return http.put(base_url + '/land/update/:' + key, params);
+      };
+
+      this.update_house_and_lot = function(key, params){
+        return http.put(base_url + '/house_and_lot/update/:' + key, params);
+      };
+
+      this.update_condo = function(key, params){
+        return  http.put(base_url + '/condo_unit/update/:' + key, params);
+      }
+
+      this.update_apartment = function(key, params){
+        return http.put(base_url + '/apartment/update/:' + key, params);
+      }
     }
   
 })(window.angular);

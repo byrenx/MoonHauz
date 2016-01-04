@@ -36,6 +36,7 @@
     Property.uploadPhoto = uploadPhoto;
     Property.list_all = list_all;
     Property.getProperty = getProperty;
+    Property.update = update;
 
     Property.previous = previous;
     Property.next = next;
@@ -93,7 +94,23 @@
 
     function update(){
       var type = Property.entity.type;
-      
+      Property.entity['geo_point'] = GoogleMap.location_searched.lat()+ ", " +GoogleMap.location_searched.lng();
+      Property.entity['location'] = GoogleMap.location_address;
+      delete Property.entity.type;
+      switch(type){
+      case 'Land':
+        update_land(Property.entity, scope);
+        break;
+      case 'House and Lot':
+        update_house_and_lot(Property.entity, scope);
+        break;
+      case 'Condo':
+        update_condo(Property.entity, scope);
+        break;
+      case 'Apartment':
+        update_apartment(Property.entity, scope);
+        break;
+      }
     }
 
     function create(scope){
@@ -160,7 +177,6 @@
     }
 
     function create_apartment(params, scope){
-      params['prop_type'] = 'Apartment';
       var call = PropertyREST.create_apartment(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -171,6 +187,53 @@
         }).
         error(function(d){
 
+        });
+    }
+
+    /**
+    Update Properties
+    */
+    function update_land(params, scope){
+      var call = PropertyREST.update_land(params);
+      Property.loading.watch(call)
+        .success(function(d){
+          Property.entity = d;
+          Property.info = d;
+          scope.callback();
+          passive_messenger.info('Property is successfully updated!');
+        });
+    }
+
+    function update_house_and_lot(params, scope){
+      var call = PropertyREST.update_house_and_lot(params);
+      Property.loading.watch(call)
+        .success(function(d){
+          Property.entity = d;
+          Property.info = d;
+          scope.callback();
+          passive_messenger.info('Property is successfully updated!');
+        });
+    }
+
+    function update_condo(scope, params){
+      var call = PropertyREST.update_condo(params);
+      Property.loading.watch(call)
+        .success(function(d){
+          Property.entity = d;
+          Property.info = d;
+          scope.callback();
+          passive_messenger.info('Property is successfully updated!');
+        });
+    }
+
+    function update_apartment(scope, params){
+      var call = PropertyREST.update_apartment(params);
+      Property.loading.watch(call)
+        .success(function(d){
+          Property.entity = d;
+          Property.info = d;
+          scope.callback();
+          passive_messenger.info('Property is successfully updated!');
         });
     }
 
