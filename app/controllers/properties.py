@@ -26,29 +26,35 @@ class Properties(MoonHauzController):
     def api_get_property(self, key):
         """
         (Properties, key) --> Property Message
-        
+
         Return a Property Message based from urlsafe key
         """
         prop = self.util.decode_key(key).get()
         self.context['data'] = Property.to_message(prop)
 
+    '''
+    create properties by type
+    '''
     @route_with("/api/property/land/create", methods=['POST'])
     def api_create_land(self):
         self.meta.Model = Land
-        land = Land.create(json_loads(self.request.body, self.meta.keys))
+        body = self.request.body
+        land = Land.create(json_loads(body, self.meta.keys))
         self.meta.Message = messages.model_message(Land)
         self.context['data'] = land
 
     @route_with("/api/property/house_and_lot/create", methods=['POST'])
     def api_create_house_and_lot(self):
         self.meta.Model = HouseAndLot
-        h_and_l = HouseAndLot.create(json_loads(self.request.body, self.meta.keys))
+        body = self.request.body
+        h_and_l = HouseAndLot.create(json_loads(body, self.meta.keys))
         self.context['data'] = h_and_l
 
     @route_with("/api/property/condo_unit/create", methods=['POST'])
     def api_create_condo_unit(self):
         self.meta.Model = CondoUnit
-        condo_unit = CondoUnit.create(json_loads(self.request.body, self.meta.keys))
+        body = self.request.body
+        condo_unit = CondoUnit.create(json_loads(body, self.meta.keys))
         self.context['data'] = condo_unit
 
     '''

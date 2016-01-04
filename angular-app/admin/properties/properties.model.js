@@ -103,6 +103,7 @@
     }
 
     function create_land(params, scope){
+      params['prop_type'] = 'Land';
       var call = PropertyREST.create_land(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -117,6 +118,7 @@
     }
 
     function create_house_and_lot(params, scope){
+      params['prop_type'] = 'HouseAndLot';
       var call = PropertyREST.create_house_and_lot(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -131,6 +133,7 @@
     }
 
     function create_condo(params, scope){
+      params['prop_type'] = 'Condo';
       var call = PropertyREST.create_condo(params);
       Property.loading.watch(call)
         .success(function(d){
@@ -145,6 +148,7 @@
     }
 
     function create_apartment(params, scope){
+      params['prop_type'] = 'Apartment';
       var call = PropertyREST.create_apartment(params);
       Property.loading.watch(call)
         .success(function(d){

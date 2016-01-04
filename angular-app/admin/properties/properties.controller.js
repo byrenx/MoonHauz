@@ -17,6 +17,7 @@
 	  vm.types = Property.types;
 	  vm.land_types = Property.land_types;
 	  vm.model = Property;
+    vm.entity = Property.entity;
     vm.uploadPhoto = uploadPhoto;
 
 	  vm.show_info = show_info;
@@ -42,11 +43,11 @@
 
 	  function modal(){
       Property.entity = {};
-      pubsub.publish('modal:propertModal:show');
+      pubsub.publish('modal:propertyModal:show');
 	  }
 
 	  function editModal(){
-      pubsub.publish('modal:propertModal:show');
+      pubsub.publish('modal:propertyModal:show');
 	  }
 
     function getFile(event){

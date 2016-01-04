@@ -12,13 +12,14 @@
 
     function propertyModal(pubsub, Property, scope){
 
-      this.types = Property.types;
-      this.land_types = Property.land_types;
-      this.entity = Property.entity;
-      this.save = save;
-      this.cancel = cancel;
-      this.model = Property;
-      this.setLocationSearch = setLocationSearch;
+      var vm = this;
+      vm.types = Property.types;
+      vm.land_types = Property.land_types;
+      vm.entity = Property.entity;
+      vm.save = save;
+      vm.cancel = cancel;
+      vm.model = Property;
+      vm.setLocationSearch = setLocationSearch;
 
       function setLocationSearch(elm){
         $('.pac-container').css('z-index', 1052);
