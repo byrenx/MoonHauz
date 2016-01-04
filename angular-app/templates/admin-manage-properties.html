@@ -68,6 +68,13 @@
     </div>
   </div>
 
+  <div class="row" ng-if="property.model.info.price">
+    <div class="col-md-12">
+      <h4> Price: </h4>
+      <span ng-bind="property.model.info.price"></span>
+    </div>
+  </div>
+
   <div class="row" ng-if="property.model.info.transaction_type">
     <div class="col-md-12">
       <h4> For </h4>
@@ -75,19 +82,48 @@
     </div>
   </div>
 
+  <div class="row" ng-if="property.model.info.land_type">
+    <div class="col-md-12">
+      <h4> Land Type: </h4>
+      <span ng-bind="property.model.info.land_type"></span>
+    </div>
+  </div>
+
   <div class="row" ng-if="property.model.info.land_area">
     <div class="col-md-12">
-      <h4> Area </h4>
+      <h4> Land Area </h4>
       <span ng-bind="property.model.info.land_area"></span>
     </div>
   </div>
 
-  <div class="row" ng-if="property.model.info.price">
+  <div class="row" ng-if="property.model.info.floor_area">
     <div class="col-md-12">
-      <h4> Price: </h4>
-      <span ng-bind="property.model.info.price"></span>
+      <h4> Floor Area </h4>
+      <span ng-bind="property.model.info.floor_area"></span>
     </div>
   </div>
+
+  <div class="row" ng-if="property.model.info.floors">
+    <div class="col-md-12">
+      <h4> Floors: </h4>
+      <span ng-bind="property.model.info.floors"></span>
+    </div>
+  </div>
+
+  <div class="row" ng-if="property.model.info.bedrooms">
+    <div class="col-md-12">
+      <h4> Bedrooms: </h4>
+      <span ng-bind="property.model.info.bedrooms"></span>
+    </div>
+  </div>
+
+  <div class="row" ng-if="property.model.info.capacity">
+    <div class="col-md-12">
+      <h4> Capacity: </h4>
+      <span ng-bind="property.model.info.capacity"></span>
+    </div>
+  </div>
+
   <div class="row" ng-if="property.model.info.features">
     <div class="col-md-12">
       <h4>Other Features: </h4>
