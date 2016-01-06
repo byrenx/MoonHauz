@@ -150,7 +150,13 @@
           </span>
         </div>
       </form>
-    </div>
+      <table class="table table-condensed">
+        <tr ng-repeat="doc_url in property.model.info.documents_urls track by $index">
+          <td>
+            <a href="https://storage.googleapis.com{{doc_url}}" ng-bind="doc_url"></a>
+          </td>
+        </tr>
+      </table>        
   </div>
 </div>
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">

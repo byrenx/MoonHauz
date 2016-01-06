@@ -79,7 +79,8 @@ class Property(BasicModel, polymodel.PolyModel):
                                bedrooms=property.bedrooms if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
                                floor_area=property.floor_area if property._class_name() == 'HouseAndLot' or property._class_name() == 'CondoUnit' or property._class_name() == 'Apartment' else None,
                                capacity=property.capacity if property._class_name() == 'CondoUnit' else None,
-                               images_urls=[image for image in property.images_urls])
+                               images_urls=[image for image in property.images_urls],
+                               documents_urls=[doc for doc in property.documents_urls])
 
     @classmethod
     def identify_type(cls, type):
@@ -166,6 +167,7 @@ class PropertyMessage(messages.Message):
     floor_area = messages.FloatField(14)
     capacity = messages.IntegerField(15)
     images_urls = messages.StringField(16, repeated=True)
+    documents_urls = messages.StringField(17, repeated=True)
 
 
 class PropertiesMessage(messages.Message):
