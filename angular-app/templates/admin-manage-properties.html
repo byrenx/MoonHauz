@@ -19,7 +19,7 @@
       </h3>
 
       <table class="table table-condensed table-hover">
-        <tr ng-repeat="item in property.list" ng-click="property.show_info(item)">
+        <tr ng-repeat="item in property.model.list" ng-click="property.show_info(item)">
           <td>
             <span ng-bind="::item.name"></span>
             <span ng-bind="::item.location"></span>
@@ -27,15 +27,15 @@
         </tr>
       </table>
       <!--/ pagination -->
-      <div class="col-sm-offset-2 col-sm-8" ng-show="property.list === false">
+      <div class="col-sm-offset-2 col-sm-8" ng-show="property.model.list.length > 0">
 	<nav>
 	  <ul class="pager">
 	    <li>
-	      <button href="" ng-click="properties.previous()" ng-disabled="properties.model.previous_page === undefined" class="btn btn-primary">
+	      <button href="" ng-click="property.previous()" ng-disabled="property.model.previous_page === undefined" class="btn btn-primary">
 		<i class="fa fa-chevron-left"></i>
 	      </button>
 	    </li>
-	    <li><button href="" ng-click="properties.next()" ng-disabled="properties.model.next_page === undefined" class="btn btn-primary">
+	    <li><button href="" ng-click="property.next()" ng-disabled="property.model.next_page === undefined" class="btn btn-primary">
 		<i class="fa fa-chevron-right"></i>
 	      </button>
 	    </li>
@@ -54,79 +54,109 @@
     <button class="btn btn-link btn-sm" ng-click="property.editModal()"><i class="fa fa-pencil-square-o"></i>Edit Profile</button>
   </div>
   <h3> Property Profile</h3>
-  <div class="row" ng-if="property.info.name">
-    <div class="col-md-12">
-      <h4> Property Name </h4>
-      <p ng-bind="property.info.name"></p>
-    </div>
-    </br>
-  </div>
-  <div class="row" ng-if="property.info.location">
-    <div class="col-md-12">
-      <h4> Location </h4>
-      <p ng-bind="property.info.location"></p>
-    </div>
-  </div>
+  <table class="table">
+  	<tr ng-if="property.model.info.name">
+  		<th>Property Name<th>
+  		<td ng-bind="property.model.info.name"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.info.transaction_type">
-    <div class="col-md-12">
-      <h4> For </h4>
-      <span ng-bind="property.info.transaction_type"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.location">
+  		<th>Location<th>
+  		<td ng-bind="property.model.info.location"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.info.land_area">
-    <div class="col-md-12">
-      <h4> Area </h4>
-      <span ng-bind="property.info.land_area"></span>
-    </div>
-  </div>
+  	<tr ng-if="property.model.info.price">
+  		<th>Price<th>
+  		<td ng-bind="property.model.info.price"></td>
+  	</tr>
 
-  <div class="row" ng-if="property.info.price">
-    <div class="col-md-12">
-      <h4> Price: </h4>
-      <span ng-bind="property.info.price"></span>
-    </div>
-  </div>
-  <div class="row" ng-if="property.info.features">
-    <div class="col-md-12">
-      <h4>Other Features: </h4>
-      <p ng-bind="property.info.features"></p>
-    </div>
-    <div class="col-md-12"><h4> Pictures: </h4>
+  	<tr ng-if="property.model.info.transaction_type">
+  		<th>Rent/Sale<th>
+  		<td ng-bind="property.model.info.transaction_type"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.land_type">
+  		<th>Land Type<th>
+  		<td ng-bind="property.model.info.land_type"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.land_area">
+  		<th>Land Area<th>
+  		<td ng-bind="property.model.info.land_area"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.floor_area">
+  		<th>Floor Area<th>
+  		<td ng-bind="property.model.info.floor_area"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.floors">
+  		<th>Floors<th>
+  		<td ng-bind="property.model.info.floors"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.bedrooms">
+  		<th>Bedrooms<th>
+  		<td ng-bind="property.model.info.bedrooms"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.capacity">
+  		<th>Capacity<th>
+  		<td ng-bind="property.model.info.capacity"></td>
+  	</tr>
+
+  	<tr ng-if="property.model.info.features">
+  		<th>Other Features<th>
+  		<td ng-bind="property.model.info.features"></td>
+  	</tr>
+  </table>
+  <div class="col-md-12" ng-if="property.model.info.key">
+    <h4> Pictures: </h4>
       <form>
-	<div class="form-group">
-	  <input type="hidden" ng-model="property.info.key.urlsafe">
-	  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
-		 accept="image/*" ngf-max-size="10MB" required>
-	</div>
-	<div class="form-group">
-	  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
-	  <span ng-show="property.photo.progress > 0">
-	    <i class="fa fa-spinner fa-pulse"></i> Uploading...
-	  </span>
-	</div>
+  	    <div class="form-group">
+    		  <input type="hidden" ng-model="property.model.info.key.urlsafe">
+    		  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
+    			 accept="image/*" ngf-max-size="20MB" required>
+    		</div>
+    		<div class="form-group">
+    		  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
+    		  <span ng-show="property.photo.progress > 0">
+    		    <i class="fa fa-spinner fa-pulse"></i> Uploading...
+    		  </span>
+    		</div>
       </form>
-      <div class="row">
-	<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.info.images_urls">
-	  <div class="thumbnail">
-	    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
-	    <div class="caption">
-              <p>
-		<a href="#" class="btn btn-primary btn-xs" role="button">...</a>
-	      </p>
-	    </div>
-	  </div>
-	</div>
-      </div> <!--/end of row-->
+  	 <div class="row">
+  		<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
+  		  <div class="thumbnail">
+  		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
+  		    <div class="caption">
+  	        <p>
+  			      <a href="#" class="btn btn-primary btn-xs" role="button">...</a>
+  		      </p>
+  		    </div>
+  		  </div>
+  		</div>
     </div>
-
-    <div class="col-md-12"><h4> Supporting Documents </h4>
-      <form ng-submit="">
-	<input type="file">
+  </div>
+  <div class="col-md-12" ng-if="property.model.info.key"><h4> Supporting Documents </h4>
+      <form>
+        <div class="form-group">
+          <input type="file" ngf-select ng-model="property.doc.file" name="file" accept="application/pdf" ngf-max-size="20MB" required>
+        </div>
+        <div>
+          <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadDoc()" value="Upload">
+          <span ng-show="property.doc.progress > 0">
+            <i class="fa fa-spinner fa-pulse"></i> Uploading...
+          </span>
+        </div>
       </form>
-      <hr>
-    </div>
+      <table class="table table-condensed">
+        <tr ng-repeat="doc_url in property.model.info.documents_urls track by $index">
+          <td>
+            <a href="https://storage.googleapis.com{{doc_url}}" ng-bind="doc_url"></a>
+          </td>
+        </tr>
+      </table>        
   </div>
 </div>
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
@@ -139,7 +169,7 @@
 
 
 <!--create property modal-->
-<div id="propertyModal" class="modal" x-modal="propertModal" ng-controller="PropertyModal as pm">
+<div id="propertyModal" class="modal" x-modal="propertyModal" ng-controller="PropertyModal as pm">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -151,10 +181,9 @@
 	  <!-- TODO: We could add a ui-select2 for google places query -->
 	  <div class="col-xs-12 form-group">
 	    <label for="type">Property Type</label>
-	    <select id="type" class="form-control input-sm" ng-options="type for type in pm.model.types" ng-model="pm.model.entity.type" ng-disabled="pm.model.entity.key"></select>
+	    <select id="type" class="form-control input-sm" ng-options="type for type in pm.types" ng-model="pm.model.entity.type" ng-disabled="pm.model.entity.key"></select>
 	  </div>
 	  
-
 	  <div class="col-xs-12 form-group form-inline" ng-if="pm.model.entity.type">
 	    <div class="radio">
               <label>
@@ -201,24 +230,24 @@
 	  <!--Condo property fields-->
 	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Condo'">
 	    <label for="capacity">Capacity</label>
-	    <input id="capacity" ng-model="pm.model.entity.capacity" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
+	    <input id="capacity" ng-model="pm.model.entity.capacity" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Capacity" ng-required="true">
 	  </div>
 	  <!--/end of condo property fields-->
 
 	  <!-- house and lot proerties-->
 	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
 	    <label for="floors">No. of Floors</label>
-	    <input id="floors" ng-model="pm.model.entity.floors" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
+	    <input id="floors" ng-model="pm.model.entity.floors" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floors" ng-required="true">
 	  </div>
 
 	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot' || pm.model.entity.type == 'Condo'">
 	    <label for="floor_area">Floor Area</label>
-	    <input id="hour_err" ng-model="pm.model.entity.floor_area" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
+	    <input id="hour_err" ng-model="pm.model.entity.floor_area" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floor Area" ng-required="true">
 	  </div>
 
 	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
 	    <label for="bedrooms">No. Bedrooms</label>
-	    <input id="bedrooms" ng-model="pm.model.entity.bedrooms" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
+	    <input id="bedrooms" ng-model="pm.model.entity.bedrooms" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Bedrooms" ng-required="true">
 	  </div>
 	  <!--/end of house and lot proerty fields-->
 	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">

@@ -11,16 +11,23 @@
 
   function properties(pubsub, Property){
 
-	  this.modal = modal;
-	  this.editModal = editModal;
-	  this.types = Property.types;
-	  this.land_types = Property.land_types;
-	  this.list = Property.list;
-    this.uploadPhoto = uploadPhoto;
+    var vm = this;
+	  vm.modal = modal;
+	  vm.editModal = editModal;
+	  vm.types = Property.types;
+	  vm.land_types = Property.land_types;
+	  vm.model = Property;
+    vm.uploadPhoto = uploadPhoto;
+    vm.uploadDoc = uploadDoc;
 
-	  this.show_info = show_info;
-    this.isLoading = Property.loading;
-    this.photo = Property.photo;
+	  vm.show_info = show_info;
+    vm.isLoading = Property.loading;
+    vm.photo = Property.photo;
+    vm.doc = Property.doc;
+    vm.isListEmpty = isListEmpty;
+    
+    vm.next = next;
+    vm.previous = previous;
 
 	  activate();
 
@@ -30,18 +37,18 @@
 	  }
 
 	  function show_info(property_info){
-      Property.entity = property_info;
-      this.info = property_info;
-      GoogleMap.setMarker(this.info.geo_point.lat, this.info.geo_point.lon);
+      Property.getProperty(property_info.key.urlsafe);
+      GoogleMap.setMarker(property_info.geo_point.lat, property_info.geo_point.lon);
 	  }
 
 	  function modal(){
       Property.entity = {};
-      pubsub.publish('modal:propertModal:show');
+      Property.info = {};
+      pubsub.publish('modal:propertyModal:show');
 	  }
 
 	  function editModal(){
-      pubsub.publish('modal:propertModal:show');
+      pubsub.publish('modal:propertyModal:show');
 	  }
 
     function getFile(event){
@@ -52,9 +59,21 @@
       Property.uploadPhoto();
     }
 
-    // function uploadDocs(){
-    //   Property.uploadDocs();
-    // }
+    function uploadDoc(){
+      Property.uploadDoc();
+    }
+
+    function next(){
+      Property.next();
+    }
+
+    function previous(){
+      Property.previous();
+    }
+
+    function isListEmpty(){
+      return vm.model.list.length === 0;
+    }
 
   }
 

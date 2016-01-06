@@ -12,7 +12,7 @@ Currently it is under development.
 
 1. Enable billing to create a bucket
 2. Create a bucket name `moonhauz` and a folder named `images` inside the bucket
-3. Edit the bucket objects default persission, then
+3. Edit the bucket objects default permission, then
    add new User which are `allUsers` to make uploaded file
    to be publicly accessible and for the bucket to work as a CDN.
 
