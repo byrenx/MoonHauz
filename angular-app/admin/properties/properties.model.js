@@ -266,6 +266,7 @@
           timeout(function () {
             Property.photo.result = resp.data;
             Property.photo.progress = 0;
+            passive_messenger.info("New Photo succesfully uploaded!");
           });
         }, function(evt){
           console.log("Event logging");
@@ -290,6 +291,7 @@
           timeout(function() {
             Property.doc.result = resp.data;
             Property.doc.progress = 0;
+            passive_messenger.info("New Document succesfully uploaded!");
           });
         }, function(evt){
           console.log("Event logging");
