@@ -31,9 +31,11 @@
     Property.list = [];
     Property.info = {};
     Property.photo = {};
+    Property.doc = {};
     
     Property.create = create;
     Property.uploadPhoto = uploadPhoto;
+    Property.uploadDoc = uploadDoc;
     Property.list_all = list_all;
     Property.getProperty = getProperty;
     Property.update = update;
@@ -88,6 +90,7 @@
       var call = PropertyREST.get(key);
       Property.loading.watch(call)
         .success(function(data){
+          console.log(data);
           angular.extend(Property.entity, data);
           Property.info = data;
         });
@@ -253,7 +256,7 @@
           url: '/api/upload_photo',
           data: {
             file: Property.photo.file,
-            property_key: Property.entity.key.urlsafe
+            property_key: Property.entity.key
           }
         }
       );
@@ -270,6 +273,30 @@
         });
     }
 
+    function uploadDoc(){
+      Property.doc.progress = 1;
+      Property.doc.file.upload = Upload.upload(
+        {
+          url: '/api/upload_docs',
+          data: {
+            file: Property.doc.file,
+            property_key: Property.entity.key
+          }
+        }
+      );
+
+      Property.doc.file.upload
+        .then(function(resp){
+          timeout(function() {
+            Property.doc.result = resp.data;
+            Property.doc.progress = 0;
+          });
+        }, function(evt){
+          console.log("Event logging");
+          Property.doc.progress = Math.min(100, parstInt(100.0 * evt.loaded / evt.total));
+        });
+    }
+
     /*end of static function*/
 
     /**
@@ -283,7 +310,7 @@
 
     function destroy() {
       var self = this;
-      var call = AssessmentREST.delete(self.key.urlsafe);
+      var call = PropertyREST.delete(self.key.urlsafe);
       self.isLoading.watch(call);
       return call;
     }

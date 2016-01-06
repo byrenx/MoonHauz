@@ -110,39 +110,46 @@
   		<td ng-bind="property.model.info.features"></td>
   	</tr>
   </table>
-  <div class="col-md-12">
-  <h4> Pictures: </h4>
+  <div class="col-md-12" ng-if="property.model.info.key">
+    <h4> Pictures: </h4>
       <form>
-		<div class="form-group">
-		  <input type="hidden" ng-model="property.model.info.key.urlsafe">
-		  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
-			 accept="image/*" ngf-max-size="10MB" required>
-		</div>
-		<div class="form-group">
-		  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
-		  <span ng-show="property.photo.progress > 0">
-		    <i class="fa fa-spinner fa-pulse"></i> Uploading...
-		  </span>
-		</div>
-	      </form>
-	      <div class="row">
-		<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
-		  <div class="thumbnail">
-		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
-		    <div class="caption">
-	              <p>
-			<a href="#" class="btn btn-primary btn-xs" role="button">...</a>
-		      </p>
-		    </div>
-		  </div>
-		</div>
-    </div>
-
-    <div class="col-md-12"><h4> Supporting Documents </h4>
-      <form ng-submit="">
-	<input type="file">
+  	    <div class="form-group">
+    		  <input type="hidden" ng-model="property.model.info.key.urlsafe">
+    		  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
+    			 accept="image/*" ngf-max-size="20MB" required>
+    		</div>
+    		<div class="form-group">
+    		  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
+    		  <span ng-show="property.photo.progress > 0">
+    		    <i class="fa fa-spinner fa-pulse"></i> Uploading...
+    		  </span>
+    		</div>
       </form>
-      <hr>
+  	 <div class="row">
+  		<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
+  		  <div class="thumbnail">
+  		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
+  		    <div class="caption">
+  	        <p>
+  			      <a href="#" class="btn btn-primary btn-xs" role="button">...</a>
+  		      </p>
+  		    </div>
+  		  </div>
+  		</div>
+    </div>
+  </div>
+  <div class="col-md-12" ng-if="property.model.info.key"><h4> Supporting Documents </h4>
+      <form>
+        <div class="form-group">
+          <input type="file" ngf-select ng-model="property.doc.file" name="file" accept="application/pdf" ngf-max-size="20MB" required>
+        </div>
+        <div>
+          <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadDoc()" value="Upload">
+          <span ng-show="property.doc.progress > 0">
+            <i class="fa fa-spinner fa-pulse"></i> Uploading...
+          </span>
+        </div>
+      </form>
     </div>
   </div>
 </div>

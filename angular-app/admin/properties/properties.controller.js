@@ -18,10 +18,12 @@
 	  vm.land_types = Property.land_types;
 	  vm.model = Property;
     vm.uploadPhoto = uploadPhoto;
+    vm.uploadDoc = uploadDoc;
 
 	  vm.show_info = show_info;
     vm.isLoading = Property.loading;
     vm.photo = Property.photo;
+    vm.doc = Property.doc;
     vm.isListEmpty = isListEmpty;
     
     vm.next = next;
@@ -57,6 +59,10 @@
       Property.uploadPhoto();
     }
 
+    function uploadDoc(){
+      Property.uploadDoc();
+    }
+
     function next(){
       Property.next();
     }
@@ -68,10 +74,6 @@
     function isListEmpty(){
       return vm.model.list.length === 0;
     }
-
-    // function uploadDocs(){
-    //   Property.uploadDocs();
-    // }
 
   }
 
