@@ -105,10 +105,30 @@ class Properties(MoonHauzController):
                     f.write(line)
                     line = input_file.file.readline()
                 # Get Property entity
-                self.Meta.Model = Land
+                # self.Meta.Model = Land
                 prop = self.util.decode_key(p_key).get()
                 # mutate Property photo urls list
                 prop.images_urls = prop.images_urls + [gcs_filepath]
+                prop.put()
+                return 200
+            except:
+                return 404
+
+    @route_with("/api/upload_docs")
+    def api_upload_docs(self):
+        input_file = self.request.params['file']
+        p_key = self.request.params['property_key']
+
+        gcs_filepath = "/moonhauz/documents/%s" % input_file.filename
+        with gcs.open(gcs_filepath, 'w') as f:
+            try:
+                line = input_file.file.readline()
+                while line:
+                    f.write(line)
+                    line = input_file.file.readline()
+                # self.Meta.Model
+                prop = self.util.decode_key(p_key).get()
+                prop.documents_urls = prop.documents_urls + [gcs_filepath]
                 prop.put()
                 return 200
             except:
