@@ -54,60 +54,60 @@
     <button class="btn btn-link btn-sm" ng-click="property.editModal()"><i class="fa fa-pencil-square-o"></i>Edit Profile</button>
   </div>
   <h3> Property Profile</h3>
-  <table class="table">
+  <table class="table" >
   	<tr ng-if="property.model.info.name">
-  		<th>Property Name<th>
-  		<td ng-bind="property.model.info.name"></td>
+  		<th style="width: 150px;">Property Name<th>
+  		<td style="text-align: left;" ng-bind="property.model.info.name"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.location">
   		<th>Location<th>
-  		<td ng-bind="property.model.info.location"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.location"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.price">
   		<th>Price<th>
-  		<td ng-bind="property.model.info.price"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.price"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.transaction_type">
   		<th>Rent/Sale<th>
-  		<td ng-bind="property.model.info.transaction_type"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.transaction_type"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.land_type">
   		<th>Land Type<th>
-  		<td ng-bind="property.model.info.land_type"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.land_type"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.land_area">
   		<th>Land Area<th>
-  		<td ng-bind="property.model.info.land_area"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.land_area"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.floor_area">
   		<th>Floor Area<th>
-  		<td ng-bind="property.model.info.floor_area"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.floor_area"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.floors">
   		<th>Floors<th>
-  		<td ng-bind="property.model.info.floors"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.floors"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.bedrooms">
   		<th>Bedrooms<th>
-  		<td ng-bind="property.model.info.bedrooms"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.bedrooms"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.capacity">
   		<th>Capacity<th>
-  		<td ng-bind="property.model.info.capacity"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.capacity"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.features">
   		<th>Other Features<th>
-  		<td ng-bind="property.model.info.features"></td>
+  		<td style="text-align: left;" ng-bind="property.model.info.features"></td>
   	</tr>
   </table>
   <div class="col-md-12" ng-if="property.model.info.key">
@@ -130,8 +130,10 @@
   		  <div class="thumbnail">
   		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
   		    <div class="caption">
-  	        <p>
-  			      <a href="#" class="btn btn-primary btn-xs" role="button">...</a>
+  	              <p>
+  			<a href="#" class="btn btn-link btn-xs" data-toggle="tooltip" title="Set as Profile Photo" role="button">
+			  <i class="fa fa-file-image-o fa-lg">...</i>
+			</a>
   		      </p>
   		    </div>
   		  </div>
