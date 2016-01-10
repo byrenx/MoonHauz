@@ -8,6 +8,14 @@ Bootstrap (which is subject to be replace with material design lite), and Angula
 Currently it is under development.
 
 
+### Installing Frontend dependencies
+
+Go to angular-app forlder then type the command `bower install` to install the dependencies being described in bower.json
+
+To install bower
+First install npm which is included in nodejs so you to install nodejs, for instructions visit [https://nodejs.org/en/download/package-manager/](https://nodejs.org/en/download/package-manager/)
+Next, use install bower `npm install -g bower`
+
 ### Setting Up GCS:
 
 1. Enable billing to create a bucket
