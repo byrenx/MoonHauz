@@ -1,0 +1,31 @@
+{
+  "name": "angular-app",
+  "authors": [
+    "byrenx <jofel.bayron@cloudsherpas.com>"
+  ],
+  "description": "frontend implemetation",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-select": "~0.9.9",
+    "angular-ui-utils": "bower",
+    "fullcalendar": "~2.2.6",
+    "cs-angular-utilities": "git@bitbucket.org:cloudsherpas/angular-utilities.git#master",
+    "ng-file-upload": "~10.1.11",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "https://github.com/FortAwesome/Font-Awesome.git#~4.5.0",
+    "moment": "~2.11.1",
+    "angular": "1.4.8",
+    "jquery": "~2.2.0"
+  }
+}

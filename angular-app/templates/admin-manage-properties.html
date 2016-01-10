@@ -112,32 +112,29 @@
   </table>
   <div class="col-md-12" ng-if="property.model.info.key">
     <h4> Pictures: </h4>
-      <form>
-  	    <div class="form-group">
-    		  <input type="hidden" ng-model="property.model.info.key.urlsafe">
-    		  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
-    			 accept="image/*" ngf-max-size="20MB" required>
-    		</div>
-    		<div class="form-group">
-    		  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
-    		  <span ng-show="property.photo.progress > 0">
-    		    <i class="fa fa-spinner fa-pulse"></i> Uploading...
-    		  </span>
-    		</div>
-      </form>
-  	 <div class="row">
-  		<div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
-  		  <div class="thumbnail">
-  		    <img src="https://storage.googleapis.com{{image_url}}" alt="...">
-  		    <div class="caption">
-  	              <p>
-  			<a href="#" class="btn btn-link btn-xs" data-toggle="tooltip" title="Set as Profile Photo" role="button">
-			  <i class="fa fa-file-image-o fa-lg">...</i>
-			</a>
-  		      </p>
-  		    </div>
-  		  </div>
-  		</div>
+    <form>
+      <div class="form-group">
+    	<input type="hidden" ng-model="property.model.info.key.urlsafe">
+    	<input type="file" ngf-select ng-model="property.photo.file" name="file"    
+    	       accept="image/*" ngf-max-size="20MB" required>
+      </div>
+      <div class="form-group">
+    	<input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
+    	<span ng-show="property.photo.progress > 0">
+    	  <i class="fa fa-spinner fa-pulse"></i> Uploading...
+    	</span>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
+  	<div class="thumbnail">
+  	  <!-- <img src="https://storage.googleapis.com{{image_url}}" alt="..."> -->
+	  <img src="ng/components/logo.png" alt="...">
+  	  <a href="#" class="btn btn-primary btn-xs btn-img-overlay" data-toggle="tooltip" title="Set as Profile Photo" role="button">
+	    <span class="glyphicon glyphicon-option-vertical"></span>
+	  </a>
+  	</div>
+      </div>
     </div>
   </div>
   <div class="col-md-12" ng-if="property.model.info.key"><h4> Supporting Documents </h4>
