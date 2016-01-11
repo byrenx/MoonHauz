@@ -130,10 +130,8 @@
   	<div class="thumbnail">
   	  <!-- <img src="https://storage.googleapis.com{{image_url}}" alt="..."> -->
 	  <img src="ng/assets/logo.png" alt="...">
-  	  <!-- <a href="#" class="btn btn-default btn-xs btn-img-overlay" data-toggle="tooltip" title="Set as Profile Photo" role="button"> -->
-	  <!--   <span class="glyphicon glyphicon-option-vertical"></span> -->
-	  <!-- </a> -->
 	  <div class="btn-group btn-img-overlay">
+	    &nbsp;<span class="glyphicon glyphicon-ok text-success" style="font-size:10px;" ng-if="property.profile_photo === image_url">profile_pic</span>
 	    <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	      <span class="glyphicon glyphicon-option-vertical"></span>
 	    </button>
