@@ -8,4 +8,4 @@
 test_data
 
 bower_components
-
+*.log
