@@ -133,3 +133,12 @@ class Properties(MoonHauzController):
                 return 200
             except:
                 return 404
+
+    @route_with('/api/property/set_profile_photo/:<key>')
+    def api_set_profile_photo(self, key):
+        self.Meta.Model = Property
+        property = self.util.decode_key(key).get()
+        property.set_profile_photo(json_loads(self.request.body, self.Meta.keys))
+        self.meta.Message = messages.model_message(Property)
+        self.context['data'] = property
+

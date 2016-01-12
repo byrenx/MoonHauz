@@ -32,13 +32,14 @@
     Property.info = {};
     Property.photo = {};
     Property.doc = {};
-    
+
     Property.create = create;
     Property.uploadPhoto = uploadPhoto;
     Property.uploadDoc = uploadDoc;
     Property.list_all = list_all;
     Property.getProperty = getProperty;
     Property.update = update;
+    Property.setProfilePhoto = setProfilePhoto;
 
     Property.previous = previous;
     Property.next = next;
@@ -299,6 +300,16 @@
         });
     }
 
+    function setProfilePhoto(key, image_url){
+      var params = {profile_photo: image_url}
+      var call = PropertyREST.set_profile_photo(key, params);
+      Property.loading.watch(call)
+        .success(function(data){
+          console.log(data);
+          passive_messenger.info("Profile phopto has been set!");
+        });
+    }
+
     /*end of static function*/
 
     /**
@@ -323,6 +334,5 @@
     }
 
     return Property;
-  }
-
+ }
 })(window.angular);

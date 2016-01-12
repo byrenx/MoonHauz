@@ -25,7 +25,8 @@
     vm.photo = Property.photo;
     vm.doc = Property.doc;
     vm.isListEmpty = isListEmpty;
-    
+    vm.setAsProfilePhoto = setAsProfilePhoto;
+
     vm.next = next;
     vm.previous = previous;
 
@@ -73,6 +74,10 @@
 
     function isListEmpty(){
       return vm.model.list.length === 0;
+    }
+
+    function setAsProfilePhoto(key, url){
+      Property.setProfilePhoto(key, url);
     }
 
   }

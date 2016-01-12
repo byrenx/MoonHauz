@@ -53,6 +53,10 @@ class Property(BasicModel, polymodel.PolyModel):
         self.populate(**params)
         self.put()
 
+    def set_profile_photo(self, params):
+        self.populate(**params)
+        self.put()
+
     @classmethod
     def list_all(cls):
         properties = [cls.buildProperty(p) for p in cls.query().fetch()]
