@@ -6,8 +6,8 @@
         <i class="fa fa-plus"></i>&nbsp;property
       </button>
       <div class="form-group has-feedback pull-right">
-	<input type="text" class="form-control input-sm">
-	<i class="fa fa-search form-control-feedback"></i>
+	      <input type="text" class="form-control input-sm">
+	      <i class="fa fa-search form-control-feedback"></i>
       </div>
     </div>
     <div class="col-md-12">
@@ -28,19 +28,19 @@
       </table>
       <!--/ pagination -->
       <div class="col-sm-offset-2 col-sm-8" ng-show="property.model.list.length > 0">
-	<nav>
-	  <ul class="pager">
-	    <li>
-	      <button href="" ng-click="property.previous()" ng-disabled="property.model.previous_page === undefined" class="btn btn-primary">
-		<i class="fa fa-chevron-left"></i>
-	      </button>
-	    </li>
-	    <li><button href="" ng-click="property.next()" ng-disabled="property.model.next_page === undefined" class="btn btn-primary">
-		<i class="fa fa-chevron-right"></i>
-	      </button>
-	    </li>
-	  </ul>
-	</nav>
+	      <nav>
+	        <ul class="pager">
+	          <li>
+	            <button href="" ng-click="property.previous()" ng-disabled="property.model.previous_page === undefined" class="btn btn-primary">
+		            <i class="fa fa-chevron-left"></i>
+	            </button>
+	          </li>
+	          <li><button href="" ng-click="property.next()" ng-disabled="property.model.next_page === undefined" class="btn btn-primary">
+		            <i class="fa fa-chevron-right"></i>
+	            </button>
+	          </li>
+	        </ul>
+	      </nav>
       </div><!--/ end of pagination buttons -->
     </div>
   </div>
@@ -57,114 +57,114 @@
   <table class="table" >
   	<tr ng-if="property.model.info.name">
   		<th style="width: 150px;">Property Name<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.name"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.name"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.location">
   		<th>Location<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.location"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.location"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.price">
   		<th>Price<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.price"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.price"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.transaction_type">
   		<th>Rent/Sale<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.transaction_type"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.transaction_type"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.land_type">
   		<th>Land Type<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.land_type"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.land_type"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.land_area">
   		<th>Land Area<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.land_area"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.land_area"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.floor_area">
   		<th>Floor Area<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.floor_area"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.floor_area"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.floors">
   		<th>Floors<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.floors"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.floors"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.bedrooms">
   		<th>Bedrooms<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.bedrooms"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.bedrooms"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.capacity">
   		<th>Capacity<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.capacity"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.capacity"></td>
   	</tr>
 
   	<tr ng-if="property.model.info.features">
   		<th>Other Features<th>
-  		<td style="text-align: left;" ng-bind="property.model.info.features"></td>
+  		  <td style="text-align: left;" ng-bind="property.model.info.features"></td>
   	</tr>
   </table>
   <div class="col-md-12" ng-if="property.model.info.key">
     <h4> Pictures: </h4>
     <form>
       <div class="form-group">
-    	<input type="hidden" ng-model="property.model.info.key.urlsafe">
-    	<input type="file" ngf-select ng-model="property.photo.file" name="file"    
-    	       accept="image/*" ngf-max-size="20MB" required>
+    	  <input type="hidden" ng-model="property.model.info.key.urlsafe">
+    	  <input type="file" ngf-select ng-model="property.photo.file" name="file"    
+    	         accept="image/*" ngf-max-size="20MB" required>
       </div>
       <div class="form-group">
-    	<input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
-    	<span ng-show="property.photo.progress > 0">
-    	  <i class="fa fa-spinner fa-pulse"></i> Uploading...
-    	</span>
+    	  <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadPhoto()" value="Upload">
+    	  <span ng-show="property.photo.progress > 0">
+    	    <i class="fa fa-spinner fa-pulse"></i> Uploading...
+    	  </span>
       </div>
     </form>
     <div class="row">
       <div class="col-sm-6 col-md-4" ng-repeat="image_url in property.model.info.images_urls">
-  	<div class="thumbnail">
-  	  <!-- <img src="https://storage.googleapis.com{{image_url}}" alt="..."> -->
-	  <img src="ng/assets/logo.png" alt="...">
-	  <div class="btn-group btn-img-overlay">
-	    &nbsp;<span class="glyphicon glyphicon-ok text-success" style="font-size:10px;" ng-if="property.profile_photo === image_url">profile_pic</span>
-	    <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	      <span class="glyphicon glyphicon-option-vertical"></span>
-	    </button>
-	    <ul class="dropdown-menu">
-	      <li><a href="" ng-click="property.setAsProfilePhoto(property.model.info.key, image_url)">Set as Profile Photo</a></li>
-	      <li><a href="#">Delete</a></li>
-	    </ul>
-	  </div><!--
-              / end of button group
-          -->
-  	</div>
+  	    <div class="thumbnail">
+          <!--/ uncomment for production -->
+  	      <!-- <img src="https://storage.googleapis.com{{image_url}}" alt="..."> -->
+	        <img src="ng/assets/logo.png" alt="...">
+          <span class="glyphicon glyphicon-ok text-success" ng-show="image_url == property.model.info.profile_photo"  style="font-size:10px;"></span>
+	        <div class="btn-group btn-img-overlay">
+	          &nbsp;
+	          <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	            <span class="glyphicon glyphicon-option-vertical"></span>
+	          </button>
+	          <ul class="dropdown-menu">
+	            <li><a href="" ng-click="property.setAsProfilePhoto(property.model.info.key, image_url)">Set as Profile Photo</a></li>
+	            <li><a href="#">Delete</a></li>
+	          </ul>
+	        </div><!--/ end of button group-->
+  	    </div>
       </div>
     </div>
   </div>
   <div class="col-md-12" ng-if="property.model.info.key"><h4> Supporting Documents </h4>
-      <form>
-        <div class="form-group">
-          <input type="file" ngf-select ng-model="property.doc.file" name="file" accept="application/pdf" ngf-max-size="20MB" required>
-        </div>
-        <div>
-          <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadDoc()" value="Upload">
-          <span ng-show="property.doc.progress > 0">
-            <i class="fa fa-spinner fa-pulse"></i> Uploading...
-          </span>
-        </div>
-      </form>
-      <table class="table table-condensed">
-        <tr ng-repeat="doc_url in property.model.info.documents_urls track by $index">
-          <td>
-            <a href="https://storage.googleapis.com{{doc_url}}" ng-bind="doc_url"></a>
-          </td>
-        </tr>
-      </table>        
+    <form>
+      <div class="form-group">
+        <input type="file" ngf-select ng-model="property.doc.file" name="file" accept="application/pdf" ngf-max-size="20MB" required>
+      </div>
+      <div>
+        <input type="submit" class="btn btn-primary btn-sm" ng-click="property.uploadDoc()" value="Upload">
+        <span ng-show="property.doc.progress > 0">
+          <i class="fa fa-spinner fa-pulse"></i> Uploading...
+        </span>
+      </div>
+    </form>
+    <table class="table table-condensed">
+      <tr ng-repeat="doc_url in property.model.info.documents_urls track by $index">
+        <td>
+          <a href="https://storage.googleapis.com{{doc_url}}" ng-bind="doc_url"></a>
+        </td>
+      </tr>
+    </table>        
   </div>
 </div>
 <div id="rightColumn" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 calendar-container">
@@ -181,94 +181,94 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-	<h3 class="modal-title">Property <small>(Property Profile)</small></h3>
+	      <h3 class="modal-title">Property <small>(Property Profile)</small></h3>
       </div>
 
       <div class="modal-body">
-	<div class="row">
-	  <!-- TODO: We could add a ui-select2 for google places query -->
-	  <div class="col-xs-12 form-group">
-	    <label for="type">Property Type</label>
-	    <select id="type" class="form-control input-sm" ng-options="type for type in pm.types" ng-model="pm.model.entity.type" ng-disabled="pm.model.entity.key"></select>
-	  </div>
-	  
-	  <div class="col-xs-12 form-group form-inline" ng-if="pm.model.entity.type">
-	    <div class="radio">
+	      <div class="row">
+	        <!-- TODO: We could add a ui-select2 for google places query -->
+	        <div class="col-xs-12 form-group">
+	          <label for="type">Property Type</label>
+	          <select id="type" class="form-control input-sm" ng-options="type for type in pm.types" ng-model="pm.model.entity.type" ng-disabled="pm.model.entity.key"></select>
+	        </div>
+	        
+	        <div class="col-xs-12 form-group form-inline" ng-if="pm.model.entity.type">
+	          <div class="radio">
               <label>
-		<input type="radio" value="SALE" ng-model="pm.model.entity.transaction_type">
-		For Sale
+		            <input type="radio" value="SALE" ng-model="pm.model.entity.transaction_type">
+		            For Sale
               </label>
-	    </div>
-	    <div class="radio">
+	          </div>
+	          <div class="radio">
               <label>
-		<input type="radio" value="RENT" ng-model="pm.model.entity.transaction_type">
-		For Rent
+		            <input type="radio" value="RENT" ng-model="pm.model.entity.transaction_type">
+		            For Rent
               </label>
-	    </div>
-	  </div>
-	  <div class="divider"></div>
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Land'">
-	    <label for="land_types">Land Types</label>
-	    <select id="land_types" ng-options="type for type in pm.model.land_types" ng-model="pm.model.entity.land_type" class="input-sm form-control">
-	    </select>
-	  </div>
+	          </div>
+	        </div>
+	        <div class="divider"></div>
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Land'">
+	          <label for="land_types">Land Types</label>
+	          <select id="land_types" ng-options="type for type in pm.model.land_types" ng-model="pm.model.entity.land_type" class="input-sm form-control">
+	          </select>
+	        </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
-	    <label for="name">Name</label>
-	    <input id="name" ng-model="pm.model.entity.name" mandatory type="text" class="input-sm form-control" placeholder="Name" ng-required="true">
-	  </div>
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
+	          <label for="name">Name</label>
+	          <input id="name" ng-model="pm.model.entity.name" mandatory type="text" class="input-sm form-control" placeholder="Name" ng-required="true">
+	        </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type" style="z-index: 1051;">
-	    <label for="location">Location</label>
-	    <input id="location" ng-model="pm.model.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true" ng-init="pm.setLocationSearch(this)" >
-	  </div>
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type" style="z-index: 1051;">
+	          <label for="location">Location</label>
+	          <input id="location" ng-model="pm.model.entity.location" mandatory type="text" class="input-sm form-control" placeholder="Location" ng-required="true" ng-init="pm.setLocationSearch(this)" >
+	        </div>
 
-	  <!--Land  and House and Lot Property field-->
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Land' || pm.model.entity.type == 'House and Lot'">
-	    <label for="land_area">Land Area</label>
-	    <input id="land_area" ng-model="pm.model.entity.land_area" mandatory type="number" class="input-sm form-control" placeholder="Area" ng-required="true">
-	  </div>
+	        <!--Land  and House and Lot Property field-->
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Land' || pm.model.entity.type == 'House and Lot'">
+	          <label for="land_area">Land Area</label>
+	          <input id="land_area" ng-model="pm.model.entity.land_area" mandatory type="number" class="input-sm form-control" placeholder="Area" ng-required="true">
+	        </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
             <label for="price">Price</label>
             <input id="price" ng-model="pm.model.entity.price" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Price" ng-required="true">
-	  </div>
-	  <!--/end Land  and House and Lot Property field-->
+	        </div>
+	        <!--/end Land  and House and Lot Property field-->
 
-	  <!--Condo property fields-->
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Condo'">
-	    <label for="capacity">Capacity</label>
-	    <input id="capacity" ng-model="pm.model.entity.capacity" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Capacity" ng-required="true">
-	  </div>
-	  <!--/end of condo property fields-->
+	        <!--Condo property fields-->
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'Condo'">
+	          <label for="capacity">Capacity</label>
+	          <input id="capacity" ng-model="pm.model.entity.capacity" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Capacity" ng-required="true">
+	        </div>
+	        <!--/end of condo property fields-->
 
-	  <!-- house and lot proerties-->
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
-	    <label for="floors">No. of Floors</label>
-	    <input id="floors" ng-model="pm.model.entity.floors" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floors" ng-required="true">
-	  </div>
+	        <!-- house and lot proerties-->
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
+	          <label for="floors">No. of Floors</label>
+	          <input id="floors" ng-model="pm.model.entity.floors" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floors" ng-required="true">
+	        </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot' || pm.model.entity.type == 'Condo'">
-	    <label for="floor_area">Floor Area</label>
-	    <input id="hour_err" ng-model="pm.model.entity.floor_area" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floor Area" ng-required="true">
-	  </div>
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot' || pm.model.entity.type == 'Condo'">
+	          <label for="floor_area">Floor Area</label>
+	          <input id="hour_err" ng-model="pm.model.entity.floor_area" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Floor Area" ng-required="true">
+	        </div>
 
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
-	    <label for="bedrooms">No. Bedrooms</label>
-	    <input id="bedrooms" ng-model="pm.model.entity.bedrooms" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Bedrooms" ng-required="true">
-	  </div>
-	  <!--/end of house and lot proerty fields-->
-	  <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
-	    <label for="features">Other Features</label>
-	    <textarea id="features" ng-model="pm.model.entity.features" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
-	  </div>
-	  <span id="error_msg"></span>
-	</div>
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type == 'House and Lot'">
+	          <label for="bedrooms">No. Bedrooms</label>
+	          <input id="bedrooms" ng-model="pm.model.entity.bedrooms" mandatory numbers-limit number-only type="number" class="input-sm form-control" placeholder="Bedrooms" ng-required="true">
+	        </div>
+	        <!--/end of house and lot proerty fields-->
+	        <div class="col-xs-12 form-group" ng-if="pm.model.entity.type">
+	          <label for="features">Other Features</label>
+	          <textarea id="features" ng-model="pm.model.entity.features" mandatory type="text" class="input-sm form-control" placeholder="Description" ng-required="true"></textarea>
+	        </div>
+	        <span id="error_msg"></span>
+	      </div>
       </div>
 
       <div class="modal-footer">
-    	<button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.model.entity.type === undefined">Save</button>
-    	<button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
+    	  <button id="ok-btn" class="btn btn-sm btn-primary" ng-click="pm.save()" ng-disabled="pm.model.entity.type === undefined">Save</button>
+    	  <button class="btn btn-sm btn-link" ng-click="pm.cancel()">Cancel</button>
       </div>
 
     </div>

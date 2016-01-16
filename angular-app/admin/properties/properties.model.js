@@ -305,8 +305,7 @@
       var call = PropertyREST.set_profile_photo(key, params);
       Property.loading.watch(call)
         .success(function(data){
-          console.log(data);
-          passive_messenger.info("Profile phopto has been set!");
+          Property.info.profile_photo = data.profile_photo;
         });
     }
 
