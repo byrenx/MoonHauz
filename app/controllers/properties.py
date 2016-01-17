@@ -142,3 +142,6 @@ class Properties(MoonHauzController):
         self.meta.Message = messages.model_message(Property)
         self.context['data'] = property
 
+    @route_with('/api/property/search/:<search_str>')
+    def api_search(self, search_str):
+        self.context['data'] = Property.search(search_str)

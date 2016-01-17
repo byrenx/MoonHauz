@@ -16,6 +16,10 @@ key_converter = {'KeyProperty': ReferenceToValueConverter}
 
 
 class Property(BasicModel, polymodel.PolyModel):
+
+    class Meta:
+        resultset_limit = 10
+
     name = ndb.StringProperty(required=True, indexed=True)
     location = ndb.StringProperty(required=True, indexed=True)
     sold = ndb.BooleanProperty(default=False)
@@ -110,6 +114,24 @@ class Property(BasicModel, polymodel.PolyModel):
     @classmethod
     def list_by_for_unsold(cls):
         return cls.query(cls.sold == False)
+
+    @classmethod
+    def search(cls, search_str):
+        '''
+        search_str -> either be a property name or address
+
+        return a limited number or matching results
+        '''
+        props = cls.query().fetch()
+        filtered_properties = []
+        count = 0
+        for prop in props:
+            if search_str in prop.name \
+               or search_str in prop.location \
+               and count <= cls.Meta.resultset_limit:
+                filtered_properties.append(cls.buildProperty(prop))
+                count += 1
+        return PropertiesMessage(properties=filtered_properties)
 
     '''messages configs'''
 
