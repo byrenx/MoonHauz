@@ -12,6 +12,7 @@
   function properties(pubsub, Property){
 
     var vm = this;
+    vm.activate = activate;
 	  vm.modal = modal;
 	  vm.editModal = editModal;
 	  vm.types = Property.types;
@@ -84,7 +85,6 @@
     function search(){
       Property.search();
     }
-
   }
 
 })(window.angular);

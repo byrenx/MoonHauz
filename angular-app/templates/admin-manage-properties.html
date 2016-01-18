@@ -9,10 +9,22 @@
 	          <i class="fa fa-search form-control-feedback"></i>
           </div>
         </form>
-         <li role="presentation">
-          <a href="" ng-click="property.modal()" title="Add new property">
-            <i class="fa fa-plus"></i>
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-option-vertical"></span>
           </a>
+          <ul class="dropdown-menu">
+            <li role="presentation">
+              <a href="" ng-click="property.modal()">
+                <i class="fa fa-plus"></i>&nbsp;Add Property
+              </a>
+            </li>
+             <li role="presentation">
+              <a href="" ng-click="property.activate()">
+                <i class="fa fa-list"></i>&nbsp;Show All
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

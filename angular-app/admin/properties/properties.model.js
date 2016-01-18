@@ -62,6 +62,7 @@
           Property.previous_page = data.previous_page;
           Property.next_page = data.next_page;
           Property.list.push.apply(Property.list, data.items || []);
+          Property.info = {};
         });
     }
 
@@ -93,7 +94,6 @@
       var call = PropertyREST.get(key);
       Property.loading.watch(call)
         .success(function(data){
-          console.log(data);
           angular.extend(Property.entity, data);
           Property.info = data;
         });
@@ -272,7 +272,6 @@
             passive_messenger.info("New Photo succesfully uploaded!");
           });
         }, function(evt){
-          console.log("Event logging");
           Property.photo.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
         });
     }
