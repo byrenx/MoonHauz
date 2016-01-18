@@ -59,5 +59,9 @@
       this.set_profile_photo = function(key, params){
         return http.put(base_url + '/set_profile_photo/:' + key, params);
       }
+
+      this.search = function(search_text){
+        return http.get(base_url + '/search/:' + search_text);
+      }
     }
 })(window.angular);

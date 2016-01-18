@@ -26,6 +26,7 @@
     vm.doc = Property.doc;
     vm.isListEmpty = isListEmpty;
     vm.setAsProfilePhoto = setAsProfilePhoto;
+    vm.search = search;
 
     vm.next = next;
     vm.previous = previous;
@@ -78,6 +79,10 @@
 
     function setAsProfilePhoto(key, url){
       Property.setProfilePhoto(key, url);
+    }
+
+    function search(){
+      Property.search();
     }
 
   }

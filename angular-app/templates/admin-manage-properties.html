@@ -1,28 +1,36 @@
 <!-- Property List -->
 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sidebar">
   <div class="row">
-    <div class="col-md-12 form-inline">
-      <button class="btn btn-success btn-sm" ng-click="property.modal()">
-        <i class="fa fa-plus"></i>&nbsp;property
-      </button>
-      <div class="form-group has-feedback pull-right">
-	      <input type="text" class="form-control input-sm">
-	      <i class="fa fa-search form-control-feedback"></i>
-      </div>
+    <div class="col-md-12">
+      <ul class="nav nav-pills">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group has-feedback pull-right">
+	          <input type="text" ng-model="property.model.search_text" class="form-control input-sm" enter="property.search()">
+	          <i class="fa fa-search form-control-feedback"></i>
+          </div>
+        </form>
+         <li role="presentation">
+          <a href="" ng-click="property.modal()" title="Add new property">
+            <i class="fa fa-plus"></i>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="col-md-12">
 
-      <h3>Property List
-      	<small>
-
-      	</small>
-      </h3>
+      <h3>Properties</h3>
 
       <table class="table table-condensed table-hover">
         <tr ng-repeat="item in property.model.list" ng-click="property.show_info(item)">
           <td>
-            <span ng-bind="::item.name"></span>
-            <span ng-bind="::item.location"></span>
+            <p>
+              <strong>
+                <span ng-bind="::item.name"></span>
+              </strong>
+            </p>
+            <p>
+              <i class="fa fa-map-marker text-success"></i>&nbsp;<span ng-bind="::item.location"></span>
+            </p>
           </td>
         </tr>
       </table>

@@ -32,6 +32,7 @@
     Property.info = {};
     Property.photo = {};
     Property.doc = {};
+    Property.search_text = '';
 
     Property.create = create;
     Property.uploadPhoto = uploadPhoto;
@@ -40,6 +41,7 @@
     Property.getProperty = getProperty;
     Property.update = update;
     Property.setProfilePhoto = setProfilePhoto;
+    Property.search = search;
 
     Property.previous = previous;
     Property.next = next;
@@ -306,6 +308,17 @@
       Property.loading.watch(call)
         .success(function(data){
           Property.info.profile_photo = data.profile_photo;
+        });
+    }
+
+    function search(){
+      var call = PropertyREST.search(Property.search_text);
+      Property.list = [];
+      Property.loading.watch(call)
+        .success(function(data){
+           Property.list.push.apply(Property.list, data.properties || []);
+          Property.previous = null;
+          Property.next = null;
         });
     }
 

@@ -131,6 +131,10 @@ class Property(BasicModel, polymodel.PolyModel):
                and count <= cls.Meta.resultset_limit:
                 filtered_properties.append(cls.buildProperty(prop))
                 count += 1
+            # break the loop if the count is greater than resultset limit
+            if count > cls.Meta.resultset_limit:
+                break
+
         return PropertiesMessage(properties=filtered_properties)
 
     '''messages configs'''
